@@ -1,8 +1,8 @@
-const crypto = require("crypto");
-const Sequelize = require("sequelize");
-const db = require("../db");
+const crypto = require('crypto');
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const Donor = db.define("donor", {
+const Donor = db.define('donor', {
   lastName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -22,7 +22,7 @@ const Donor = db.define("donor", {
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
-      return () => this.getDataValue("password");
+      return () => this.getDataValue('password');
     },
   },
   salt: {
@@ -30,7 +30,7 @@ const Donor = db.define("donor", {
     // Making `.salt` act like a function hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
-      return () => this.getDataValue("salt");
+      return () => this.getDataValue('salt');
     },
   },
   googleId: {
@@ -54,16 +54,16 @@ Donor.prototype.correctPassword = function(candidatePwd) {
  */
 //from boilermaker
 Donor.generateSalt = function() {
-  return crypto.randomBytes(16).toString("base64");
+  return crypto.randomBytes(16).toString('base64');
 };
 
 //from boilermaker
 Donor.encryptPassword = function(plainText, salt) {
   return crypto
-    .createHash("RSA-SHA256")
+    .createHash('RSA-SHA256')
     .update(plainText)
     .update(salt)
-    .digest("hex");
+    .digest('hex');
 };
 
 /**
@@ -72,16 +72,16 @@ Donor.encryptPassword = function(plainText, salt) {
 
  //from boilermaker
 const setSaltAndPassword = donor => {
-  if (donor.changed("password")) {
+  if (donor.changed('password')) {
     donor.salt = Donor.generateSalt();
     donor.password = Donor.encryptPassword(donor.password(), donor.salt());
   }
 };
 
 const updateDonation = donor => {
-  Number(donor.totalDonation) += Number(donor.mostRecentDonation)
-  Number(donor.donationCount) += 1
-}
+  donor.totalDonation = Number(donor.totalDonation) + Number(donor.mostRecentDonation);
+  donor.donationCount = Number(donor.donationCount) + 1;
+};
 
 Donor.beforeCreate(setSaltAndPassword);
 Donor.beforeUpdate(setSaltAndPassword);
