@@ -9,7 +9,9 @@ const Donor = db.define("donor", {
   },
   firstName: { type: Sequelize.STRING, allowNull: false },
   address: Sequelize.STRING,
-  totalDonation: Sequelize.DECIMAL,
+  totalDonation: Sequelize.STRING,
+  donationCount: Sequelize.INTEGER,
+  mostRecentDonation: Sequelize.STRING,
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -70,5 +72,12 @@ const setSaltAndPassword = donor => {
   }
 };
 
+const updateDonation = donor => {
+  Number(donor.totalDonation) += Number(donor.mostRecentDonation)
+  Number(donor.donationCount) += 1
+}
+
 Donor.beforeCreate(setSaltAndPassword);
 Donor.beforeUpdate(setSaltAndPassword);
+Donor.afterUpdate(updateDonation)
+

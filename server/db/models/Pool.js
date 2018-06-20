@@ -6,6 +6,9 @@ const Pool = db.define("pool", {
   name: { type: Sequelize.STRING, allowNull: false },
   latitude: { type: Sequelize.STRING, allowNull: false },
   longitude: { type: Sequelize.STRING, allowNull: false },
+  mostRecentDonation: Sequelize.STRING,
+  mostRecentExpenditure: Sequelize.STRING,
+  targetQuantity: Sequelize.STRING, //represents amount of water in each dispatch to the pool area
   town: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -30,8 +33,15 @@ const Pool = db.define("pool", {
 
 module.exports = Pool;
 
-const updateFunds = (pool, donation) => {
-  // Number(pool.currentFunds) += Number(donation.amountorwhatever);
+//Pool model instance method(s)
+Pool.prototype.updateFunds = (amount, type) => {
+  if (type === "donation") {
+    this.currentFunds = Number(amount) + Number(this.currentFunds);
+    this.mostRecentDonation = amount;
+  } else if (type === "transaction") {
+    this.currentFunds = Number(this.currentFunds) - Number(amount);
+    this.mostRecentExpenditure = amount; //should coerce to string
+  }
 };
 
-Pool.afterUpdate(updateFunds);
+// remember to properly execute updateFunds in the routes~~~~
