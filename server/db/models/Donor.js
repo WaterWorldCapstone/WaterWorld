@@ -79,5 +79,5 @@ const updateDonation = donor => {
 
 Donor.beforeCreate(setSaltAndPassword);
 Donor.beforeUpdate(setSaltAndPassword);
-Donor.afterUpdate(updateDonation)
+Donor.afterUpdate(updateDonation);
 

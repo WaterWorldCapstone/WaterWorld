@@ -12,10 +12,13 @@ const Vendor = db.define("vendor", {
   continent: Sequelize.STRING,
   country: Sequelize.STRING,
   town: Sequelize.STRING,
-  maxCapacity: Sequelize.DECIMAL,
+  maxCapacity: Sequelize.STRING,
   companyName: Sequelize.STRING,
+  mostRecentDisbursement: Sequelize.STRING,
   totalWaterDistributed: Sequelize.INTEGER,
-  averagePrice: Sequelize.DECIMAL,
+  disbursementCount: Sequelize.INTEGER,
+  totalDisbursement: Sequelize.STRING,
+  averagePrice: Sequelize.STRING,
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -72,12 +75,16 @@ const calculateTotal = (vendor, transaction) => {
 };
 const setSaltAndPassword = vendor => {
   if (vendor.changed("password")) {
-    vendor.salt = Donor.generateSalt();
-    vendor.password = Donor.encryptPassword(vendor.password(), vendor.salt());
+    vendor.salt = Vendor.generateSalt();
+    vendor.password = Vendor.encryptPassword(vendor.password(), vendor.salt());
   }
 };
 
+const updateDisbursement = vendor => {
+  Number(vendor.totalDisbursement) += Number(vendor.mostRecentDisbursement)
+  Number(vendor.disbursementCount) += 1
+}
+
 Vendor.beforeCreate(setSaltAndPassword);
 Vendor.beforeUpdate(setSaltAndPassword);
-// Vendor.afterCreate
-// Vendor.afterUpdate
+Vendor.afterUpdate(updateDisbursement);
