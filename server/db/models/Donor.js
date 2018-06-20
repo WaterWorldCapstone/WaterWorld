@@ -43,6 +43,8 @@ module.exports = Donor;
 /**
  * instanceMethods
  */
+
+//from boilermaker
 Donor.prototype.correctPassword = function(candidatePwd) {
   return Donor.encryptPassword(candidatePwd, this.salt()) === this.password();
 };
@@ -50,10 +52,12 @@ Donor.prototype.correctPassword = function(candidatePwd) {
 /**
  * classMethods
  */
+//from boilermaker
 Donor.generateSalt = function() {
   return crypto.randomBytes(16).toString("base64");
 };
 
+//from boilermaker
 Donor.encryptPassword = function(plainText, salt) {
   return crypto
     .createHash("RSA-SHA256")
@@ -65,6 +69,8 @@ Donor.encryptPassword = function(plainText, salt) {
 /**
  * hooks
  */
+
+ //from boilermaker
 const setSaltAndPassword = donor => {
   if (donor.changed("password")) {
     donor.salt = Donor.generateSalt();
@@ -79,5 +85,7 @@ const updateDonation = donor => {
 
 Donor.beforeCreate(setSaltAndPassword);
 Donor.beforeUpdate(setSaltAndPassword);
+//these two are boilermaker ^^
+
 Donor.afterUpdate(updateDonation);
 

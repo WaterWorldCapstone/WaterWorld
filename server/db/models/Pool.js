@@ -1,4 +1,3 @@
-const crypto = require("crypto");
 const Sequelize = require("sequelize");
 const db = require("../db");
 
@@ -21,6 +20,7 @@ const Pool = db.define("pool", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  status: Sequelize.STRING, //pool is in planning, collecting money, sent to vendor, complete
   currentFunds: Sequelize.STRING,
   solutionType: Sequelize.STRING,
   goalFunds: Sequelize.STRING,
@@ -33,7 +33,7 @@ const Pool = db.define("pool", {
 
 module.exports = Pool;
 
-//Pool model instance method(s)
+//Pool model instance method
 Pool.prototype.updateFunds = (amount, type) => {
   if (type === "donation") {
     this.currentFunds = Number(amount) + Number(this.currentFunds);

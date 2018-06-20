@@ -2,6 +2,8 @@ const crypto = require("crypto");
 const Sequelize = require("sequelize");
 const db = require("../db");
 
+
+//potential fields: moneyOwed; moneyPaid; monthlyDisbursement;
 const Vendor = db.define("vendor", {
   lastName: {
     type: Sequelize.STRING,
@@ -47,6 +49,7 @@ const Vendor = db.define("vendor", {
 
 module.exports = Vendor;
 
+//from boilermaker
 Vendor.prototype.correctPassword = function(candidatePwd) {
   return Donor.encryptPassword(candidatePwd, this.salt()) === this.password();
 };
@@ -54,10 +57,12 @@ Vendor.prototype.correctPassword = function(candidatePwd) {
 /**
  * classMethods
  */
+//from boilermaker
 Vendor.generateSalt = function() {
   return crypto.randomBytes(16).toString("base64");
 };
 
+//from boilermaker
 Vendor.encryptPassword = function(plainText, salt) {
   return crypto
     .createHash("RSA-SHA256")
@@ -70,9 +75,7 @@ Vendor.encryptPassword = function(plainText, salt) {
  * hooks
  */
 
-const calculateTotal = (vendor, transaction) => {
-  //add transaction amount to the vendor field
-};
+ //from boilermaker
 const setSaltAndPassword = vendor => {
   if (vendor.changed("password")) {
     vendor.salt = Vendor.generateSalt();
@@ -87,4 +90,6 @@ const updateDisbursement = vendor => {
 
 Vendor.beforeCreate(setSaltAndPassword);
 Vendor.beforeUpdate(setSaltAndPassword);
+//these two from boilermaker ^^
+
 Vendor.afterUpdate(updateDisbursement);
