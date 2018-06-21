@@ -112,22 +112,14 @@ async function seed() {
     vendors.map(vendor => Vendor.create(vendor))
   );
   const createdPools = await Promise.all(pools.map(pool => Pool.create(pool)));
-  // const createdDonations = await Promise.all(
-  //   donations.map(donation => Donation.create(donation))
-  // );
-  // const createdTransactions = await Promise.all(
-  //   transactions.map(transaction => Transaction.create(transaction))
-  // );
   await createdUsers[0].setDonor(createdDonors[0]);
   await createdUsers[1].setVendor(createdVendors[0]);
   await createdPools[0].addDonor(createdDonors[0]);
   await createdPools[0].addVendor(createdVendors[0]);
-  // createdDonations[0].setDonor(createdDonors[0]);
-  // createdDonations[0].setPool(createdPools[0]);
-  // createdTransactions[0].setDonor(createdDonors[0]);
-  // createdTransactions[0].setPool(createdPools[0]);
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
+  const foundDonations = await Donation.findAll();
+  const foundTransactions = await Transaction.findAll();
+  await foundDonations[0].update(donations[0]);
+  await foundTransactions[0].update(transactions[0]);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
 }
