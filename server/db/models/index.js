@@ -23,8 +23,10 @@ Donor.belongsToMany(Pool, { through: 'donation' });
 Pool.belongsToMany(Donor, { through: 'donation' });
 Vendor.belongsToMany(Pool, { through: 'transaction' });
 Pool.belongsToMany(Vendor, { through: 'transaction' });
-Donor.hasOne(User);
-Vendor.hasOne(User);
+User.hasOne(Donor);
+Donor.belongsTo(User);
+User.hasOne(Vendor);
+Vendor.belongsTo(User);
 
 module.exports = {
   User,
