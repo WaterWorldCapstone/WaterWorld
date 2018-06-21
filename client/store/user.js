@@ -71,6 +71,19 @@ export const donorSignup = (email, password, address) => async dispatch => {
   }
 };
 
+//vendor signup
+export const vendorSignup = (email, password, address, continent, country, town, companyName) => async dispatch => {
+  try {
+    const vendor = await axios.post("/auth/signup", {
+      user: { email: email, password: password},
+      type: {address: address}, continent: continent, country: country, town: town, companyName: companyName
+    })
+    dispatch(getUser(vendor.data))
+  } catch(err) {
+    console.err(err)
+  }
+}
+
 /**
  * REDUCER
  */
