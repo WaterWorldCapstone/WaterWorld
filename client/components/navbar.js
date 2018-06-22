@@ -4,12 +4,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import AppBar from 'material-ui/AppBar';
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <MuiThemeProvider  muiTheme={getMuiTheme(baseTheme)}>
+  <MuiThemeProvider  muiTheme={getMuiTheme(lightBaseTheme)}>
   <AppBar>
   <div>
     <nav>
