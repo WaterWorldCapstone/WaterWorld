@@ -11,11 +11,12 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       <nav>
         {isLoggedIn ? (
           <>'           '<span>
-              <h1>WaterWorld</h1>
-              <Link to="/">Home</Link>
-              <Link href="#" onClick={handleClick}>
-                Logout
-              </Link>
+              <h1>
+                WaterWorld <Link to="/">Home</Link>
+                <Link href="#" onClick={handleClick}>
+                  Logout
+                </Link>
+              </h1>
                          </span>'         '</>
         ) : (
           <>'           '<span>
