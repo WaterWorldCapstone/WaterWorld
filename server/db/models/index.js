@@ -1,9 +1,9 @@
-const User = require('./user');
-const Donor = require('./Donor');
-const Pool = require('./Pool');
-const Vendor = require('./Vendor');
-const Donation = require('./Donation');
-const Transaction = require('./Transaction');
+const User = require('./user')
+const Donor = require('./Donor')
+const Pool = require('./Pool')
+const Vendor = require('./Vendor')
+const Donation = require('./Donation')
+const Transaction = require('./Transaction')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -19,14 +19,14 @@ const Transaction = require('./Transaction');
  * instead of: const User = require('../db/models/user')
  */
 
-Donor.belongsToMany(Pool, { through: 'donation' });
-Pool.belongsToMany(Donor, { through: 'donation' });
-Vendor.belongsToMany(Pool, { through: 'transaction' });
-Pool.belongsToMany(Vendor, { through: 'transaction' });
-User.hasOne(Donor);
-Donor.belongsTo(User);
-User.hasOne(Vendor);
-Vendor.belongsTo(User);
+Donor.belongsToMany(Pool, {through: 'donation'})
+Pool.belongsToMany(Donor, {through: 'donation'})
+Vendor.belongsToMany(Pool, {through: 'transaction'})
+Pool.belongsToMany(Vendor, {through: 'transaction'})
+User.hasOne(Donor)
+Donor.belongsTo(User)
+User.hasOne(Vendor)
+Vendor.belongsTo(User)
 
 module.exports = {
   User,
@@ -34,5 +34,5 @@ module.exports = {
   Pool,
   Vendor,
   Donation,
-  Transaction,
-};
+  Transaction
+}
