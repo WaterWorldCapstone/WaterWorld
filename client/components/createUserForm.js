@@ -3,6 +3,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {AddUser} from '../store/user'
+import Button from '@material-ui/core/Button'
 
 class CreateUser extends Component {
   handleSubmit = evt => {
@@ -99,13 +100,13 @@ class CreateUser extends Component {
                 <div className="error-container">{error.response.data}</div>
               )}
               <center>
-                <button
+                <Button
                   className="btn custom_btn waves-effect waves-light teal"
                   type="submit"
                   name="action"
                 >
                   Submit
-                </button>
+                </Button>
               </center>
             </div>
           </form>

@@ -88,38 +88,66 @@ export const me = () => dispatch =>
     .then(res => dispatch(getUser(res.data || defaultUser)))
     .catch(err => console.log(err))
 
-export const auth = (email, password, method) => dispatch =>
-  axios
-    .post(`/auth/${method}`, {email, password})
-    .then(
-      res => {
-        dispatch(getUser(res.data))
-        history.push('/')
+//donor signup
+export const donorSignup = (
+  email,
+  password,
+  address,
+  firstName,
+  lastName
+) => async dispatch => {
+  try {
+    const donor = await axios.post('/auth/signup', {
+      user: {
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
       },
-      authError => {
-        // rare example: a good use case for parallel (non-catch) error handler
-        dispatch(getUser({error: authError}))
-      }
-    )
-    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
-
-export const deleteUser = user => dispatch =>
-  axios
-    .delete(`/auth/${user}`)
-    .then(_ => {
-      dispatch(removeUser())
-      history.push('/login')
+      type: {address: address},
+      userType: 'donor'
     })
-    .catch(err => console.log(err))
+    dispatch(getUser(donor.data))
+    // history.push("/home");
+  } catch (err) {
+    console.err(err)
+  }
+}
 
-export const logout = () => dispatch =>
-  axios
-    .post('/auth/logout')
-    .then(_ => {
-      dispatch(removeUser())
-      history.push('/')
+//vendor signup
+export const vendorSignup = (
+  email,
+  password,
+  firstName,
+  lastName,
+  address,
+  continent,
+  country,
+  town,
+  companyName
+) => async dispatch => {
+  try {
+    const vendor = await axios.post('/auth/signup', {
+      user: {
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
+      },
+      type: {
+        address: address,
+        continent: continent,
+        country: country,
+        town: town,
+        companyName: companyName
+      },
+      userType: 'vendor'
     })
-    .catch(err => console.log(err))
+    dispatch(getUser(vendor.data))
+  } catch (err) {
+    console.err(err)
+  }
+}
 
 /**
  * REDUCER
