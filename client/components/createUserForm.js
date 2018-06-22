@@ -3,6 +3,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {AddUser} from '../store/user'
+import Button from '@material-ui/core/Button'
 
 class CreateUser extends Component {
   handleSubmit = evt => {
@@ -14,6 +15,7 @@ class CreateUser extends Component {
       email: evt.target.email.value,
       password: evt.target.password.value
     }
+    console.log(NU)
     this.props.newUser(NU)
   }
   render() {
@@ -79,18 +81,32 @@ class CreateUser extends Component {
                     minLength="8"
                   />
                 </div>
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.handleChange}
+                    type="checkbox"
+                    name="type"
+                    value="donor"
+                  />Donor
+                  <input
+                    onChange={this.handleChange}
+                    type="checkbox"
+                    name="type"
+                    value="vendor"
+                  />Vendor
+                </div>
               </div>
               {error && (
                 <div className="error-container">{error.response.data}</div>
               )}
               <center>
-                <button
+                <Button
                   className="btn custom_btn waves-effect waves-light teal"
                   type="submit"
                   name="action"
                 >
                   Submit
-                </button>
+                </Button>
               </center>
             </div>
           </form>
