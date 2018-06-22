@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
-const asyncHandler = require('express-async-handler');
+const asyncHandler = require('express-async-handler')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -16,7 +16,6 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-
 
 // router.post('/', asyncHandler(async(req, res) => {
 //   const user = await User.create({

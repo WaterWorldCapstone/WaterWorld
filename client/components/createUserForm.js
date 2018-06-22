@@ -1,27 +1,30 @@
-'use strict';
+'use strict'
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { AddUser } from '../store/user';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {AddUser} from '../store/user'
 
 class CreateUser extends Component {
   handleSubmit = evt => {
-    evt.preventDefault();
+    evt.preventDefault()
     const NU = {
       firstName: evt.target.firstName.value,
       lastName: evt.target.lastName.value,
       homeAddress: evt.target.homeAddress.value,
       email: evt.target.email.value,
       password: evt.target.password.value
-    };
-    this.props.newUser(NU);
-  };
+    }
+    this.props.newUser(NU)
+  }
   render() {
-   const {error} = this.props
+    const {error} = this.props
     return (
       <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
         <div id="register" className="col s12">
-          <form className="col s12 container__form" onSubmit={this.handleSubmit}>
+          <form
+            className="col s12 container__form"
+            onSubmit={this.handleSubmit}
+          >
             <div className="form-container">
               <h4 className="teal-text">Welcome</h4>
               <div className="row">
@@ -46,7 +49,12 @@ class CreateUser extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input id="homeAddress" type="text" name="homeAddress" placeholder="Address" />
+                  <input
+                    id="homeAddress"
+                    type="text"
+                    name="homeAddress"
+                    placeholder="Address"
+                  />
                 </div>
               </div>
               <div className="row">
@@ -67,15 +75,20 @@ class CreateUser extends Component {
                     type="password"
                     name="password"
                     placeholder="Password"
-                    required minLength="8"
+                    required
+                    minLength="8"
                   />
                 </div>
               </div>
-              {error &&
-              (<div className="error-container">{error.response.data}</div>)
-              }
+              {error && (
+                <div className="error-container">{error.response.data}</div>
+              )}
               <center>
-                <button className="btn custom_btn waves-effect waves-light teal" type="submit" name="action">
+                <button
+                  className="btn custom_btn waves-effect waves-light teal"
+                  type="submit"
+                  name="action"
+                >
                   Submit
                 </button>
               </center>
@@ -83,20 +96,17 @@ class CreateUser extends Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 
 const stateToProps = state => ({
   user: state.user,
-  error: state.user.error,
-});
+  error: state.user.error
+})
 
 const MapToProps = dispatch => ({
   newUser: user => dispatch(AddUser(user))
-});
+})
 
-export default connect(
-  stateToProps,
-  MapToProps
-)(CreateUser);
+export default connect(stateToProps, MapToProps)(CreateUser)

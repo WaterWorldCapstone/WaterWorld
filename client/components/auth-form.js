@@ -9,7 +9,11 @@ const AuthForm = props => {
   return (
     <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
       <div id="login" className="col s12">
-        <form className="col s12 container__form" onSubmit={handleSubmit} name={name}>
+        <form
+          className="col s12 container__form"
+          onSubmit={handleSubmit}
+          name={name}
+        >
           <div className="form-container">
             <h4 className="teal-text">Hello</h4>
             <div className="row">
@@ -32,16 +36,21 @@ const AuthForm = props => {
                 />
               </div>
             </div>
-            {error && (
-                emaildata === '' ? (<div className="error-container">Please enter email</div>) : (
-                  passdata === '' ? (<div className="error-container">Please enter password</div>) : (<div className="error-container">{error.response.data}</div>)
+            {error &&
+              (emaildata === '' ? (
+                <div className="error-container">Please enter email</div>
+              ) : passdata === '' ? (
+                <div className="error-container">Please enter password</div>
+              ) : (
+                <div className="error-container">{error.response.data}</div>
               ))}
             <br />
             <center>
               <button
                 className="btn custom_btn waves-effect waves-light teal"
                 type="submit"
-                name="action">
+                name="action"
+              >
                 Sign In
               </button>
               <br />
@@ -64,8 +73,14 @@ const mapLogin = state => {
     name: 'login',
     displayName: 'Login',
     error: state.user.error,
-    emaildata: (state.user.error && state.user.error.config) && state.user.error.config.data.email,
-    passdata: (state.user.error && state.user.error.config) && state.user.error.config.data.password
+    emaildata:
+      state.user.error &&
+      state.user.error.config &&
+      state.user.error.config.data.email,
+    passdata:
+      state.user.error &&
+      state.user.error.config &&
+      state.user.error.config.data.password
   }
 }
 
@@ -73,7 +88,7 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error,
+    error: state.user.error
   }
 }
 
@@ -85,23 +100,17 @@ const mapDispatch = dispatch => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
-    },
+    }
   }
 }
 
-export const Login = connect(
-  mapLogin,
-  mapDispatch
-)(AuthForm)
-export const Signup = connect(
-  mapSignup,
-  mapDispatch
-)(AuthForm)
+export const Login = connect(mapLogin, mapDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
 AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object,
+  error: PropTypes.object
 }
 
 AuthForm.propTypes = {

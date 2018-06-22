@@ -1,6 +1,5 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
-
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 //potential fields: moneyOwed; moneyPaid; monthlyDisbursement;
 const Vendor = db.define('vendor', {
@@ -14,14 +13,15 @@ const Vendor = db.define('vendor', {
   totalWaterDistributed: Sequelize.INTEGER,
   disbursementCount: Sequelize.INTEGER,
   totalDisbursement: Sequelize.STRING,
-  averagePrice: Sequelize.STRING,
-});
+  averagePrice: Sequelize.STRING
+})
 
-module.exports = Vendor;
+module.exports = Vendor
 
 const updateDisbursement = vendor => {
-  vendor.totalDisbursement = Number(vendor.totalDisbursement) + Number(vendor.mostRecentDisbursement);
-  vendor.disbursementCount = Number(vendor.disbursementCount) + 1;
-};
+  vendor.totalDisbursement =
+    Number(vendor.totalDisbursement) + Number(vendor.mostRecentDisbursement)
+  vendor.disbursementCount = Number(vendor.disbursementCount) + 1
+}
 
-Vendor.afterUpdate(updateDisbursement);
+Vendor.afterUpdate(updateDisbursement)
