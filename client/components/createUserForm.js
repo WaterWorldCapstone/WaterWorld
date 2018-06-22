@@ -14,6 +14,7 @@ class CreateUser extends Component {
       email: evt.target.email.value,
       password: evt.target.password.value
     }
+    console.log(NU)
     this.props.newUser(NU)
   }
   render() {
@@ -78,6 +79,20 @@ class CreateUser extends Component {
                     required
                     minLength="8"
                   />
+                </div>
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.handleChange}
+                    type="checkbox"
+                    name="type"
+                    value="donor"
+                  />Donor
+                  <input
+                    onChange={this.handleChange}
+                    type="checkbox"
+                    name="type"
+                    value="vendor"
+                  />Vendor
                 </div>
               </div>
               {error && (
