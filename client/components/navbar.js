@@ -9,13 +9,21 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <AppBar>
     <div>
       <nav>
-        <h1>WaterWorld</h1>
         {isLoggedIn ? (
-          <>'           '<Link to="/">Home</Link>'           '<a href="#" onClick={handleClick}>
-              Logout
-                                                              </a>'         '</>
+          <>'           '<span>
+              <h1>WaterWorld</h1>
+              <Link to="/">Home</Link>
+              <Link href="#" onClick={handleClick}>
+                Logout
+              </Link>
+                         </span>'         '</>
         ) : (
-          <>'           '<Link to="/">Home</Link>'           '<Link to="/login">Login</Link>'           '<Link to="/signup">Sign Up</Link>'         '</>
+          <>'           '<span>
+              <h1>WaterWorld</h1>
+              <Link to="/">Home</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+                         </span>'         '</>
         )}
       </nav>
       <hr />
