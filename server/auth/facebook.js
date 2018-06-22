@@ -1,6 +1,6 @@
 const passport = require('passport')
 const router = require('express').Router()
-const FacebookStrategy = require('passport-facebook-oauth').OAuth2Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 const {User} = require('../db/models')
 module.exports = router
 
