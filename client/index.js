@@ -13,10 +13,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import './socket'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <App />
-    </Router>
-  </Provider>,
+  <MuiThemeProvider theme={getMuiTheme(lightBaseTheme)}>
+    <Provider store={store}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('app')
 )
