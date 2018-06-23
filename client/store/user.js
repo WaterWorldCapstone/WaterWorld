@@ -89,6 +89,7 @@ export const me = () => dispatch =>
     .catch(err => console.log(err))
 
 //donor signup
+
 export const donorSignup = (
   email,
   password,
@@ -110,6 +111,20 @@ export const donorSignup = (
     dispatch(getUser(donor.data))
     // history.push("/home");
   } catch (err) {
+    console.err(err);
+  }
+};
+
+//vendor signup
+export const vendorSignup = (email, password, firstName, lastName, address, continent, country, town, companyName) => async dispatch => {
+  try {
+    const vendor = await axios.post("/auth/signup", {
+      user: { email: email, password: password, firstName: firstName, lastName: lastName},
+      type: {address: address, continent: continent, country: country, town: town, companyName: companyName
+    },
+  userType: "vendor"})
+    dispatch(getUser(vendor.data))
+  } catch(err) {
     console.err(err)
   }
 }
@@ -148,6 +163,7 @@ export const vendorSignup = (
     console.err(err)
   }
 }
+
 
 /**
  * REDUCER
