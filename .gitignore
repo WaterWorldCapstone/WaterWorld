@@ -2,3 +2,4 @@ bundle.js
 bundle.js.map
 node_modules
 secrets.js
+package_lock.json
