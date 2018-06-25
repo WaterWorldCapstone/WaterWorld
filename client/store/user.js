@@ -57,7 +57,7 @@ export const logout = () => async dispatch => {
 }
 
 //donor signup
-export const donorSignup = (email, password, address) => async dispatch => {
+export const donorSignup = ({email, password, address}) => async dispatch => {
   try {
     const donor = await axios.post('/auth/signup', {
       user: {email: email, password: password},
