@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import CreateUser from './components/createUserForm'
 import LandingPage from './components/LandingPage'
+import Donate from './components/donatePage'
 
 /**
  * COMPONENT
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={CreateUser} />
+        <Route exact path="/donate" component={Donate} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
