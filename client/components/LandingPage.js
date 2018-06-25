@@ -41,14 +41,16 @@ const LandingPage = props => {
           This is a full-length grid item where maybe we can put a ticker.
         </Paper>
       </Grid>
-      <Grid item xs={4}>
-        <SimpleCard />
-      </Grid>
-      <Grid item xs={4}>
-        <ExampleMediaCard />
-      </Grid>
-      <Grid item xs={4}>
-        <ExampleMusicCard />
+      <Grid container justify="space-around" spacing={24}>
+        <Grid item xs={3}>
+          <SimpleCard />
+        </Grid>
+        <Grid item xs={3}>
+          <ExampleMediaCard />
+        </Grid>
+        <Grid item xs={3}>
+          <ExampleMusicCard />
+        </Grid>
       </Grid>
     </Grid>
   )
