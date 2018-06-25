@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import AppBar from '@material-ui/core/AppBar'
-import {withStyles} from '@material-ui/core'
+import {withStyles} from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
@@ -33,7 +33,7 @@ const Navbar = props => {
             color="inherit"
             aria-label="Menu"
           >
-            <i className="material-icons">menu</i>
+            <i className="material-icons">=</i>
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
             <Link to="/" className="navbar-link">
@@ -52,7 +52,6 @@ const Navbar = props => {
 }
 
 /*
-
 */
 
 /**
