@@ -22,7 +22,6 @@ const styles = theme => ({
 
 const LandingPage = props => {
   const {classes} = props
-  console.log('hoj')
   return (
     <Grid
       container
