@@ -24,7 +24,7 @@ const styles = theme => ({
   }
 })
 
-class LandingPage extends Component {
+class LandingPageWithDemos extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -82,6 +82,25 @@ class LandingPage extends Component {
             <ExampleMusicCard />
           </Grid>
         </Grid>
+        <Grid item xs={10}>
+          <Paper className={classes.paper}>
+            {generateTickers(
+              factoids,
+              this.state.counter % factoids.length,
+              5
+            ).map((factoid, idx) => (
+              <Typography>
+                {(this.state.counter + idx) % factoids.length} {factoid}
+              </Typography>
+            ))}
+          </Paper>
+        </Grid>
+        <Grid item xs={9}>
+          <ExpansionPanelSample counter={this.state.counter} />
+        </Grid>
+        <Grid item xs={4}>
+          <PotentialExpander />
+        </Grid>
       </Grid>
     )
   }
@@ -98,8 +117,8 @@ const generateTickers = (arr, counter, num) => {
   return output
 }
 
-LandingPage.propTypes = {
+LandingPageWithDemos.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(LandingPage)
+export default withStyles(styles)(LandingPageWithDemos)
