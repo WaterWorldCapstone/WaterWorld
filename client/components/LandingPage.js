@@ -9,6 +9,7 @@ import PropTypes from 'prop-types'
 import {factoids} from './helpers/factoids.js'
 import {paperMessages} from './helpers/paperMessages.js'
 import ExpansionPanelSample from './cards/ExpansionPanelSample.js'
+import PotentialExpander from './cards/PotentialExpander.js'
 
 const styles = theme => ({
   root: {
@@ -96,6 +97,9 @@ class LandingPage extends Component {
         </Grid>
         <Grid item xs={9}>
           <ExpansionPanelSample counter={this.state.counter} />
+        </Grid>
+        <Grid item xs={4}>
+          <PotentialExpander />
         </Grid>
       </Grid>
     )

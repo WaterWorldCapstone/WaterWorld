@@ -1,109 +1,67 @@
-/* eslint-disable react/no-multi-comp */
+import React from 'react'
+import PropTypes from 'prop-types'
+import {withStyles} from '@material-ui/core/styles'
+import Switch from '@material-ui/core/Switch'
+import Paper from '@material-ui/core/Paper'
+import Grow from '@material-ui/core/Grow'
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
-import blue from '@material-ui/core/colors/blue';
-
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-const styles = {
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
+const styles = theme => ({
+  root: {
+    height: 180
   },
-};
-
-class SimpleDialog extends React.Component {
-  handleClose = () => {
-    this.props.onClose(this.props.selectedValue);
-  };
-
-  handleListItemClick = value => {
-    this.props.onClose(value);
-  };
-
-  render() {
-    const { classes, onClose, selectedValue, ...other } = this.props;
-
-    return (
-      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
-        <div>
-          <List>
-            {emails.map(email => (
-              <ListItem button onClick={() => this.handleListItemClick(email)} key={email}>
-                <ListItemAvatar>
-                  <Avatar className={classes.avatar}>
-                    <PersonIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={email} />
-              </ListItem>
-            ))}
-            <ListItem button onClick={() => this.handleListItemClick('addAccount')}>
-              <ListItemAvatar>
-                <Avatar>
-                  <AddIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="add account" />
-            </ListItem>
-          </List>
-        </div>
-      </Dialog>
-    );
+  container: {
+    display: 'flex'
+  },
+  paper: {
+    margin: theme.spacing.unit
+  },
+  svg: {
+    width: 100,
+    height: 100
+  },
+  polygon: {
+    fill: theme.palette.common.white,
+    stroke: theme.palette.divider,
+    strokeWidth: 1
+  },
+  expanderRoot: {
+    width: 20
   }
-}
+})
 
-SimpleDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onClose: PropTypes.func,
-  selectedValue: PropTypes.string,
-};
-
-const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
-
-class SimpleDialogDemo extends React.Component {
+class PotentialExpander extends React.Component {
   state = {
-    open: false,
-    selectedValue: emails[1],
-  };
+    checked: false
+  }
 
-  handleClickOpen = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  handleClose = value => {
-    this.setState({ selectedValue: value, open: false });
-  };
+  handleClick = () => {
+    this.setState({checked: !this.state.checked})
+  }
 
   render() {
+    const {classes} = this.props
+    const {checked} = this.state
+
     return (
-      <div>
-        <Typography variant="subheading">Selected: {this.state.selectedValue}</Typography>
-        <br />
-        <Button onClick={this.handleClickOpen}>Open simple dialog</Button>
-        <SimpleDialogWrapped
-          selectedValue={this.state.selectedValue}
-          open={this.state.open}
-          onClose={this.handleClose}
+      <div className={classes.root}>
+        <img
+          className={classes.expanderRoot}
+          src="https://png.pngtree.com/element_pic/00/16/07/255794e8a47f328.jpg"
+          onClick={this.handleClick}
+          aria-label="collapse"
         />
+        <div className={classes.container}>
+          <Grow in={checked}>
+            <img src="http://apollo-pbe-uploads.s3.amazonaws.com/1387569519791/LoL_minimap.png" />
+          </Grow>
+        </div>
       </div>
-    );
+    )
   }
 }
 
-export default SimpleDialogDemo;
+PotentialExpander.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(PotentialExpander)
