@@ -33,13 +33,16 @@ const Navbar = props => {
             color="inherit"
             aria-label="Menu"
           >
-            <i className="material-icons">=</i>
+            <i className="material-icons">=</i>{' '}
+            {/* originally MenuIcon; seems to not exist*/}
           </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
             <Link to="/" className="navbar-link">
               Waterworld
             </Link>
           </Typography>
+          <Button color="inherit">test1</Button>
+          <Button color="inherit">test2</Button>
           <Button color="inherit">
             <Link className="navbar-link" to="/login">
               Login
