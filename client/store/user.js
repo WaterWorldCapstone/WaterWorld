@@ -1,34 +1,34 @@
-import axios from "axios";
-import history from "../history";
+import axios from 'axios'
+import history from '../history'
 
 /**
  * ACTION TYPES
  */
-const GET_USER = "GET_USER";
-const REMOVE_USER = "REMOVE_USER";
+const GET_USER = 'GET_USER'
+const REMOVE_USER = 'REMOVE_USER'
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {};
+const defaultUser = {}
 
 /**
  * ACTION CREATORS
  */
-const getUser = user => ({ type: GET_USER, user });
-const removeUser = () => ({ type: REMOVE_USER });
+const getUser = user => ({type: GET_USER, user})
+const removeUser = () => ({type: REMOVE_USER})
 
 /**
  * THUNK CREATORS
  */
 export const me = () => async dispatch => {
   try {
-    const res = await axios.get("/auth/me");
-    dispatch(getUser(res.data || defaultUser));
+    const res = await axios.get('/auth/me')
+    dispatch(getUser(res.data || defaultUser))
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
-};
+}
 
 // export const auth = (email, password, method) => async dispatch => {
 //   let res;
@@ -48,19 +48,19 @@ export const me = () => async dispatch => {
 
 export const logout = () => async dispatch => {
   try {
-    await axios.post("/auth/logout");
-    dispatch(removeUser());
-    history.push("/login");
+    await axios.post('/auth/logout')
+    dispatch(removeUser())
+    history.push('/login')
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
-};
+}
 
 //donor signup
-export const donorSignup = (email, password, address) => async dispatch => {
+export const donorSignup = (email, password, address, firstName, lastName, ) => async dispatch => {
   try {
     const donor = await axios.post("/auth/signup", {
-      user: { email: email, password: password },
+      user: { email: email, password: password, firstName: firstName, lastName: lastName },
       type: { address: address },
       userType: "donor"
     });
@@ -72,12 +72,13 @@ export const donorSignup = (email, password, address) => async dispatch => {
 };
 
 //vendor signup
-export const vendorSignup = (email, password, address, continent, country, town, companyName) => async dispatch => {
+export const vendorSignup = (email, password, firstName, lastName, address, continent, country, town, companyName) => async dispatch => {
   try {
     const vendor = await axios.post("/auth/signup", {
-      user: { email: email, password: password},
-      type: {address: address}, continent: continent, country: country, town: town, companyName: companyName
-    })
+      user: { email: email, password: password, firstName: firstName, lastName: lastName},
+      type: {address: address, continent: continent, country: country, town: town, companyName: companyName
+    },
+  userType: "vendor"})
     dispatch(getUser(vendor.data))
   } catch(err) {
     console.err(err)
@@ -90,10 +91,10 @@ export const vendorSignup = (email, password, address, continent, country, town,
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user;
+      return action.user
     case REMOVE_USER:
-      return defaultUser;
+      return defaultUser
     default:
-      return state;
+      return state
   }
 }
