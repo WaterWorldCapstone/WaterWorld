@@ -10,6 +10,8 @@ import {factoids} from './helpers/factoids.js'
 import {paperMessages} from './helpers/paperMessages.js'
 import ExpansionPanelSample from './cards/ExpansionPanelSample.js'
 import PotentialExpander from './cards/PotentialExpander.js'
+import PossiblePopover from './cards/PossiblePopover.js'
+import InfoPopover from './cards/InfoPopover.js'
 
 const styles = theme => ({
   root: {
@@ -100,6 +102,12 @@ class LandingPageWithDemos extends Component {
         </Grid>
         <Grid item xs={4}>
           <PotentialExpander />
+        </Grid>
+        <Grid item xs={4}>
+          <PossiblePopover />
+        </Grid>
+        <Grid item xs={4}>
+          <InfoPopover />
         </Grid>
       </Grid>
     )

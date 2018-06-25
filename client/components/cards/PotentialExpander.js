@@ -25,7 +25,7 @@ const styles = theme => ({
     strokeWidth: 1
   },
   expanderRoot: {
-    width: 20
+    width: 50
   }
 })
 
