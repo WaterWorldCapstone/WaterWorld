@@ -3,36 +3,33 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import AppBar from 'material-ui/AppBar'
-import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import AppBar from '@material-ui/core/AppBar'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <MuiThemeProvider muiTheme={getMuiTheme(baseTheme)}>
-    <AppBar>
-      <div>
-        <nav>
-          <h1>WaterWorld</h1>
-          {isLoggedIn ? (
-            <div>
-              <Link to="/">Home</Link>
-              <a href="#" onClick={handleClick}>
-                Logout
-              </a>
-            </div>
-          ) : (
-            <div>
+  <AppBar>
+    <div>
+      <nav>
+        {isLoggedIn ? (
+          <>'           '<span>
+              <h1>
+                WaterWorld <Link to="/">Home</Link>
+                <Link href="#" onClick={handleClick}>
+                  Logout
+                </Link>
+              </h1>
+                         </span>'         '</>
+        ) : (
+          <>'           '<span>
+              <h1>WaterWorld</h1>
               <Link to="/">Home</Link>
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
-            </div>
-          )}
-        </nav>
-        <hr />
-      </div>
-    </AppBar>
-  </MuiThemeProvider>
+                         </span>'         '</>
+        )}
+      </nav>
+      <hr />
+    </div>
+  </AppBar>
 )
 
 /**
