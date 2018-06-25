@@ -21,6 +21,7 @@ const removeUser = () => ({type: REMOVE_USER})
 /**
  * THUNK CREATORS
  */
+
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
@@ -57,15 +58,61 @@ export const logout = () => async dispatch => {
 }
 
 //donor signup
-export const donorSignup = (email, password, address) => async dispatch => {
+export const donorSignup = (
+  email,
+  password,
+  address,
+  firstName,
+  lastName
+) => async dispatch => {
   try {
     const donor = await axios.post('/auth/signup', {
-      user: {email: email, password: password},
+      user: {
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
+      },
       type: {address: address},
       userType: 'donor'
     })
     dispatch(getUser(donor.data))
     // history.push("/home");
+  } catch (err) {
+    console.err(err)
+  }
+}
+
+//vendor signup
+export const vendorSignup = (
+  email,
+  password,
+  firstName,
+  lastName,
+  address,
+  continent,
+  country,
+  town,
+  companyName
+) => async dispatch => {
+  try {
+    const vendor = await axios.post('/auth/signup', {
+      user: {
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
+      },
+      type: {
+        address: address,
+        continent: continent,
+        country: country,
+        town: town,
+        companyName: companyName
+      },
+      userType: 'vendor'
+    })
+    dispatch(getUser(vendor.data))
   } catch (err) {
     console.err(err)
   }

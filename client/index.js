@@ -11,6 +11,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 // establishes socket connection
 import './socket'
+import {MuiThemeProvider} from '@material-ui/core'
+import {getMuiTheme, lightBaseTheme} from 'material-ui/styles'
 
 ReactDOM.render(
   <Provider store={store}>
