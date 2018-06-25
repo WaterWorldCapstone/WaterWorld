@@ -5,17 +5,16 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Popover from '@material-ui/core/Popover'
 import ExampleMediaCard from './ExampleMediaCard'
+import {Paper} from 'material-ui'
+import {Card, CardContent} from '@material-ui/core'
 
 const styles = theme => ({
   typography: {
     margin: theme.spacing.unit * 2
-  },
-  expanderRoot: {
-    width: 50
   }
 })
 
-class InfoPopover extends React.Component {
+class MainLinkPopover extends React.Component {
   state = {
     anchorEl: null
   }
@@ -40,7 +39,7 @@ class InfoPopover extends React.Component {
       <div>
         <img
           className={classes.expanderRoot}
-          src="https://images.pexels.com/photos/40784/drops-of-water-water-nature-liquid-40784.jpeg?auto=compress&cs=tinysrgb&h=350"
+          src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253"
           onClick={this.handleClick}
           aria-label="collapse"
         />
@@ -57,15 +56,21 @@ class InfoPopover extends React.Component {
             horizontal: 'center'
           }}
         >
-          <ExampleMediaCard />
+          <Card>
+            <CardContent>
+              <Typography>
+                YOU HAVE BEEN REDIRECTED TO /MAP OR WHATERVER!!{' '}
+              </Typography>
+            </CardContent>
+          </Card>
         </Popover>
       </div>
     )
   }
 }
 
-InfoPopover.propTypes = {
+MainLinkPopover.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(InfoPopover)
+export default withStyles(styles)(MainLinkPopover)

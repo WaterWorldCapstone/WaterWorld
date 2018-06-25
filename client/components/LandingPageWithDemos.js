@@ -12,6 +12,7 @@ import ExpansionPanelSample from './cards/ExpansionPanelSample.js'
 import PotentialExpander from './cards/PotentialExpander.js'
 import PossiblePopover from './cards/PossiblePopover.js'
 import InfoPopover from './cards/InfoPopover.js'
+import MainLinkPopover from './cards/MainLinkPopover.js'
 
 const styles = theme => ({
   root: {
@@ -58,13 +59,10 @@ class LandingPageWithDemos extends Component {
           <Typography variant="headline">Waterworld</Typography>
         </Grid>
         <Grid item xs={12}>
-          <img src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253" />{' '}
+          <MainLinkPopover />
         </Grid>
         <Grid item xs={9}>
-          <Typography>
-            {' '}
-            Here is some text we can use to tug at heartstrings{' '}
-          </Typography>
+          <Typography> click me ^^^^^^^^^^ </Typography>
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
