@@ -54,7 +54,7 @@ class LandingPageWithDemos extends Component {
         container
         className={classes.root}
         spacing={24}
-        id="landing-page-grid"
+        id="landing-page-grid-demo"
         justify="center"
       >
         <Grid item xs={12}>
@@ -101,13 +101,22 @@ class LandingPageWithDemos extends Component {
           <ExpansionPanelSample counter={this.state.counter} />
         </Grid>
         <Grid item xs={4}>
-          <PotentialExpander />
+          <div>
+            <PotentialExpander />
+            <Typography> click me </Typography>
+          </div>
         </Grid>
         <Grid item xs={4}>
-          <PossiblePopover />
+          <div>
+            <PossiblePopover />
+            <Typography> click me too!</Typography>
+          </div>
         </Grid>
         <Grid item xs={4}>
-          <InfoPopover />
+          <div>
+            <InfoPopover />
+            <Typography> click me ALSO!</Typography>
+          </div>
         </Grid>
         <Grid item xs={12}>
           {!this.state.clicked ? (
