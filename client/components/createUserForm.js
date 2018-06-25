@@ -2,19 +2,41 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {AddUser} from '../store/user'
+import {donorSignup, vendorSignup} from '../store/user'
+import Button from '@material-ui/core/Button'
 
 class CreateUser extends Component {
+  constructor() {
+    super()
+    this.state = {
+      clicked: false,
+      clicker: false
+    }
+  }
   handleSubmit = evt => {
     evt.preventDefault()
+    const type = (this.state.clicked && 'vendor') || 'donor'
     const NU = {
       firstName: evt.target.firstName.value,
       lastName: evt.target.lastName.value,
-      homeAddress: evt.target.homeAddress.value,
       email: evt.target.email.value,
-      password: evt.target.password.value
+      password: evt.target.password.value,
+      type,
+      address: evt.target.address.value,
+      country: evt.target.country.value,
+      continent: evt.target.continent.value,
+      town: evt.target.town.value
     }
-    this.props.newUser(NU)
+    if (NU.type === 'vendor') {
+      this.props.vendorLogin(NU)
+    }
+    this.props.donorLogin(NU)
+  }
+  clicked = () => {
+    this.setState({clicked: true, clicker: false})
+  }
+  clicker = () => {
+    this.setState({clicked: false, clicker: true})
   }
   render() {
     const {error} = this.props
@@ -50,16 +72,6 @@ class CreateUser extends Component {
               <div className="row">
                 <div className="input-field col s12">
                   <input
-                    id="homeAddress"
-                    type="text"
-                    name="homeAddress"
-                    placeholder="Address"
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
                     id="email"
                     type="email"
                     name="email"
@@ -79,18 +91,87 @@ class CreateUser extends Component {
                     minLength="8"
                   />
                 </div>
+                <div className="row">
+                  <div className="input-field col s12">
+                    <Button color="inherit" onClick={this.clicked}>
+                      Vendor
+                    </Button>
+                    <Button color="inherit" onClick={this.clicker}>
+                      Donor
+                    </Button>
+                  </div>
+                  {this.state.clicked && (
+                    <div className="row">
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="companyName"
+                            type="text"
+                            name="companyName"
+                            placeholder="Company Name"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="homeAddress"
+                            type="text"
+                            name="homeAddress"
+                            placeholder="Address"
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="continent"
+                            type="text"
+                            name="continent"
+                            placeholder="Continent"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="town"
+                            type="text"
+                            name="town"
+                            placeholder="Town"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {this.state.clicker && (
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input
+                          id="address"
+                          type="text"
+                          name="address"
+                          placeholder="Address"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
               {error && (
                 <div className="error-container">{error.response.data}</div>
               )}
               <center>
-                <button
+                <Button
                   className="btn custom_btn waves-effect waves-light teal"
                   type="submit"
                   name="action"
                 >
                   Submit
-                </button>
+                </Button>
               </center>
             </div>
           </form>
@@ -106,7 +187,8 @@ const stateToProps = state => ({
 })
 
 const MapToProps = dispatch => ({
-  newUser: user => dispatch(AddUser(user))
+  vendorLogin: user => dispatch(vendorSignup(user)),
+  donorLogin: user => dispatch(donorSignup(user))
 })
 
 export default connect(stateToProps, MapToProps)(CreateUser)
