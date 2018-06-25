@@ -85,7 +85,6 @@ export const vendorSignup = (email, password, firstName, lastName, address, cont
   }
 }
 
-
 /**
  * REDUCER
  */
