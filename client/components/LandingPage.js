@@ -20,41 +20,80 @@ const styles = theme => ({
   }
 })
 
-const LandingPage = props => {
-  const {classes} = props
-  return (
-    <Grid
-      container
-      className={classes.root}
-      spacing={24}
-      id="landing-page-grid"
-      justify="center"
-    >
-      <Grid item xs={12}>
-        <Typography variant="headline">Waterworld</Typography>
-      </Grid>
-      <Grid item xs={12}>
-        <img src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253" />{' '}
-      </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.paper}>
-          This is a full-length grid item where maybe we can put a ticker.
-        </Paper>
-      </Grid>
-      <Grid container justify="space-around" spacing={24}>
-        <Grid item xs={3}>
-          <SimpleCard />
+class LandingPage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      counter: 0
+    }
+  }
+
+  componentDidMount = () => {
+    setInterval(
+      () =>
+        this.setState({
+          counter: this.state.counter + 1
+        }),
+      1250
+    )
+  }
+
+  render = () => {
+    const {classes} = this.props
+    return (
+      <Grid
+        container
+        className={classes.root}
+        spacing={24}
+        id="landing-page-grid"
+        justify="center"
+      >
+        <Grid item xs={12}>
+          <Typography variant="headline">Waterworld</Typography>
         </Grid>
-        <Grid item xs={3}>
-          <ExampleMediaCard />
+        <Grid item xs={12}>
+          <img src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253" />{' '}
         </Grid>
-        <Grid item xs={3}>
-          <ExampleMusicCard />
+        <Grid item xs={12}>
+          <Paper
+            className={classes.paper}
+            onClick={() => {
+              console.log(
+                'clicked',
+                this.state.counter,
+                paperMessages[this.state.counter % paperMessages.length]
+              )
+              this.setState({counter: this.state.counter + 1})
+            }}
+          >
+            {paperMessages[this.state.counter % paperMessages.length]}
+          </Paper>
+        </Grid>
+        <Grid container justify="space-around" spacing={24}>
+          <Grid item xs={3}>
+            <SimpleCard />
+          </Grid>
+          <Grid item xs={3}>
+            <ExampleMediaCard />
+          </Grid>
+          <Grid item xs={3}>
+            <ExampleMusicCard />
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
-  )
+    )
+  }
+
+  componentWillUnmount = () => {
+    clearInterval()
+  }
 }
+
+const paperMessages = [
+  'This is the first message. Click to swap to the second.',
+  'This is the second message. Click to swap to the first.',
+  'This third message reveals they will go automagically'
+]
 
 LandingPage.propTypes = {
   classes: PropTypes.object.isRequired
