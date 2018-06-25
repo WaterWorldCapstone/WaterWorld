@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import Button from '@material-ui/core/Button'
 
 const AuthForm = props => {
   const {name, handleSubmit, error, emaildata, passdata} = props
@@ -46,13 +47,13 @@ const AuthForm = props => {
               ))}
             <br />
             <center>
-              <button
+              <Button
                 className="btn custom_btn waves-effect waves-light teal"
                 type="submit"
                 name="action"
               >
                 Sign In
-              </button>
+              </Button>
               <br />
               <a href="/auth/google">
                 <div className="btn_google">

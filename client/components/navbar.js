@@ -23,7 +23,7 @@ const styles = {
   }
 }
 const Navbar = props => {
-  const {classes} = props
+  const {classes, isLoggedIn} = props
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -41,13 +41,38 @@ const Navbar = props => {
               Waterworld
             </Link>
           </Typography>
-          <Button color="inherit">test1</Button>
-          <Button color="inherit">test2</Button>
           <Button color="inherit">
-            <Link className="navbar-link" to="/login">
-              Login
+            <Link className="navbar-link" to="/">
+              Home
             </Link>
           </Button>
+          {isLoggedIn ? (
+            <div>
+              <Button color="inherit">
+                <Link className="navbar-link" to="/">
+                  LogOut
+                </Link>
+              </Button>
+              <Button color="inherit">
+                <Link className="navbar-link" to="/signup">
+                  Edit
+                </Link>
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Button color="inherit">
+                <Link className="navbar-link" to="/login">
+                  Login
+                </Link>
+              </Button>
+              <Button color="inherit">
+                <Link className="navbar-link" to="/signup">
+                  SignUp
+                </Link>
+              </Button>
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </div>
