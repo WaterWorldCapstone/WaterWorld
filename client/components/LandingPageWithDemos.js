@@ -13,6 +13,7 @@ import PotentialExpander from './cards/PotentialExpander.js'
 import PossiblePopover from './cards/PossiblePopover.js'
 import InfoPopover from './cards/InfoPopover.js'
 import MainLinkPopover from './cards/MainLinkPopover.js'
+import LoadingBar from './helpers/LoadingBar.js'
 
 const styles = theme => ({
   root: {
@@ -31,7 +32,8 @@ class LandingPageWithDemos extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      counter: 0
+      counter: 0,
+      clicked: false
     }
   }
 
@@ -89,7 +91,7 @@ class LandingPageWithDemos extends Component {
               this.state.counter % factoids.length,
               5
             ).map((factoid, idx) => (
-              <Typography>
+              <Typography key={idx + '1'}>
                 {(this.state.counter + idx) % factoids.length} {factoid}
               </Typography>
             ))}
@@ -107,6 +109,15 @@ class LandingPageWithDemos extends Component {
         <Grid item xs={4}>
           <InfoPopover />
         </Grid>
+        <Grid item xs={12}>
+          {!this.state.clicked ? (
+            <button onClick={() => this.setState({clicked: true})}>
+              click to start loading bar
+            </button>
+          ) : (
+            <LoadingBar />
+          )}
+        </Grid>
       </Grid>
     )
   }
@@ -114,7 +125,6 @@ class LandingPageWithDemos extends Component {
     clearInterval()
   }
 }
-
 const generateTickers = (arr, counter, num) => {
   const output = []
   for (let i = counter; i < counter + num; i++) {
