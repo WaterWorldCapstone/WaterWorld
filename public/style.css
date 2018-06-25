@@ -24,6 +24,14 @@ form div {
   color: white;
 }
 
+.hidden {
+  display: none;
+}
+
+.ticker {
+  display: inline;
+}
+
 #landing-page-grid {
   background-color: aqua;
 }

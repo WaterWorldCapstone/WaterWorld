@@ -6,6 +6,9 @@ import {Paper, Grid, withStyles, Typography} from '@material-ui/core'
 import {connect} from 'react-redux'
 import ExampleMusicCard from './cards/ExampleMusicCard.js'
 import PropTypes from 'prop-types'
+import {factoids} from './helpers/factoids.js'
+import {paperMessages} from './helpers/paperMessages.js'
+import ExpansionPanelSample from './cards/ExpansionPanelSample.js'
 
 const styles = theme => ({
   root: {
@@ -54,19 +57,17 @@ class LandingPage extends Component {
         <Grid item xs={12}>
           <img src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253" />{' '}
         </Grid>
+        <Grid item xs={9}>
+          <Typography>
+            {' '}
+            Here is some text we can use to tug at heartstrings{' '}
+          </Typography>
+        </Grid>
         <Grid item xs={12}>
-          <Paper
-            className={classes.paper}
-            onClick={() => {
-              console.log(
-                'clicked',
-                this.state.counter,
-                paperMessages[this.state.counter % paperMessages.length]
-              )
-              this.setState({counter: this.state.counter + 1})
-            }}
-          >
-            {paperMessages[this.state.counter % paperMessages.length]}
+          <Paper className={classes.paper}>
+            {paperMessages.filter(
+              (msg, idx) => idx === this.state.counter % paperMessages.length
+            )}
           </Paper>
         </Grid>
         <Grid container justify="space-around" spacing={24}>
@@ -80,20 +81,37 @@ class LandingPage extends Component {
             <ExampleMusicCard />
           </Grid>
         </Grid>
+        <Grid item xs={10}>
+          <Paper className={classes.paper}>
+            {generateTickers(
+              factoids,
+              this.state.counter % factoids.length,
+              5
+            ).map((factoid, idx) => (
+              <Typography>
+                {(this.state.counter + idx) % factoids.length} {factoid}
+              </Typography>
+            ))}
+          </Paper>
+        </Grid>
+        <Grid item xs={9}>
+          <ExpansionPanelSample counter={this.state.counter} />
+        </Grid>
       </Grid>
     )
   }
-
   componentWillUnmount = () => {
     clearInterval()
   }
 }
 
-const paperMessages = [
-  'This is the first message. Click to swap to the second.',
-  'This is the second message. Click to swap to the first.',
-  'This third message reveals they will go automagically'
-]
+const generateTickers = (arr, counter, num) => {
+  const output = []
+  for (let i = counter; i < counter + num; i++) {
+    output.push(arr[i % arr.length])
+  }
+  return output
+}
 
 LandingPage.propTypes = {
   classes: PropTypes.object.isRequired
