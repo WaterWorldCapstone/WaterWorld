@@ -5,9 +5,9 @@ import {Router} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+// import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
 // establishes socket connection
 import './socket'
