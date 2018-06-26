@@ -37,12 +37,14 @@ class MainLinkPopover extends React.Component {
 
     return (
       <div>
-        <img
+        {/* <img
           className={classes.expanderRoot}
           src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253"
           onClick={this.handleClick}
           aria-label="collapse"
-        />
+        /> */}
+        <div className="earth" />
+        <h3>WHATERVER</h3>
         <Popover
           open={Boolean(anchorEl)}
           anchorEl={anchorEl}

@@ -1,7 +1,10 @@
 body {
   font-family: sans-serif;
 }
-
+.landingPage {
+  margin: 0 auto;
+  background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
+}
 a {
   text-decoration: none;
 }
@@ -23,7 +26,27 @@ form div {
 .navbar-link {
   color: white;
 }
-
+.earth {
+  /* position: absolute;
+    top: 1;
+    bottom: 1;
+    left: 1;
+    right: 0; */
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+  background-image: url('http://soileiragusgonta.com/wp-content/uploads/2018/04/full-earth-map-2-maps-google-com-1024x512.jpg');
+  border-radius: 50%;
+  background-size: cover;
+  box-shadow: -20px -20px 50px 2px #000 inset, 0px 0px 20px 2px;
+  animation: spin 10s linear alternate infinite;
+  animation-direction: normal;
+}
+@keyframes spin {
+  100% {
+    background-position: 100%;
+  }
+}
 .hidden {
   display: none;
 }

@@ -52,11 +52,15 @@ class LandingPage extends Component {
         id="landing-page-grid"
         justify="center"
       >
-        <Grid item xs={12}>
+        <Grid item xs={12} className="langingPage" />
+        <Grid item xs={6}>
           <Typography variant="headline">Waterworld</Typography>
+          <Typography variant="center">Let's Donate !!!!!</Typography>
         </Grid>
-        <Grid item xs={12}>
-          <img src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253" />{' '}
+        <Grid item xs={6}>
+          <a href="/map">
+            <div className="earth" />
+          </a>
         </Grid>
         <Grid item xs={9}>
           <Typography>
