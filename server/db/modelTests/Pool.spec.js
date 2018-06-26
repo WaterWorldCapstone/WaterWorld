@@ -268,6 +268,9 @@ describe('The Pool model', async () => {
     })
   })
   describe('Pool model instance method', async () => {
+    before(() => {
+      return db.sync({force: true})
+    })
     it('has an updateFunds instance method', async () => {
       const newPool = await Pool.create(reqVarObj)
       expect(typeof newPool.updateFunds).to.equal('function')
@@ -277,29 +280,50 @@ describe('The Pool model', async () => {
       expect(Pool.hasOwnProperty('updateFunds')).to.be.false
     })
 
+    it('is not an arrow function', async () => {
+      const testPool = await Pool.create(reqVarObj)
+      let testVar
+      try {
+        await testPool.updateFunds('200', 'donation')
+        testVar = true
+      } catch (err) {
+        console.log(err)
+      }
+      expect(testVar).to.equal(true)
+    })
+
     it('functions properly for donations and transactions', async () => {
       try {
         const newPoolDonation = await Pool.create({
           ...reqVarObj,
-          name: 'updateFundsDonationTest'
+          name: 'updateFundsDonationTest',
+          currentFunds: 0
         })
-        await newPoolDonation.updateFunds(100, 'donation')
+        await newPoolDonation.updateFunds.call(
+          newPoolDonation,
+          '100',
+          'donation'
+        )
         const updatedPoolDonation = await Pool.findOne({
           where: {name: 'updateFundsDonationTest'}
         })
-        expect(updatedPoolDonation.currentFunds).to.equal(100)
-        expect(updatedPoolDonation.mostRecentDonation).to.equal(100)
+        expect(updatedPoolDonation.currentFunds).to.equal('100')
+        expect(updatedPoolDonation.mostRecentDonation).to.equal('100')
         const newPoolTransaction = await Pool.create({
           ...reqVarObj,
           name: 'updateFundsTransactionTest',
-          currentFunds: 500
+          currentFunds: '500'
         })
-        await newPoolTransaction.updateFunds(100, 'transaction')
+        await newPoolTransaction.updateFunds.call(
+          newPoolTransaction,
+          '100',
+          'transaction'
+        )
         const updatedPoolTransaction = await Pool.findOne({
           where: {name: 'updateFundsTransactionTest'}
         })
-        expect(updatedPoolTransaction.currentFunds).to.equal(400)
-        expect(updatedPoolTransaction.mostRecentExpenditure).to.equal(100)
+        expect(updatedPoolTransaction.currentFunds).to.equal('400')
+        expect(updatedPoolTransaction.mostRecentExpenditure).to.equal('100')
       } catch (e) {
         console.log(e)
       }

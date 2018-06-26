@@ -4,7 +4,7 @@ const {expect} = require('chai')
 const db = require('../index')
 const User = db.model('user')
 
-xdescribe('User model', () => {
+describe('User model', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -17,6 +17,7 @@ xdescribe('User model', () => {
         cody = await User.create({
           firstName: 'cody@puppybook.com',
           lastName: 'codybook',
+          email: 'cody@pupperkins.fsa',
           password: 'bones'
         })
       })
