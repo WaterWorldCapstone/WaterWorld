@@ -6,6 +6,7 @@ const {
   Marker,
   InfoWindow
 } = require('react-google-maps')
+import {InfoWindowContent} from './InfoWindowContent'
 
 export class MapInfoWindow extends React.Component {
   constructor() {
@@ -27,6 +28,7 @@ export class MapInfoWindow extends React.Component {
     return (
       <Marker
         onClick={this.onToggleOpen}
+        icon="/favicon.ico"
         position={{
           lat: Number(this.props.pool.latitude),
           lng: Number(this.props.pool.longitude)
@@ -34,7 +36,7 @@ export class MapInfoWindow extends React.Component {
       >
         {this.state.isOpen && (
           <InfoWindow onCloseClick={this.onToggleOpen}>
-            <div>here</div>
+            <InfoWindowContent pool={this.props.pool} />
           </InfoWindow>
         )}
       </Marker>

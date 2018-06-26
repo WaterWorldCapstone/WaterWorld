@@ -1,7 +1,7 @@
 import React from 'react'
 import HomeMap from './Map'
 import {connect} from 'react-redux'
-import {gettingPools} from '../store/pool'
+import {gettingPools} from '../../store/pool'
 
 class MainMap extends React.Component {
   componentDidMount() {

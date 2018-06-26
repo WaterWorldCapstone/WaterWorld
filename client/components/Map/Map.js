@@ -37,12 +37,12 @@ const {
   Marker,
   InfoWindow
 } = require('react-google-maps')
-import {gettingPools} from '../store/pool'
+import {gettingPools} from '../../store/pool'
 import {connect} from 'react-redux'
 import {MapInfoWindow} from './MapInfoWindow'
 
 const HomeMap = compose(withScriptjs, withGoogleMap)(props => (
-  <GoogleMap defaultZoom={2} defaultCenter={{lat: -34.397, lng: 150.644}}>
+  <GoogleMap defaultZoom={3} defaultCenter={{lat: 40.705076, lng: -74.00916}}>
     {props.pools ? (
       props.pools.map(pool => <MapInfoWindow key={pool.id} pool={pool} />)
     ) : (
