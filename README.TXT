@@ -1,10 +1,6 @@
 Project name: Waterworld
-Short desc.:
 
 Waterworld is a crowdfunding facilitator program that enables a user, the prospective donor, to inspect worldwide water needs and donate money intended for a specific location selected by the donor. When enough money for a location has accrued, an order for water is dispatched meant to have water delivered to that area.
-
-MVP description:
-The intended functionality of the minimally viable product is that a user can access the application, optionally log in, donate money for a particular region, and see an order eventually dispatched to a dummy distributor when enough money has been accrued.
 
 
 Long description:
@@ -14,14 +10,21 @@ Capstone Project
 
    Money donated on behalf of a location goes into the Waterworld account and, when the money donated on behalf of an area reaches a particular threshold, an administrator will dispatch an order for water to that region using the donated funds. Earlier versions of the project will dispatch this order to a particular (potentially simulated) distributor of water. Later iterations can allow potential water distributors, the vendors, to bid on the contract for that order using the application’s auction functionality.
 
-   The intended functionality of the minimally viable product is that a user can access the application, optionally log in, donate money for a particular region, and see an order eventually dispatched to a dummy distributor when enough money has been accrued.
+   The intended functionality of the prototype product is that a user can access the application, optionally log in, donate money for a particular region, and see an order eventually dispatched to a dummy distributor when enough money has been accrued.
 
-Additional features potentially added to MVP over time:
+Upon adding the following, the prototype product will be considered minimally viable:
 
-—Heat map
-—Information popups, including relevant articles
-—Vendor auction system
-—React native app
-—User reporting of need
-—Algorithm to calculate need based on whatever data may be available taking into account the user reports
-—Additional dispatch type options (e.g., bore to make a well as a permanent solution instead of water)
+1. Heat map
+2. Vendor auction system
+
+
+The following enumerate the stretch goals:
+
+1. List view of pools
+2. Information popups, including relevant articles
+3. React native app
+4. Vendor history and evaluation
+5. User reporting of need via app
+6. User reporting of need via SMS
+7. Algorithm to calculate need based on whatever data may be available taking into account the user reports
+8. Additional dispatch type options (e.g., bore to make a well as a permanent solution instead of water)
