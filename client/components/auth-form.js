@@ -60,11 +60,13 @@ const AuthForm = props => {
               <a href="/auth/google">
                 <div className="btn_google">
                   <img src="/img/btn_google.svg" />
+                  <p>Google</p>
                 </div>
               </a>
               <a href="/auth/facebook">
                 <div className="btn_google">
                   <img src="/img/btn_facebook.svg" />
+                  <p>Facebook</p>
                 </div>
               </a>
             </center>
