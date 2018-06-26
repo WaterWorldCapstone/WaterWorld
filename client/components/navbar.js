@@ -23,7 +23,7 @@ const styles = {
   }
 }
 const Navbar = props => {
-  const {classes, isLoggedIn} = props
+  const {classes, isLoggedIn, handleClick} = props
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -48,10 +48,8 @@ const Navbar = props => {
           </Button>
           {isLoggedIn ? (
             <div>
-              <Button color="inherit">
-                <Link className="navbar-link" to="/">
-                  LogOut
-                </Link>
+              <Button color="inherit" onClick={handleClick}>
+                Log Out
               </Button>
               <Button color="inherit">
                 <Link className="navbar-link" to="/signup">
@@ -68,7 +66,7 @@ const Navbar = props => {
               </Button>
               <Button color="inherit">
                 <Link className="navbar-link" to="/signup">
-                  SignUp
+                  Sign Up
                 </Link>
               </Button>
             </div>

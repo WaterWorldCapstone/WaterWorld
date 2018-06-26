@@ -34,7 +34,7 @@ const Pool = db.define('pool', {
 module.exports = Pool
 
 //Pool model instance method
-Pool.prototype.updateFunds = async (amount, type) => {
+Pool.prototype.updateFunds = async function(amount, type) {
   if (type === 'donation') {
     this.currentFunds = Number(amount) + Number(this.currentFunds)
     this.mostRecentDonation = amount

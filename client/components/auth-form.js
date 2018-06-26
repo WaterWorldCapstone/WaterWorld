@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import {login} from '../store'
 import Button from '@material-ui/core/Button'
 
 const AuthForm = props => {
@@ -51,14 +51,22 @@ const AuthForm = props => {
                 className="btn custom_btn waves-effect waves-light teal"
                 type="submit"
                 name="action"
+                onSubmit={handleSubmit}
               >
                 Sign In
               </Button>
               <br />
+              <p>Sign in with</p>
               <a href="/auth/google">
                 <div className="btn_google">
                   <img src="/img/btn_google.svg" />
-                  <p>Sign in with Google</p>
+                  <p>Google</p>
+                </div>
+              </a>
+              <a href="/auth/facebook">
+                <div className="btn_google">
+                  <img src="/img/btn_facebook.svg" />
+                  <p>Facebook</p>
                 </div>
               </a>
             </center>
@@ -100,7 +108,7 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      dispatch(login(email, password))
     }
   }
 }
