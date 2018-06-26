@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+const asyncHandler = require('express-async-handler')
 
 /**
  * ACTION TYPES
@@ -22,14 +23,11 @@ const removeUser = () => ({type: REMOVE_USER})
  * THUNK CREATORS
  */
 
-export const me = () => async dispatch => {
-  try {
+export const me = () =>
+  asyncHandler(async dispatch => {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
-  } catch (err) {
-    console.error(err)
-  }
-}
+  })
 
 // export const auth = (email, password, method) => async dispatch => {
 //   let res;
@@ -46,26 +44,22 @@ export const me = () => async dispatch => {
 //     console.error(dispatchOrHistoryErr);
 //   }
 // };
-
-export const logout = () => async dispatch => {
-  try {
+export const login = (email, password) =>
+  asyncHandler(async dispatch => {
+    const res = await axios.post('/auth/login', {email, password})
+    dispatch(getUser(res.data))
+    history.push('/')
+  })
+export const logout = () =>
+  asyncHandler(async dispatch => {
     await axios.post('/auth/logout')
     dispatch(removeUser())
     history.push('/login')
-  } catch (err) {
-    console.error(err)
-  }
-}
+  })
 
 //donor signup
-export const donorSignup = (
-  email,
-  password,
-  address,
-  firstName,
-  lastName
-) => async dispatch => {
-  try {
+export const donorSignup = ({email, password, address, firstName, lastName}) =>
+  asyncHandler(async dispatch => {
     const donor = await axios.post('/auth/signup', {
       user: {
         email: email,
@@ -77,14 +71,11 @@ export const donorSignup = (
       userType: 'donor'
     })
     dispatch(getUser(donor.data))
-    // history.push("/home");
-  } catch (err) {
-    console.err(err)
-  }
-}
+    history.push('/')
+  })
 
 //vendor signup
-export const vendorSignup = (
+export const vendorSignup = ({
   email,
   password,
   firstName,
@@ -94,8 +85,8 @@ export const vendorSignup = (
   country,
   town,
   companyName
-) => async dispatch => {
-  try {
+}) =>
+  asyncHandler(async dispatch => {
     const vendor = await axios.post('/auth/signup', {
       user: {
         email: email,
@@ -113,10 +104,8 @@ export const vendorSignup = (
       userType: 'vendor'
     })
     dispatch(getUser(vendor.data))
-  } catch (err) {
-    console.err(err)
-  }
-}
+    history.push('/')
+  })
 
 /**
  * REDUCER
