@@ -49,7 +49,7 @@ const Navbar = props => {
           {isLoggedIn ? (
             <div>
               <Button color="inherit" onClick={handleClick}>
-                LogOut
+                Log Out
               </Button>
               <Button color="inherit">
                 <Link className="navbar-link" to="/signup">
@@ -66,7 +66,7 @@ const Navbar = props => {
               </Button>
               <Button color="inherit">
                 <Link className="navbar-link" to="/signup">
-                  SignUp
+                  Sign Up
                 </Link>
               </Button>
             </div>
