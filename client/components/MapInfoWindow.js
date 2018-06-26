@@ -15,23 +15,25 @@ export class MapInfoWindow extends React.Component {
     }
   }
 
-  onToggleOpen() {
-    this.setState({
-      isOpen: !isOpen
-    })
+  onToggleOpen = () => {
+    console.log('in ToggleOpen before setstate', this.state.isOpen)
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen
+    }))
+    console.log('in ToggleOpen after setstate', this.state.isOpen)
   }
 
   render() {
     return (
       <Marker
-        onClick={this.props.onToggleOpen}
+        onClick={this.onToggleOpen}
         position={{
           lat: Number(this.props.pool.latitude),
           lng: Number(this.props.pool.longitude)
         }}
       >
         {this.state.isOpen && (
-          <InfoWindow onCloseClick={this.props.onToggleOpen}>
+          <InfoWindow onCloseClick={this.onToggleOpen}>
             <div>here</div>
           </InfoWindow>
         )}

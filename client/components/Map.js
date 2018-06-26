@@ -41,20 +41,7 @@ import {gettingPools} from '../store/pool'
 import {connect} from 'react-redux'
 import {MapInfoWindow} from './MapInfoWindow'
 
-const HomeMap = compose(
-  withStateHandlers(
-    () => ({
-      isOpen: false
-    }),
-    {
-      onToggleOpen: ({isOpen}) => () => ({
-        isOpen: !isOpen
-      })
-    }
-  ),
-  withScriptjs,
-  withGoogleMap
-)(props => (
+const HomeMap = compose(withScriptjs, withGoogleMap)(props => (
   <GoogleMap defaultZoom={2} defaultCenter={{lat: -34.397, lng: 150.644}}>
     {props.pools ? (
       props.pools.map(pool => <MapInfoWindow key={pool.id} pool={pool} />)

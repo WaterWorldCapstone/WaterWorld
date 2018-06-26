@@ -43,6 +43,11 @@ const Navbar = props => {
               Pools
             </Link>
           </Button>
+          <Button color="inherit">
+            <Link className="navbar-link" to="/donate">
+              Donate
+            </Link>
+          </Button>
           {isLoggedIn ? (
             <div>
               <Button color="inherit" onClick={handleClick}>
