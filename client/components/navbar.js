@@ -42,8 +42,8 @@ const Navbar = props => {
             </Link>
           </Typography>
           <Button color="inherit">
-            <Link className="navbar-link" to="/">
-              Home
+            <Link className="navbar-link" to="/donate">
+              Donate
             </Link>
           </Button>
           {isLoggedIn ? (
