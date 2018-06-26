@@ -89,13 +89,16 @@ describe('Pool routes', async () => {
       const {body} = await request(app).get('/api/pools')
       expect(body.length).to.equal(1)
     })
-    xit('lets you put a thing with a returning put route', async () => {
+
+    it('lets you put a thing with a returning put route', async () => {
+      await db.sync({force: true})
+      const newPool = await Pool.create(reqVarObj)
       const res = await request(app)
-        .put('/api/pools/1')
+        .put(`/api/pools/${newPool.id}`)
         .send({currentFunds: '9999'})
       expect(res.status).to.equal(200)
-      expect(res.body.name).to.equal('testPool')
-      expect(res.body.currentFunds).to.equal(`9999`)
+      expect(res.body[0].name).to.equal('poolName')
+      expect(res.body[0].currentFunds).to.equal(`9999`)
     })
     it('lets you delete a thing with a delete route', async () => {
       await request(app).delete('/api/pools/1')
