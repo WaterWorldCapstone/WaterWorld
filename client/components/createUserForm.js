@@ -25,12 +25,14 @@ class CreateUser extends Component {
       address: evt.target.address.value,
       country: evt.target.country.value,
       continent: evt.target.continent.value,
-      town: evt.target.town.value
+      town: evt.target.town.value,
+      companyName: evt.target.companyName.value
     }
     if (NU.type === 'vendor') {
       this.props.vendorLogin(NU)
+    } else {
+      this.props.donorLogin(NU)
     }
-    this.props.donorLogin(NU)
   }
   clicked = () => {
     this.setState({clicked: true, clicker: false})
@@ -116,9 +118,9 @@ class CreateUser extends Component {
                       <div className="row">
                         <div className="input-field col s12">
                           <input
-                            id="homeAddress"
+                            id="address"
                             type="text"
-                            name="homeAddress"
+                            name="address"
                             placeholder="Address"
                           />
                         </div>
@@ -141,6 +143,17 @@ class CreateUser extends Component {
                             type="text"
                             name="town"
                             placeholder="Town"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="country"
+                            type="text"
+                            name="country"
+                            placeholder="Country"
                             required
                           />
                         </div>

@@ -3,7 +3,8 @@ const User = require('../db/models/user')
 const Donor = require('../db/models/Donor')
 const Vendor = require('../db/models/Vendor')
 module.exports = router
-
+router.use('/google', require('./google'))
+router.use('/facebook', require('./facebook'))
 router.post('/login', async (req, res, next) => {
   const user = await User.findOne({where: {email: req.body.email}})
   if (!user) {
