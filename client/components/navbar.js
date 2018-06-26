@@ -28,22 +28,19 @@ const Navbar = props => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <i className="material-icons">=</i>{' '}
-            {/* originally MenuIcon; seems to not exist*/}
-          </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
             <Link to="/" className="navbar-link">
-              Waterworld
+              Home
             </Link>
           </Typography>
           <Button color="inherit">
-            <Link className="navbar-link" to="/">
-              Home
+            <Link className="navbar-link" to="/map">
+              Map
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link className="navbar-link" to="/pools">
+              Pools
             </Link>
           </Button>
           {isLoggedIn ? (
