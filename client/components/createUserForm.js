@@ -23,10 +23,10 @@ class CreateUser extends Component {
       password: evt.target.password.value,
       type,
       address: evt.target.address.value,
-      country: evt.target.country.value,
-      continent: evt.target.continent.value,
-      town: evt.target.town.value,
-      companyName: evt.target.companyName.value
+      country: evt.target.country && evt.target.country.value,
+      continent: evt.target.continent && evt.target.continent.value,
+      town: evt.target.town && evt.target.town.value,
+      companyName: evt.target.companyName && evt.target.companyName.value
     }
     if (NU.type === 'vendor') {
       this.props.vendorLogin(NU)
