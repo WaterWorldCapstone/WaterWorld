@@ -10,6 +10,10 @@ import {factoids} from './helpers/factoids.js'
 import {paperMessages} from './helpers/paperMessages.js'
 import ExpansionPanelSample from './cards/ExpansionPanelSample.js'
 import PotentialExpander from './cards/PotentialExpander.js'
+import PossiblePopover from './cards/PossiblePopover.js'
+import InfoPopover from './cards/InfoPopover.js'
+import MainLinkPopover from './cards/MainLinkPopover.js'
+import LoadingBar from './helpers/LoadingBar.js'
 
 const styles = theme => ({
   root: {
@@ -24,11 +28,12 @@ const styles = theme => ({
   }
 })
 
-class LandingPage extends Component {
+class LandingPageWithDemos extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      counter: 0
+      counter: 0,
+      clicked: false
     }
   }
 
@@ -49,20 +54,17 @@ class LandingPage extends Component {
         container
         className={classes.root}
         spacing={24}
-        id="landing-page-grid"
+        id="landing-page-grid-demo"
         justify="center"
       >
         <Grid item xs={12}>
           <Typography variant="headline">Waterworld</Typography>
         </Grid>
         <Grid item xs={12}>
-          <img src="http://i1.wp.com/metrocosm.com/wp-content/uploads/2016/10/population-3d-globe.gif?zoom=1.25&resize=500%2C253" />{' '}
+          <MainLinkPopover />
         </Grid>
         <Grid item xs={9}>
-          <Typography>
-            {' '}
-            Here is some text we can use to tug at heartstrings{' '}
-          </Typography>
+          <Typography> click me ^^^^^^^^^^ </Typography>
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
@@ -82,6 +84,49 @@ class LandingPage extends Component {
             <ExampleMusicCard />
           </Grid>
         </Grid>
+        <Grid item xs={10}>
+          <Paper className={classes.paper}>
+            {generateTickers(
+              factoids,
+              this.state.counter % factoids.length,
+              5
+            ).map((factoid, idx) => (
+              <Typography key={idx + '1'}>
+                {(this.state.counter + idx) % factoids.length} {factoid}
+              </Typography>
+            ))}
+          </Paper>
+        </Grid>
+        <Grid item xs={9}>
+          <ExpansionPanelSample counter={this.state.counter} />
+        </Grid>
+        <Grid item xs={4}>
+          <div>
+            <PotentialExpander />
+            <Typography> click me </Typography>
+          </div>
+        </Grid>
+        <Grid item xs={4}>
+          <div>
+            <PossiblePopover />
+            <Typography> click me too!</Typography>
+          </div>
+        </Grid>
+        <Grid item xs={4}>
+          <div>
+            <InfoPopover />
+            <Typography> click me ALSO!</Typography>
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          {!this.state.clicked ? (
+            <button onClick={() => this.setState({clicked: true})}>
+              click to start loading bar
+            </button>
+          ) : (
+            <LoadingBar />
+          )}
+        </Grid>
       </Grid>
     )
   }
@@ -89,7 +134,6 @@ class LandingPage extends Component {
     clearInterval()
   }
 }
-
 const generateTickers = (arr, counter, num) => {
   const output = []
   for (let i = counter; i < counter + num; i++) {
@@ -98,8 +142,8 @@ const generateTickers = (arr, counter, num) => {
   return output
 }
 
-LandingPage.propTypes = {
+LandingPageWithDemos.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(LandingPage)
+export default withStyles(styles)(LandingPageWithDemos)
