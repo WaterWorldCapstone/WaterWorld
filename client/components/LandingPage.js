@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 import SimpleCard from './cards/ExampleCard.js'
 import ExampleMediaCard from './cards/ExampleMediaCard.js'
 import {Paper, Grid, withStyles, Typography} from '@material-ui/core'
@@ -10,6 +9,7 @@ import {factoids} from './helpers/factoids.js'
 import {paperMessages} from './helpers/paperMessages.js'
 import ExpansionPanelSample from './cards/ExpansionPanelSample.js'
 import PotentialExpander from './cards/PotentialExpander.js'
+import {white} from 'material-ui/styles/colors'
 
 const styles = theme => ({
   root: {
@@ -20,7 +20,12 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
-    color: theme.palette.text.secondary
+    color: white,
+    justify: 'center',
+    backgroundColor: '#01547b'
+  },
+  text: {
+    color: white
   }
 })
 
@@ -52,29 +57,29 @@ class LandingPage extends Component {
         id="landing-page-grid"
         justify="center"
       >
-        <Grid item xs={12} className="langingPage" />
-        <Grid item xs={6}>
-          <Typography variant="headline">Waterworld</Typography>
-          <Typography variant="center">Let's Donate !!!!!</Typography>
+        <Grid className={classes.paper} xs={12}>
+          {paperMessages.filter(
+            (msg, idx) => idx === this.state.counter % paperMessages.length
+          )}
         </Grid>
-        <Grid item xs={6}>
-          <a href="/map">
-            <div className="earth" />
-          </a>
+        <Grid container id="landingPage" spacing={24}>
+          <Grid item xs={12} />
+          <Grid item xs={6} className={classes.text}>
+            <Typography variant="headline" justify="center">
+              Waterworld
+            </Typography>
+            <Typography variant="center" justify="center">
+              Let's Donate !!!!!
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <a href="/map">
+              <div className="earth" />
+            </a>
+          </Grid>
+          <Grid item xs={12} />
         </Grid>
-        <Grid item xs={9}>
-          <Typography>
-            {' '}
-            Here is some text we can use to tug at heartstrings{' '}
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            {paperMessages.filter(
-              (msg, idx) => idx === this.state.counter % paperMessages.length
-            )}
-          </Paper>
-        </Grid>
+        <Grid item xs={12} />
         <Grid container justify="space-around" spacing={24}>
           <Grid item xs={3}>
             <SimpleCard />

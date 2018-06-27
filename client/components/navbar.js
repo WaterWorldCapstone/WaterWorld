@@ -8,7 +8,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 
 const styles = {
   root: {
@@ -26,13 +26,20 @@ const Navbar = props => {
   const {classes, isLoggedIn, handleClick} = props
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" id="navbar">
         <Toolbar>
           <Typography variant="title" color="inherit" className={classes.flex}>
             <Link to="/" className="navbar-link">
               Home
             </Link>
           </Typography>
+          <div>
+            <Button color="inherit">
+              <Link className="navbar-link" to="/donate">
+                Donate
+              </Link>
+            </Button>
+          </div>
           <Button color="inherit">
             <Link className="navbar-link" to="/map">
               Map
@@ -41,11 +48,6 @@ const Navbar = props => {
           <Button color="inherit">
             <Link className="navbar-link" to="/pools">
               Pools
-            </Link>
-          </Button>
-          <Button color="inherit">
-            <Link className="navbar-link" to="/donate">
-              Donate
             </Link>
           </Button>
           {isLoggedIn ? (

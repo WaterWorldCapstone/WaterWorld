@@ -1,14 +1,19 @@
 body {
   font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
-.landingPage {
+#landingPage {
   margin: 0 auto;
   background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
+  background-size: cover;
 }
 a {
   text-decoration: none;
 }
-
+#navbar {
+  background-color: #01547b;
+}
 label {
   display: block;
 }
@@ -29,19 +34,21 @@ form div {
 .earth {
   /* position: absolute;
     top: 1;
-    bottom: 1;
     left: 1;
     right: 0; */
+  bottom: 1;
   margin: 0 auto;
   width: 500px;
   height: 500px;
+  background-origin: inherit;
   background-image: url('http://soileiragusgonta.com/wp-content/uploads/2018/04/full-earth-map-2-maps-google-com-1024x512.jpg');
   border-radius: 50%;
-  background-size: cover;
-  box-shadow: -20px -20px 50px 2px #000 inset, 0px 0px 20px 2px;
+  background-size: initial;
+  box-shadow: -20px -20px 50px 2px #000 inset, 0px 0px 5px 2px #555;
   animation: spin 10s linear alternate infinite;
   animation-direction: normal;
 }
+
 @keyframes spin {
   100% {
     background-position: 100%;
@@ -56,7 +63,9 @@ form div {
 }
 
 #landing-page-grid {
-  background-color: aqua;
+  background-color: whitesmoke;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 #landing-page-grid-demo {
