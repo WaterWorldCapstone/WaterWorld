@@ -20,12 +20,12 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
-    color: white,
     justify: 'center',
     backgroundColor: '#01547b'
   },
   text: {
-    color: white
+    color: 'white',
+    alignItems: 'center'
   }
 })
 
@@ -57,7 +57,7 @@ class LandingPage extends Component {
         id="landing-page-grid"
         justify="center"
       >
-        <Grid className={classes.paper} xs={12}>
+        <Grid item className={classes.paper} xs={12}>
           {paperMessages.filter(
             (msg, idx) => idx === this.state.counter % paperMessages.length
           )}
@@ -65,11 +65,16 @@ class LandingPage extends Component {
         <Grid container id="landingPage" spacing={24}>
           <Grid item xs={12} />
           <Grid item xs={6} className={classes.text}>
-            <Typography variant="headline" justify="center">
-              Waterworld
+            <Typography
+              variant="title"
+              id="main-title-landing"
+              className="main-title"
+              color="inherit"
+            >
+              Waterworld!
             </Typography>
-            <Typography variant="center" justify="center">
-              Let's Donate !!!!!
+            <Typography variant="headline" justify="center" color="inherit">
+              Let's Donate !!!
             </Typography>
           </Grid>
           <Grid item xs={6}>
