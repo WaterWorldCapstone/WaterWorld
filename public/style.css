@@ -24,11 +24,13 @@ a {
   text-align: center;
   margin: 5px 5px 5px 5px;
 }
-.footer {
-  flex: 1;
-  margin: 10px 10px 10px 10px;
-  text-align: center;
-  justify-content: center;
+#footer {
+  top: 100%;
+  bottom: 10px;
+  position: relative;
+  justify-content: end;
+  width: 100%;
+  display: block;
 }
 #footerImg {
   margin: 10px 10px 10px 10px;
