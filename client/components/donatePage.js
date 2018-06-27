@@ -10,57 +10,36 @@ class Donate extends Component {
       'https://www.iatspayments.com/AURA/AURA.aspx?PID=PAC76ACF4D6528A8E1'
     this.script.async = true
 
-    window.addEventListener('input', myFunc2, false)
-    function myFunc2() {
+    window.addEventListener('input', findMostRecentDonationInput, false)
+    function findMostRecentDonationInput() {
       let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
-      console.log('input works better...change has occurred!')
-      console.log(targetThing.textContent)
+      console.log('Most recent input for $$$ was: ' + targetThing.textContent)
     }
 
-    const handleClickHere = e => {
+    const clearHashOnDonationFormSubmit = e => {
       let backButton
-      console.log('click not try registered')
       try {
-        console.log('click registered')
         backButton = document.querySelector('#IATS_ProcessAction_Button')
       } catch (err) {
         console.log("this error's ok ")
       }
       if (e.target === backButton) {
-        console.log('this button was clicked!')
-        this.props.history.push('/donate')
+        this.props.history.push('/donate') //clears hash
       }
     }
-    window.addEventListener('click', handleClickHere, false)
+    window.addEventListener('click', clearHashOnDonationFormSubmit, false)
 
-    function myFunc() {
-      console.log('hashchange fire')
-      let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
-      console.log(
-        'We win at javascript if this is right',
-        targetThing.textContent
-      )
+    function determineSuccess() {
       if (
         document.querySelector('#IATS_BackAction_Button').style.display ===
         'block'
       ) {
         console.log('Rejected')
-        console.log(
-          document.querySelector('#IATS_BackAction_Button').style.display
-        )
-        console.dir(document.querySelector('#IATS_BackAction_Button'))
       } else {
         console.log('success')
-        console.log(
-          document.querySelector('#IATS_BackAction_Button').style.display
-        )
       }
-      // if (location.hash === '#IATS_PaymentBoxDiv') {
-      //   readTheDollarAmount()
-      // }
     }
-    window.addEventListener('hashchange', myFunc, false)
-
+    window.addEventListener('hashchange', determineSuccess, false)
     document.getElementById('payment').appendChild(this.script)
   }
   componentWillUnmount() {
