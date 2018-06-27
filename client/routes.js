@@ -9,7 +9,7 @@ import CreateUser from './components/createUserForm'
 import LandingPage from './components/LandingPage'
 import LandingPageWithDemos from './components/LandingPageWithDemos'
 import Donate from './components/donatePage'
-
+import Auction from './components/auction'
 /**
  * COMPONENT
  */
@@ -30,6 +30,7 @@ class Routes extends Component {
         <Route exact path="/signup" component={CreateUser} />
         <Route path="/map" component={MainMap} />
         <Route exact path="/donate" component={Donate} />
+        <Route exact path="/auction" component={Auction} />
 
         {isLoggedIn && (
           <Switch>
