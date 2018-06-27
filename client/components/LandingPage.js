@@ -80,17 +80,6 @@ class LandingPage extends Component {
           <Grid item xs={12} />
         </Grid>
         <Grid item xs={12} />
-        <Grid container justify="space-around" spacing={24}>
-          <Grid item xs={3}>
-            <SimpleCard />
-          </Grid>
-          <Grid item xs={3}>
-            <ExampleMediaCard />
-          </Grid>
-          <Grid item xs={3}>
-            <ExampleMusicCard />
-          </Grid>
-        </Grid>
       </Grid>
     )
   }
