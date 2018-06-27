@@ -45,13 +45,45 @@ form div {
   border-radius: 50%;
   background-size: initial;
   box-shadow: -20px -20px 50px 2px #000 inset, 0px 0px 5px 2px #555;
-  animation: spin 10s linear alternate infinite;
+  /* animation: spin 10s linear alternate infinite;
+  animation-direction: normal; */
+  -webkit-animation: rotating 30s linear infinite;
+  -moz-animation: rotating 30s linear infinite;
+  -ms-animation: rotating 30s linear infinite;
+  -o-animation: rotating 30s linear infinite;
+  animation: rotating 180s linear infinite, spin 30s linear alternate infinite;
   animation-direction: normal;
 }
 
 @keyframes spin {
   100% {
     background-position: 100%;
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
   }
 }
 .hidden {

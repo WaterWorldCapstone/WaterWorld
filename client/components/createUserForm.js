@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button'
 // import Checkbox from 'material-ui/Checkbox'
 // import SelectField from 'material-ui/SelectField'
 // import MenuItem from 'material-ui/MenuItem'
+import TextField from 'material-ui/TextField'
 
 class CreateUser extends Component {
   constructor() {
@@ -60,6 +61,14 @@ class CreateUser extends Component {
                 <div className="input-field col s12 m6 l6">
                   <input
                     id="first_name"
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    required
+                  />
+                  <TextField
+                    hintText="First Name"
+                    floatingLabelText="text"
                     type="text"
                     name="firstName"
                     placeholder="First Name"
