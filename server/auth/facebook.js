@@ -22,10 +22,10 @@ if (!process.env.FACEBOOK_APP_ID || !process.env.FACEBOOK_APP_SECRET) {
     )
   )
 
-  router.get('/facebook', passport.authenticate('facebook'))
+  router.get('/', passport.authenticate('facebook'))
 
   router.get(
-    '/facebook/callback',
+    '/callback',
     passport.authenticate('facebook', {
       successRedirect: '/home',
       failureRedirect: '/login'

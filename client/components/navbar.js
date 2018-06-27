@@ -8,7 +8,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+// import IconButton from '@material-ui/core/IconButton'
 
 const styles = {
   root: {
@@ -26,24 +26,28 @@ const Navbar = props => {
   const {classes, isLoggedIn, handleClick} = props
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" id="navbar">
         <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <i className="material-icons">=</i>{' '}
-            {/* originally MenuIcon; seems to not exist*/}
-          </IconButton>
           <Typography variant="title" color="inherit" className={classes.flex}>
             <Link to="/" className="navbar-link">
-              Waterworld
+              Home
             </Link>
           </Typography>
+          <div>
+            <Button color="inherit">
+              <Link className="navbar-link" to="/donate">
+                Donate
+              </Link>
+            </Button>
+          </div>
           <Button color="inherit">
-            <Link className="navbar-link" to="/donate">
-              Donate
+            <Link className="navbar-link" to="/map">
+              Map
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link className="navbar-link" to="/pools">
+              Pools
             </Link>
           </Button>
           {isLoggedIn ? (
@@ -77,12 +81,6 @@ const Navbar = props => {
   )
 }
 
-/*
-*/
-
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id

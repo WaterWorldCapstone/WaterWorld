@@ -1,7 +1,7 @@
 import React from 'react'
 import HomeMap from './Map'
 import {connect} from 'react-redux'
-import {gettingPools} from '../store/pool'
+import {gettingPools} from '../../store/pool'
 
 class MainMap extends React.Component {
   componentDidMount() {
@@ -11,9 +11,6 @@ class MainMap extends React.Component {
   }
 
   render() {
-    // if(this.props.pools) {
-    //   console.log('pools are', this.props.pools)
-    // }
     console.log('pools are', this.props.pools)
     return (
       <HomeMap
@@ -22,9 +19,6 @@ class MainMap extends React.Component {
         containerElement={<div style={{height: `600px`}} />}
         mapElement={<div style={{height: `100%`}} />}
       />
-      // <div>
-      //   <h2>MAP HERE</h2>
-      // </div>
     )
   }
 }
