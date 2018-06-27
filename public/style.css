@@ -11,13 +11,49 @@ body {
 a {
   text-decoration: none;
 }
+#text {
+  margin-right: 10px;
+  background-color: whitesmoke;
+  color: #05a2d2;
+  text-align: justify;
+  line-break: auto;
+  line-height: 30px;
+}
+#aboutText {
+  color: #01547b;
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+}
+.footer {
+  flex: 1;
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+  justify-content: center;
+}
+#footerImg {
+  margin: 10px 10px 10px 10px;
+  justify-content: left;
+  text-align: left;
+}
+#footerText {
+  color: black;
+  text-align: right;
+  margin: 10px 10px 10px 10px;
+  justify-content: flex-start;
+}
 #navbar {
+  margin: 0 auto;
   background-color: #01547b;
+  background-size: cover;
 }
 label {
   display: block;
 }
-
+#about {
+  background-color: #05a2d2;
+  background-size: cover;
+  margin: 0 auto;
+}
 nav a {
   display: inline-block;
   margin: 1em;
