@@ -81,12 +81,6 @@ const Navbar = props => {
   )
 }
 
-/*
-*/
-
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id
