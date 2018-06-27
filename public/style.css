@@ -31,6 +31,12 @@ form div {
 .navbar-link {
   color: white;
 }
+#login {
+  justify-content: center;
+  align-items: center;
+  border: indigo;
+  border-block-start-width: 2px;
+}
 .earth {
   /* position: absolute;
     top: 1;
