@@ -4,6 +4,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {donorSignup, vendorSignup} from '../store/user'
 import Button from '@material-ui/core/Button'
+// import Input from 'material-ui/core/Input'
+// import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
+// import Checkbox from 'material-ui/Checkbox'
+// import SelectField from 'material-ui/SelectField'
+// import MenuItem from 'material-ui/MenuItem'
 
 class CreateUser extends Component {
   constructor() {
@@ -23,10 +28,10 @@ class CreateUser extends Component {
       password: evt.target.password.value,
       type,
       address: evt.target.address.value,
-      country: evt.target.country.value,
-      continent: evt.target.continent.value,
-      town: evt.target.town.value,
-      companyName: evt.target.companyName.value
+      country: evt.target.country && evt.target.country.value,
+      continent: evt.target.continent && evt.target.continent.value,
+      town: evt.target.town && evt.target.town.value,
+      companyName: evt.target.companyName && evt.target.companyName.value
     }
     if (NU.type === 'vendor') {
       this.props.vendorLogin(NU)

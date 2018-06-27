@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
-import {auth} from '../store'
+import {login} from '../store'
 import Button from '@material-ui/core/Button'
 
 const AuthForm = props => {
@@ -10,66 +9,72 @@ const AuthForm = props => {
 
   return (
     <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
-      <div id="login" className="col s12">
-        <form
-          className="col s12 container__form"
-          onSubmit={handleSubmit}
-          name={name}
-        >
-          <div className="form-container">
-            <h4 className="teal-text">Hello</h4>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                />
+      <div id="login" className="login">
+        <center>
+          <form
+            id="login"
+            className="col s12 container__form"
+            onSubmit={handleSubmit}
+            name={name}
+          >
+            <div className="form-container">
+              <h4 className="teal-text">Hello</h4>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                />
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </div>
               </div>
-            </div>
-            {error &&
-              (emaildata === '' ? (
-                <div className="error-container">Please enter email</div>
-              ) : passdata === '' ? (
-                <div className="error-container">Please enter password</div>
-              ) : (
-                <div className="error-container">{error.response.data}</div>
-              ))}
-            <br />
-            <center>
-              <Button
-                className="btn custom_btn waves-effect waves-light teal"
-                type="submit"
-                name="action"
-              >
-                Sign In
-              </Button>
+              {error &&
+                (emaildata === '' ? (
+                  <div className="error-container">Please enter email</div>
+                ) : passdata === '' ? (
+                  <div className="error-container">Please enter password</div>
+                ) : (
+                  <div className="error-container">{error.response.data}</div>
+                ))}
               <br />
-              <p>Sign in with</p>
-              <a href="/auth/google">
-                <div className="btn_google">
-                  <img src="/img/btn_google.svg" />
-                </div>
-              </a>
-              <a href="/auth/facebook">
-                <div className="btn_google">
-                  <img src="/img/btn_facebook.svg" />
-                </div>
-              </a>
-            </center>
-          </div>
-        </form>
+              <center>
+                <Button
+                  className="btn custom_btn waves-effect waves-light teal"
+                  type="submit"
+                  name="action"
+                  onSubmit={handleSubmit}
+                >
+                  Sign In
+                </Button>
+                <br />
+                <p>Sign in with</p>
+                <a href="/auth/google">
+                  <div className="btn_google">
+                    <img src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/48/Google-Chrome-icon.png" />
+                    <p>Google</p>
+                  </div>
+                </a>
+                <a href="/auth/facebook">
+                  <div className="btn_google">
+                    <img src="http://icons.iconarchive.com/icons/yootheme/social-bookmark/48/social-facebook-box-blue-icon.png" />
+                    <p>Facebook</p>
+                  </div>
+                </a>
+              </center>
+            </div>
+          </form>
+        </center>
       </div>
     </div>
   )
@@ -103,10 +108,9 @@ const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
-      const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      dispatch(login(email, password))
     }
   }
 }

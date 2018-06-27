@@ -2,15 +2,18 @@ import React, {Component} from 'react'
 
 class Donate extends Component {
   componentDidMount() {
-    const script = document.createElement('script')
+    this.script = document.createElement('script')
 
-    script.src =
+    this.script.src =
       'https://www.iatspayments.com/AURA/AURA.aspx?PID=PAC76ACF4D6528A8E1'
-    script.async = true
+    this.script.async = true
 
-    document.body.appendChild(script)
-    // const newPayment = document.findElementById('payment')
-    // console.log('hit', newPayment)
+    // document.body.appendChild(this.script)
+    document.getElementById('payment').appendChild(this.script)
+  }
+  componentWillUnmount() {
+    document.getElementById('IATS_NACHPolicyMoreInfoDiv').remove()
+    document.getElementById('IATS_NACHStatementDiv').remove()
   }
   render() {
     return <div id="payment" />

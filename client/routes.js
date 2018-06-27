@@ -3,13 +3,13 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
-import MainMap from './components/mainMap'
+import MainMap from './components/Map/mainMap'
 import {me} from './store'
 import CreateUser from './components/createUserForm'
 import LandingPage from './components/LandingPage'
 import LandingPageWithDemos from './components/LandingPageWithDemos'
 import Donate from './components/donatePage'
-
+import Pools from './components/Pools'
 /**
  * COMPONENT
  */
@@ -28,7 +28,8 @@ class Routes extends Component {
         <Route exact path="/demos" component={LandingPageWithDemos} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={CreateUser} />
-        <Route path="/map" component={MainMap} />
+        <Route exact path="/map" component={MainMap} />
+        <Route exact path="/pools" component={Pools} />
         <Route exact path="/donate" component={Donate} />
 
         {isLoggedIn && (
