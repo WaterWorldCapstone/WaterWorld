@@ -13,6 +13,13 @@ import {MapInfoWindow} from './MapInfoWindow'
 import HeatmapLayer from 'react-google-maps/lib/components/visualization/HeatmapLayer'
 const {InfoBox} = require('react-google-maps/lib/components/addons/InfoBox')
 
+function getPoints() {
+  return [
+    new google.maps.LatLng(40.705076, -74.00916),
+    new google.maps.LatLng(40.700176, -74.00916)
+  ]
+}
+
 export const HomeMap = compose(
   withProps({
     googleMapURL:
@@ -30,7 +37,7 @@ export const HomeMap = compose(
     ) : (
       <div />
     )}
-    <HeatmapLayer data={[new google.maps.LatLng(40.705076, -74.00916)]} />
+    <HeatmapLayer data={getPoints()} />
     {/* <InfoBox
       defaultPosition={new google.maps.LatLng(40.705076, -74.00916)}
       options={{ closeBoxURL: ``, enableEventPropagation: true }}
