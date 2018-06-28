@@ -78,7 +78,9 @@ class LandingPage extends Component {
         <Grid item xs={12} />
         <Grid id="text" container spacing={24}>
           <Grid item xs={12} />
-          <Grid item xs={6} className={classes.text} />
+          <Grid item xs={6} className={classes.text}>
+            <img src="https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg" />
+          </Grid>
           <Grid item xs={6} className={classes.text}>
             <Typography id="aboutText" variant="headline" justify="center">
               About
