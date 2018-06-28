@@ -50,27 +50,3 @@ export const HomeMap = compose(
     </InfoBox> */}
   </GoogleMap>
 ))
-
-// class HeatMap extends React.PureComponent {
-
-//   render() {
-//     return (
-//       <HomeMap pools={this.props.pools}/>
-//     )
-//   }
-
-// }
-
-// const mapState = state => {
-//   return {
-//     pools: state.pool.allPools
-//   }
-// }
-
-// const mapDispatch = dispatch => {
-//   return {
-//     getPools: () => dispatch(gettingPools())
-//   }
-// }
-
-// export default connect(mapState, mapDispatch)(HeatMap)
