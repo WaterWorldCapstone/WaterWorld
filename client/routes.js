@@ -10,6 +10,7 @@ import LandingPage from './components/LandingPage'
 import Donate from './components/donatePage'
 import Auction from './components/auction'
 import Pools from './components/Pools'
+import Pool from './components/pool'
 /**
  * COMPONENT
  */
@@ -23,7 +24,7 @@ class Routes extends Component {
     this.targetSpan = document.querySelector('#IATS_Payment_TotalAmount')
   }
 
-  handleChange = e => {
+  handleChange = evt => {
     console.log('started this handleChange')
     console.log(this.targetSpan, this.targetSpan.value)
   }
