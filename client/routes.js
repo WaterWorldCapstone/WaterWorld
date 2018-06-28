@@ -33,30 +33,31 @@ class Routes extends Component {
     const {isLoggedIn} = this.props
 
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={CreateUser} />
-        <Route exact path="/map" component={MainMap} />
-        <Route exact path="/pools/:poolId" component={Pool} />
-        <Route exact path="/pools" component={Pools} />
-        <Route
-          exact
-          path="/donate"
-          render={() => <Donate onChange={this.handleChange} />}
-        />
-        <Route exact path="/auction" component={Auction} />
+      <div id="site-content">
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={CreateUser} />
+          <Route exact path="/map" component={MainMap} />
+          <Route exact path="/pools" component={Pools} />
+          <Route
+            exact
+            path="/donate"
+            render={() => <Donate onChange={this.handleChange} />}
+          />
+          <Route exact path="/auction" component={Auction} />
 
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        )}
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
-      </Switch>
+          {isLoggedIn && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route path="/home" component={UserHome} />
+            </Switch>
+          )}
+          {/* Displays our Login component as a fallback */}
+          <Route component={Login} />
+        </Switch>
+      </div>
     )
   }
 }
