@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Grid, withStyles, Typography, Button} from '@material-ui/core'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import BidForm from '../components/bidForm'
 
 const styles = theme => ({
   root: {
@@ -17,12 +17,19 @@ const styles = theme => ({
 class Auction extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      bidButtonClicked: false
+    }
   }
 
+  handleClick = () => {
+    this.setState(prevState => ({
+      bidButtonClicked: !prevState.bidButtonClicked
+    }))
+  }
   render() {
-    console.log(this.props)
     const {classes} = this.props
+
     return (
       <div>
         <Grid
@@ -35,11 +42,23 @@ class Auction extends Component {
           <Grid item xs={12}>
             <Typography variant="title">"Welcome Vendors"</Typography>
           </Grid>
-          <Link to="/auction/bid">
-            <Button variant="contained" color="primary">
-              Bid
-            </Button>
-          </Link>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={this.handleClick}
+          >
+            {this.state.bidButtonClicked ? 'Close' : 'Bid'}
+          </Button>
+
+          {this.state.bidButtonClicked ? (
+            <Grid item xs={12}>
+              {' '}
+              <BidForm />{' '}
+            </Grid>
+          ) : (
+            ''
+          )}
         </Grid>
       </div>
     )
