@@ -66,6 +66,18 @@ form div {
   display: inline-block;
 }
 
+.ticker-message {
+  color: white;
+}
+
+.main-title {
+  padding: 24% 0 0;
+}
+
+#main-title-landing {
+  font-size: 6rem;
+}
+
 .navbar-link {
   color: white;
 }

@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import {Grid, withStyles, Typography} from '@material-ui/core'
 import PropTypes from 'prop-types'
 import {paperMessages} from './helpers/paperMessages.js'
-import {white} from 'material-ui/styles/colors'
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -13,7 +11,6 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
-    color: white,
     justify: 'center',
     backgroundColor: '#01547b'
   }
@@ -57,11 +54,16 @@ class LandingPage extends Component {
           <Grid item xs={12} />
           <Grid item xs={12} />
           <Grid item xs={6} className={classes.text}>
-            <Typography variant="headline" justify="center">
-              Waterworld
+            <Typography
+              variant="title"
+              id="main-title-landing"
+              className="main-title"
+              color="inherit"
+            >
+              Waterworld!
             </Typography>
-            <Typography variant="center" justify="center">
-              Let's Donate !!!!!
+            <Typography variant="headline" justify="center" color="inherit">
+              Let's Donate !!!
             </Typography>
           </Grid>
           <Grid item xs={6}>
