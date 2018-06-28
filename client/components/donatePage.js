@@ -35,8 +35,10 @@ class Donate extends Component {
         'block'
       ) {
         console.log('Rejected')
+        //no thunk
       } else {
         console.log('success')
+        //thunk to store the DATUMS
       }
     }
     window.addEventListener('hashchange', determineSuccess, false)
