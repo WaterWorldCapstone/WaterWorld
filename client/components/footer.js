@@ -23,22 +23,14 @@ class Footer extends Component {
   render = () => {
     const {classes} = this.props
     return (
-      <Grid
-        container
-        className="footer"
-        spacing={24}
-        id="footer"
-        justify="center"
-      >
-        <Grid item xs={12}>
-          <Grid id="footerImg" item xs={6}>
-            <img src="https://www.fullstackacademy.com/images/fa-logo.png" />
-          </Grid>
-          <Grid id="footerText" item xs={6}>
-            <Typography>Developed By:</Typography>
-            <Typography>Jesse Sullivan, Daniel Kerr</Typography>
-            <Typography>Teresa Li, Mouna Mallipeddi</Typography>
-          </Grid>
+      <Grid container spacing={24}>
+        <Grid id="footerImg" item xs={6}>
+          <img src="https://www.fullstackacademy.com/images/fa-logo.png" />
+        </Grid>
+        <Grid id="footerText" item xs={6}>
+          <Typography>Developed By:</Typography>
+          <Typography>Jesse Sullivan, Daniel Kerr</Typography>
+          <Typography>Teresa Li, Mouna Mallipeddi</Typography>
         </Grid>
       </Grid>
     )

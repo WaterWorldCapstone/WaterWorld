@@ -50,6 +50,7 @@
     "express": "^4.14.1",
     "express-async-handler": "^1.1.3",
     "express-session": "^1.15.1",
+    "helmet": "^3.12.1",
     "history": "^4.6.3",
     "markerclustererplus": "^2.1.4",
     "material-ui": "^0.20.1",

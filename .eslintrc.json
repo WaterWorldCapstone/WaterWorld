@@ -4,6 +4,7 @@
   "rules": {
     "semi": 0,
     "new-cap": [1, {"capIsNewExceptions": ["Router"]}],
-    "no-unused-expressions": 1
+    "no-unused-expressions": 1,
+    "react/prefer-stateless-function": 0
   }
 }

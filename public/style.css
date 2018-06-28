@@ -32,17 +32,14 @@ a {
   width: 100%;
   display: block;
 }
-#footerImg {
-  margin: 10px 10px 10px 10px;
-  justify-content: left;
-  text-align: left;
-}
+/* #footerImg { } */
 #footerText {
   color: black;
   text-align: right;
-  margin: 10px 10px 10px 10px;
-  justify-content: flex-start;
+  margin-top: 19px;
+  padding-right: 2.5%;
 }
+
 #navbar {
   margin: 0 auto;
   background-color: #01547b;
