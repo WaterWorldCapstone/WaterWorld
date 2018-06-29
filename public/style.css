@@ -50,8 +50,8 @@ a {
 
 .single-pool-card {
   display: flex;
-  max-width: '100%';
-  flex-basis: '100%';
+  justify-content: space-around;
+  margin-left: 30%;
 }
 
 .donate-button-link {

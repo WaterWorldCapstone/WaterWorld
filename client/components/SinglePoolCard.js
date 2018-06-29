@@ -29,13 +29,12 @@ function SinglePoolCard(props) {
   const redirect = () => {}
 
   return (
-    <div id="single-pool-card">
+    <div>
       <Card className={classes.card}>
         <Link to={`/pools/${pool.id}`}>
           <CardMedia
             className={classes.media}
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
+            // title=""
           />
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
@@ -44,10 +43,13 @@ function SinglePoolCard(props) {
             <Typography component="p">
               Location: {pool.town}, {pool.country}
             </Typography>
-            <Typography align="center" variant="display1">
-              ${pool.currentFunds}/${pool.goalFunds}
-            </Typography>
-            <Typography classes="alignCenter">Test</Typography>
+            <div className="single-pool-card">
+              <Typography variant="display2">
+                ${pool.currentFunds}/${pool.goalFunds}
+              </Typography>
+              <Typography variant="display2">{pool.mortalityRate}</Typography>
+              <Typography variant="display2">{pool.waterQuality}</Typography>
+            </div>
           </CardContent>
         </Link>
         <CardActions>
