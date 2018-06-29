@@ -2,15 +2,17 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {Login, UserHome} from './components'
 import MainMap from './components/Map/mainMap'
 import {me} from './store'
-import CreateUser from './components/createUserForm'
 import LandingPage from './components/LandingPage'
 import Donate from './components/donatePage'
 import Auction from './components/auction'
 import Pools from './components/Pools'
 import Pool from './components/pool'
+import AuctionList from './components/AuctionList'
+import CreateVendor from './components/createVendorForm'
+import CreateDonor from './components/createUserForm'
 /**
  * COMPONENT
  */
@@ -38,7 +40,7 @@ class Routes extends Component {
           {/* Routes placed here are available to all visitors */}
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={CreateUser} />
+          <Route exact path="/signup" component={CreateDonor} />
           <Route exact path="/map" component={MainMap} />
           <Route exact path="/pools" component={Pools} />
           <Route
@@ -46,6 +48,7 @@ class Routes extends Component {
             path="/donate"
             render={() => <Donate onChange={this.handleChange} />}
           />
+          <Route exact path="/auctions" component={AuctionList} />
           <Route exact path="/auction" component={Auction} />
 
           {isLoggedIn && (
@@ -55,6 +58,7 @@ class Routes extends Component {
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
+          <Route exact path="/vendor-signup" component={CreateVendor} />
           <Route component={Login} />
         </Switch>
       </div>
