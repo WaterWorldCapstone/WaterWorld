@@ -3,9 +3,7 @@ import {withRouter} from 'react-router-dom'
 
 class Donate extends Component {
   componentDidMount() {
-    console.log(this.props)
     this.script = document.createElement('script')
-
     this.script.src =
       'https://www.iatspayments.com/AURA/AURA.aspx?PID=PAC76ACF4D6528A8E1'
     this.script.async = true
@@ -13,7 +11,6 @@ class Donate extends Component {
     window.addEventListener('input', findMostRecentDonationInput, false)
     function findMostRecentDonationInput() {
       let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
-      console.log('Most recent input for $$$ was: ' + targetThing.textContent)
     }
 
     const clearHashOnDonationFormSubmit = e => {
