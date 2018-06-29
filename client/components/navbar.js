@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button'
 
 const styles = {
   root: {
-    flexGrow: 1
+    // flexGrow: 1
   },
   flex: {
     flex: 1
@@ -34,45 +34,35 @@ const Navbar = props => {
             </Link>
           </Typography>
           <div>
-            <Button color="inherit">
-              <Link className="navbar-link" to="/donate">
-                Donate
-              </Link>
-            </Button>
+            <Link className="navbar-link" to="/donate">
+              <Button color="inherit">Donate</Button>
+            </Link>
           </div>
           <Button color="inherit">
             <Link className="navbar-link" to="/map">
               Map
             </Link>
           </Button>
-          <Button color="inherit">
-            <Link className="navbar-link" to="/pools">
-              Pools
-            </Link>
-          </Button>
+          <Link className="navbar-link" to="/pools">
+            <Button color="inherit">Pools</Button>
+          </Link>
           {isLoggedIn ? (
             <div>
               <Button color="inherit" onClick={handleClick}>
                 Log Out
               </Button>
-              <Button color="inherit">
-                <Link className="navbar-link" to="/signup">
-                  Edit
-                </Link>
-              </Button>
+              <Link className="navbar-link" to="/edit">
+                <Button color="inherit">Edit</Button>
+              </Link>
             </div>
           ) : (
             <div>
-              <Button color="inherit">
-                <Link className="navbar-link" to="/login">
-                  Login
-                </Link>
-              </Button>
-              <Button color="inherit">
-                <Link className="navbar-link" to="/signup">
-                  Sign Up
-                </Link>
-              </Button>
+              <Link className="navbar-link" to="/login">
+                <Button color="inherit">Login</Button>
+              </Link>
+              <Link className="navbar-link" to="/signup">
+                <Button color="inherit">Sign Up</Button>
+              </Link>
             </div>
           )}
         </Toolbar>

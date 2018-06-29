@@ -3,6 +3,15 @@ body {
   margin: 0;
   padding: 0;
 }
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#site-content {
+  flex-grow: 1;
+}
+
 #landingPage {
   margin: 0 auto;
   background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
@@ -11,13 +20,72 @@ body {
 a {
   text-decoration: none;
 }
-#navbar {
+#text {
+  margin-right: 10px;
+  background-color: white;
+  color: #05a2d2;
+  text-align: justify;
+  line-break: auto;
+  line-height: 30px;
+}
+#aboutText {
+  color: #01547b;
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+}
+#pools {
+  margin: 10px auto;
+  padding: 1%;
+  padding-right: 2.5%;
+}
+.pools-p {
+  border: 3px solid #01547b;
+  padding: 0.8%;
+}
+.pools-p-info {
+  padding-left: 1%;
+  justify-content: left;
+  text-align: left;
+}
+.donate-button-link {
+  border: 1px solid #01547b;
   background-color: #01547b;
+  color: whitesmoke;
+  padding: 2.5%;
+}
+.donate-button {
+  text-align: right;
+  margin: auto;
+}
+#footer {
+  top: 100%;
+  bottom: 10px;
+  position: relative;
+  justify-content: end;
+  width: 100%;
+  display: block;
+}
+/* #footerImg { } */
+#footerText {
+  color: black;
+  text-align: right;
+  margin-top: 19px;
+  padding-right: 2.5%;
+}
+
+#navbar {
+  margin: 0 auto;
+  background-color: #01547b;
+  background-size: cover;
 }
 label {
   display: block;
 }
-
+#about {
+  background-color: #05a2d2;
+  background-size: cover;
+  margin: 0 auto;
+}
 nav a {
   display: inline-block;
   margin: 1em;
@@ -26,6 +94,18 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.ticker-message {
+  color: white;
+}
+
+.main-title {
+  padding: 24% 0 0;
+}
+
+#main-title-landing {
+  font-size: 6rem;
 }
 
 .navbar-link {

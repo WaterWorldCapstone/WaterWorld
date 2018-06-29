@@ -48,8 +48,15 @@ class Donate extends Component {
     document.getElementById('IATS_NACHPolicyMoreInfoDiv').remove()
     document.getElementById('IATS_NACHStatementDiv').remove()
   }
+  handleSubmit = evt => {
+    evt.preventDefault()
+    console.log(
+      document.getElementsByClassName('IATS_ResponseSectionDiv')[0].children[2]
+        .firstChild.firstChild.textContent
+    )
+  }
   render() {
-    return <div id="payment" />
+    return <div id="payment" onSubmit={this.handleSubmit} />
   }
 }
 
