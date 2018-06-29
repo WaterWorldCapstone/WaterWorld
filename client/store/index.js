@@ -11,6 +11,8 @@ const middleware = composeWithDevTools(
 )
 const store = createStore(reducer, middleware)
 
+export const [LOADING, LOADED, ERROR] = ['LOADING', 'LOADED', 'ERROR']
+
 export default store
 export * from './user'
 export * from './pool'
