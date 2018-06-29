@@ -1,21 +1,21 @@
 import React from 'react'
-import HomeMap from './Map'
+import {HomeMap} from './Map'
 import {connect} from 'react-redux'
 import {gettingPools} from '../../store/pool'
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from 'react-google-maps'
 
 class MainMap extends React.Component {
   componentDidMount() {
     this.props.getPools()
   }
   render() {
-    return (
-      <HomeMap
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEn6qWhn0flVzQ0uNzas6RCz9jYJT1xQM&v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{height: `100%`}} />}
-        containerElement={<div style={{height: `600px`}} />}
-        mapElement={<div style={{height: `100%`}} />}
-      />
-    )
+    return <HomeMap />
   }
 }
 
