@@ -107,64 +107,6 @@ class CreateUser extends Component {
                       Donor
                     </Button>
                   </div>
-                  {this.state.clicked && (
-                    <div className="row">
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input
-                            id="companyName"
-                            type="text"
-                            name="companyName"
-                            placeholder="Company Name"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input
-                            id="address"
-                            type="text"
-                            name="address"
-                            placeholder="Address"
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input
-                            id="continent"
-                            type="text"
-                            name="continent"
-                            placeholder="Continent"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input
-                            id="town"
-                            type="text"
-                            name="town"
-                            placeholder="Town"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input
-                            id="country"
-                            type="text"
-                            name="country"
-                            placeholder="Country"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
                   {this.state.clicker && (
                     <div className="row">
                       <div className="input-field col s12">
@@ -204,9 +146,9 @@ const stateToProps = state => ({
   error: state.user.error
 })
 
-const MapToProps = dispatch => ({
+const mapToProps = dispatch => ({
   vendorLogin: user => dispatch(vendorSignup(user)),
   donorLogin: user => dispatch(donorSignup(user))
 })
 
-export default connect(stateToProps, MapToProps)(CreateUser)
+export default connect(stateToProps, mapToProps)(CreateUser)

@@ -5,13 +5,14 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import MainMap from './components/Map/mainMap'
 import {me} from './store'
-import CreateUser from './components/createUserForm'
+import CreateUser from './components/createUserForm-old'
 import LandingPage from './components/LandingPage'
 import Donate from './components/donatePage'
 import Auction from './components/auction'
 import Pools from './components/Pools'
 import Pool from './components/pool'
 import AuctionList from './components/AuctionList'
+import CreateVendor from './components/createVendorForm'
 /**
  * COMPONENT
  */
@@ -57,6 +58,7 @@ class Routes extends Component {
             </Switch>
           )}
           {/* Displays our Login component as a fallback */}
+          <Route exact path="/vendor-signup" component={CreateVendor} />
           <Route component={Login} />
         </Switch>
       </div>
