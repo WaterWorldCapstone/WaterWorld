@@ -106,7 +106,7 @@ class CreateDonor extends Component {
                   required
                 />
                 <TextField
-                  id="vendor-signup-password"
+                  id="donor-signup-password"
                   label="Password"
                   margin="normal"
                   className={classes.textField}
