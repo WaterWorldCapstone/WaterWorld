@@ -32,8 +32,12 @@ export const HomeMap = compose(
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={3} defaultCenter={{lat: 40.705076, lng: -74.00916}}>
+    {console.log('in the map', props)}
     {props.pools ? (
-      props.pools.map(pool => <MapInfoWindow key={pool.id} pool={pool} />)
+      props.pools.map(pool => {
+        console.log('in pool mapping, pool is', pool)
+        return <MapInfoWindow key={pool.id} pool={pool} />
+      })
     ) : (
       <div />
     )}
@@ -50,27 +54,3 @@ export const HomeMap = compose(
     </InfoBox> */}
   </GoogleMap>
 ))
-
-// class HeatMap extends React.PureComponent {
-
-//   render() {
-//     return (
-//       <HomeMap pools={this.props.pools}/>
-//     )
-//   }
-
-// }
-
-// const mapState = state => {
-//   return {
-//     pools: state.pool.allPools
-//   }
-// }
-
-// const mapDispatch = dispatch => {
-//   return {
-//     getPools: () => dispatch(gettingPools())
-//   }
-// }
-
-// export default connect(mapState, mapDispatch)(HeatMap)

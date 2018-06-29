@@ -47,6 +47,13 @@ a {
   justify-content: left;
   text-align: left;
 }
+
+.single-pool-card {
+  display: flex;
+  max-width: '100%';
+  flex-basis: '100%';
+}
+
 .donate-button-link {
   border: 1px solid #01547b;
   background-color: #01547b;
