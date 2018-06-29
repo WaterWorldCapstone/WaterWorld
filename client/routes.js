@@ -13,6 +13,7 @@ import Pools from './components/Pools'
 import Pool from './components/pool'
 import AuctionList from './components/AuctionList'
 import CreateVendor from './components/createVendorForm'
+import CreateDonor from './components/createUserForm'
 /**
  * COMPONENT
  */
@@ -40,7 +41,7 @@ class Routes extends Component {
           {/* Routes placed here are available to all visitors */}
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={CreateUser} />
+          <Route exact path="/signup" component={CreateDonor} />
           <Route exact path="/map" component={MainMap} />
           <Route exact path="/pools" component={Pools} />
           <Route

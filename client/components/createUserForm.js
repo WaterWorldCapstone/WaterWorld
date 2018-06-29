@@ -1,141 +1,143 @@
 'use strict'
 
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {donorSignup, vendorSignup} from '../store/user'
-import Button from '@material-ui/core/Button'
-// import Input from 'material-ui/core/Input'
-// import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
-// import Checkbox from 'material-ui/Checkbox'
-// import SelectField from 'material-ui/SelectField'
-// import MenuItem from 'material-ui/MenuItem'
+import {donorSignup} from '../store/user'
+import {
+  Button,
+  withStyles,
+  TextField,
+  Paper,
+  Typography
+} from '@material-ui/core'
+import PropTypes from 'prop-types'
 
-class CreateUser extends Component {
-  constructor() {
-    super()
-    this.state = {
-      clicked: false,
-      clicker: false
-    }
+const styles = theme => ({
+  root: {
+    margin: '10px 10% 0 0',
+    padding: '10px 0 10px 0'
+  },
+  button: {
+    margin: theme.spacing.unit
+  },
+  input: {
+    display: 'none'
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200
+  },
+  menu: {
+    width: 200
   }
+})
+
+class CreateDonor extends Component {
   handleSubmit = evt => {
     evt.preventDefault()
-    const type = (this.state.clicked && 'vendor') || 'donor'
+    let anonymous = false
+    if (!evt.target.firstName.value || !evt.target.lastName.value) anonymous = true
     const NU = {
-      firstName: evt.target.firstName.value,
-      lastName: evt.target.lastName.value,
+      firstName: anonymous ? `anonymous` : evt.target.firstName.value,
+      lastName: anonymous ? `donor` : evt.target.lastName.value,
       email: evt.target.email.value,
       password: evt.target.password.value,
-      type,
-      address: evt.target.address.value,
-      country: evt.target.country && evt.target.country.value,
-      continent: evt.target.continent && evt.target.continent.value,
-      town: evt.target.town && evt.target.town.value,
-      companyName: evt.target.companyName && evt.target.companyName.value
+      type: 'donor',
+      address: evt.target.address.value
     }
-    if (NU.type === 'vendor') {
-      this.props.vendorLogin(NU)
-    } else {
-      this.props.donorLogin(NU)
-    }
+    this.props.donorLogin(NU)
   }
-  clicked = () => {
-    this.setState({clicked: true, clicker: false})
-  }
-  clicker = () => {
-    this.setState({clicked: false, clicker: true})
-  }
+
   render() {
     const {error} = this.props
+    const {classes} = this.props
     return (
-      <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
-        <div id="register" className="col s12">
-          <form
-            className="col s12 container__form"
-            onSubmit={this.handleSubmit}
-          >
-            <div className="form-container">
-              <h4 className="teal-text">Welcome</h4>
-              <div className="row">
-                <div className="input-field col s12 m6 l6">
-                  <input
-                    id="first_name"
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name"
-                    required
-                  />
-                </div>
-                <div className="input-field col s12 m6 l6">
-                  <input
-                    id="last_name"
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name"
-                    required
-                  />
-                </div>
+      <div id="donor-signup-master-div">
+        <Paper className={classes.root}>
+          {' '}
+          <Typography id="vendor-welcome-typography" variant="title">
+            Welcome to donor signup!{' '}
+            {`\nIf you prefer to be anonymous, leave the First Name and Last Name fields blank.`}
+          </Typography>
+        </Paper>
+        <form onSubmit={this.handleSubmit}>
+          <div id="donor-signup-form-div">
+            <Paper id="donor-signup-paper">
+              <div className="signup-column">
+                <TextField
+                  id="donor-signup-first-name"
+                  label="First Name"
+                  className={classes.textField}
+                  margin="normal"
+                  name="firstName"
+                  placeholder="First Name"
+                />
+                <TextField
+                  id="donor-signup-last-name"
+                  label="Last Name"
+                  className={classes.textField}
+                  margin="normal"
+                  placeholder="Last Name"
+                  name="lastName"
+                />
+                <TextField
+                  id="donor-signup-address"
+                  label="Address"
+                  margin="normal"
+                  className={classes.textField}
+                  name="address"
+                  placeholder="Address"
+                />
               </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    required
-                  />
-                </div>
+              <div className="signup-column" id="donor-signup-email-pw-row">
+                <TextField
+                  id="donor-signup-email"
+                  label="E-mail"
+                  margin="normal"
+                  className={classes.textField}
+                  name="email"
+                  placeholder="E-mail"
+                  required
+                />
+                <TextField
+                  id="vendor-signup-password"
+                  label="Password"
+                  margin="normal"
+                  className={classes.textField}
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  required
+                />
               </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    required
-                    minLength="8"
-                  />
-                </div>
-                <div className="row">
-                  <div className="input-field col s12">
-                    <Button color="inherit" onClick={this.clicked}>
-                      Vendor
-                    </Button>
-                    <Button color="inherit" onClick={this.clicker}>
-                      Donor
-                    </Button>
-                  </div>
-                  {this.state.clicker && (
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input
-                          id="address"
-                          type="text"
-                          name="address"
-                          placeholder="Address"
-                        />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-              {error && (
-                <div className="error-container">{error.response.data}</div>
-              )}
-              <center>
-                <Button
-                  className="btn custom_btn waves-effect waves-light teal"
-                  type="submit"
-                  name="action"
-                >
-                  Submit
-                </Button>
-              </center>
-            </div>
-          </form>
-        </div>
+            </Paper>
+          </div>
+          <div id="donor-signup-buttons-div">
+            <Button
+              type="submit"
+              id="donor-signup-submit-button"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Sign Up
+            </Button>
+            <Button
+              color="secondary"
+              className={classes.button}
+              component={Link}
+              to="/vendor-signup"
+            >
+              to vendor signup
+            </Button>
+          </div>
+        </form>
       </div>
     )
   }
@@ -147,8 +149,13 @@ const stateToProps = state => ({
 })
 
 const mapToProps = dispatch => ({
-  vendorLogin: user => dispatch(vendorSignup(user)),
   donorLogin: user => dispatch(donorSignup(user))
 })
 
-export default connect(stateToProps, mapToProps)(CreateUser)
+CreateDonor.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(
+  connect(stateToProps, mapToProps)(CreateDonor)
+)

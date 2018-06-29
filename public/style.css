@@ -198,6 +198,34 @@ form div {
   justify-content: space-around;
 }
 
+#vendor-signup-form-div {
+  display: flex;
+  justify-content: center;
+}
+#vendor-signup-submit-button {
+  margin: 0 10% 0 35%;
+}
+
+#donor-welcome-typography {
+  text-align: center;
+}
+#donor-signup-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#donor-signup-email-pw-row {
+  display: flex;
+  justify-content: center;
+}
+
+#donor-signup-form-div {
+  display: flex;
+  justify-content: center;
+}
+#donor-signup-submit-button {
+  margin: 0 10% 0 35%;
+}
 .signup-column {
   display: flex;
   flex-direction: row;
