@@ -11,6 +11,7 @@ import Donate from './components/donatePage'
 import Auction from './components/auction'
 import Pools from './components/Pools'
 import Pool from './components/pool'
+import AuctionList from './components/AuctionList'
 /**
  * COMPONENT
  */
@@ -46,6 +47,7 @@ class Routes extends Component {
             path="/donate"
             render={() => <Donate onChange={this.handleChange} />}
           />
+          <Route exact path="/auctions" component={AuctionList} />
           <Route exact path="/auction" component={Auction} />
 
           {isLoggedIn && (

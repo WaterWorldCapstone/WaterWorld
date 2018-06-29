@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {LOADING} from '.'
 const asyncHandler = require('express-async-handler')
 /**
  * ACTION TYPES
@@ -11,7 +12,12 @@ const GET_POOL = 'GET_POOL'
 /**
  * INITIAL STATE
  */
-const pools = {}
+const pools = {
+  allPools: [],
+  singlePool: {},
+  allPoolsStatus: LOADING,
+  singlePoolStatus: LOADING
+}
 
 /**
  * ACTION CREATORS
@@ -43,7 +49,7 @@ export default function(state = pools, action) {
     case GET_POOLS:
       return {...state, allPools: action.allPools}
     case GET_POOL:
-      return action.pool
+      return {...state, singlePool: action.pool}
     default:
       return state
   }

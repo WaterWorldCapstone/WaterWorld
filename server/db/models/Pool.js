@@ -20,7 +20,7 @@ const Pool = db.define('pool', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  status: Sequelize.STRING, //pool is in planning, collecting money, sent to vendor, complete
+  status: Sequelize.STRING, //pool is in planning, collecting money, open for bidding, sent to vendor, complete
   currentFunds: Sequelize.STRING,
   solutionType: Sequelize.STRING,
   goalFunds: Sequelize.STRING,
