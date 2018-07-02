@@ -7,7 +7,6 @@ const asyncHandler = require('express-async-handler')
  */
 const GET_POOLS = 'GET_POOLS'
 const GET_POOL = 'GET_POOL'
-const BID = 'BID'
 const RECEIVE_POOLS = 'RECEIVE_POOLS'
 const RECEIVE_POOL = 'RECEIVE_POOL'
 const FETCHING = 'FETCHING'
@@ -18,7 +17,7 @@ const FETCHING = 'FETCHING'
  */
 const pools = {
   allPools: [],
-  singlePool: {bids: []},
+  singlePool: {},
   allPoolsStatus: LOADING,
   singlePoolStatus: LOADING,
   loading: false
