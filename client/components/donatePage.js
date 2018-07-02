@@ -1,35 +1,37 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 
+const paymentDiv = document.createElement('div')
+const IATSscript = document.createElement('script')
+IATSscript.src =
+  'https://www.iatspayments.com/AURA/AURA.aspx?PID=PAC76ACF4D6528A8E1'
+IATSscript.async = true
+paymentDiv.appendChild(IATSscript)
+
+let cachedPaymentDiv
+
 class Donate extends Component {
+  state = {
+    success: false
+  }
+  clearHashOnDonationFormSubmit = e => {
+    const IATSbutton = document.getElementById('IATS_ProcessAction_Button')
+    if (!IATSbutton) return
+    if (e.target === IATSbutton) {
+      this.props.history.push('/donate') //clears hash
+    }
+  }
   componentDidMount() {
-    console.log(this.props)
-    this.script = document.createElement('script')
-
-    this.script.src =
-      'https://www.iatspayments.com/AURA/AURA.aspx?PID=PAC76ACF4D6528A8E1'
-    this.script.async = true
-
+    document
+      .getElementById('payment')
+      .appendChild(cachedPaymentDiv || paymentDiv)
     window.addEventListener('input', findMostRecentDonationInput, false)
     function findMostRecentDonationInput() {
-      let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
-      console.log('Most recent input for $$$ was: ' + targetThing.textContent)
+      const targetThing = document.getElementById('IATS_Payment_TotalAmount')
+      if (targetThing) console.log('Most recent input for $$$ was: ' + targetThing.textContent)
     }
-
-    const clearHashOnDonationFormSubmit = e => {
-      let backButton
-      try {
-        backButton = document.querySelector('#IATS_ProcessAction_Button')
-      } catch (err) {
-        console.log("this error's ok ")
-      }
-      if (e.target === backButton) {
-        this.props.history.push('/donate') //clears hash
-      }
-    }
-    window.addEventListener('click', clearHashOnDonationFormSubmit, false)
-
-    function determineSuccess() {
+    window.addEventListener('click', this.clearHashOnDonationFormSubmit, false)
+    const determineSuccess = () => {
       if (
         document.querySelector('#IATS_BackAction_Button').style.display ===
         'block'
@@ -38,25 +40,20 @@ class Donate extends Component {
         //no thunk
       } else {
         console.log('success')
-        //thunk to store the DATUMS
+        this.setState({
+          success: true
+        })
       }
     }
     window.addEventListener('hashchange', determineSuccess, false)
-    document.getElementById('payment').appendChild(this.script)
   }
   componentWillUnmount() {
-    document.getElementById('IATS_NACHPolicyMoreInfoDiv').remove()
-    document.getElementById('IATS_NACHStatementDiv').remove()
-  }
-  handleSubmit = evt => {
-    evt.preventDefault()
-    console.log(
-      document.getElementsByClassName('IATS_ResponseSectionDiv')[0].children[2]
-        .firstChild.firstChild.textContent
-    )
+    if (this.state.success) cachedPaymentDiv = null
+    else cachedPaymentDiv = paymentDiv
+    window.removeEventListener('click', Donate.clearHashOnDonationFormSubmit)
   }
   render() {
-    return <div id="payment" onSubmit={this.handleSubmit} />
+    return <div id="payment" />
   }
 }
 
