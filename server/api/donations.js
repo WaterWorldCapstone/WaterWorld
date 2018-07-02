@@ -12,7 +12,7 @@ router.get(
 )
 
 router.get(
-  'pools/:poolId/donors/:donorId',
+  '/pools/:poolId/donors/:donorId',
   asyncHandler(async (req, res) => {
     const donation = await Donation.findOne({
       where: {
@@ -35,11 +35,12 @@ router.post(
 )
 
 router.put(
-  '/:id',
+  '/pools/:poolId/donors/:donorId',
   asyncHandler(async (req, res) => {
     const [, donation] = await Donation.update(req.body, {
       where: {
-        id: req.params.id
+        donorId: req.params.donorId,
+        poolId: req.params.poolId
       },
       returning: true
     })
@@ -52,7 +53,8 @@ router.delete(
   asyncHandler(async (req, res) => {
     await Donation.destroy({
       where: {
-        id: req.params.id
+        donorId: req.params.donorId,
+        poolId: req.params.poolId
       }
     })
     res.send(req.params.id)

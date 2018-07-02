@@ -35,11 +35,12 @@ router.post(
 )
 
 router.put(
-  '/:id',
+  '/pools/:poolId/vendors/:vendorId',
   asyncHandler(async (req, res) => {
     const [, transaction] = await Transaction.update(req.body, {
       where: {
-        id: req.params.id
+        vendorId: req.params.vendorId,
+        poolId: req.params.poolId
       },
       returning: true
     })
@@ -48,11 +49,12 @@ router.put(
 )
 
 router.delete(
-  '/:id',
+  '/:/pools/:poolId/vendors/:vendorId',
   asyncHandler(async (req, res) => {
     await Transaction.destroy({
       where: {
-        id: req.params.id
+        vendorId: req.params.vendorId,
+        poolId: req.params.poolId
       }
     })
     res.send(req.params.id)

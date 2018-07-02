@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
-const {Bid, Pool} = require('../db/models')
+const {Bid} = require('../db/models')
 module.exports = router
 
 router.get(
@@ -12,7 +12,7 @@ router.get(
 )
 
 router.get(
-  '/:poolId/:donorId',
+  '/pools/:poolId/donors/:donorId',
   asyncHandler(async (req, res) => {
     const bid = await Bid.findOne({
       where: {
@@ -28,18 +28,17 @@ router.post(
   '/',
   asyncHandler(async (req, res) => {
     const bid = await Bid.create(req.body)
-    const pool = await Pool.findById(req.body.poolId)
-    await pool.updateFunds(req.body.amount, 'bid')
     res.json(bid)
   })
 )
 
 router.put(
-  '/:id',
+  '/pools/:poolId/vendors/:vendorId',
   asyncHandler(async (req, res) => {
     const [, bid] = await Bid.update(req.body, {
       where: {
-        id: req.params.id
+        vendorId: req.params.vendorId,
+        poolId: req.params.poolId
       },
       returning: true
     })
@@ -48,7 +47,7 @@ router.put(
 )
 
 router.delete(
-  '/:id',
+  '/pools/:poolId/vendors/:vendorId',
   asyncHandler(async (req, res) => {
     await Bid.destroy({
       where: {
