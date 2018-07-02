@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
 import {Grid, withStyles, Typography, Button} from '@material-ui/core'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import BidForm from '../components/bidForm'
+import SingleAuctionCard from './SingleAuctionCard'
+import {gettingPool} from '../store'
 
 const styles = theme => ({
   root: {
@@ -22,6 +26,10 @@ class Auction extends Component {
     }
   }
 
+  componentDidMount = () => {
+    this.props.gettingPool(this.props.match.params.auctionId)
+  }
+
   handleClick = () => {
     this.setState(prevState => ({
       bidButtonClicked: !prevState.bidButtonClicked
@@ -40,7 +48,8 @@ class Auction extends Component {
           justify="center"
         >
           <Grid item xs={12}>
-            <Typography variant="title">"Welcome Vendors"</Typography>
+            <Typography variant="title">Welcome Vendors</Typography>
+            <SingleAuctionCard {...this.props} pool={this.props.currentPool} />
           </Grid>
           <Button
             variant="contained"
@@ -68,4 +77,13 @@ Auction.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Auction)
+const mapStateToProps = state => ({
+  status: state.pool.singlePoolStatus,
+  currentPool: state.pool.singlePool
+})
+
+const mapDispatchToProps = {gettingPool}
+
+export default withStyles(styles)(
+  withRouter(connect(mapStateToProps, mapDispatchToProps)(Auction))
+)

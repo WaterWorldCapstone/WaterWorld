@@ -53,6 +53,11 @@ a {
   justify-content: space-around;
   margin-left: 30%;
 }
+.single-pool-card {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
 
 .donate-button-link {
   border: 1px solid #01547b;

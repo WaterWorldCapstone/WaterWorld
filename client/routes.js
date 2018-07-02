@@ -54,8 +54,8 @@ class Routes extends Component {
             render={() => <Donate onChange={this.handleChange} />}
           />
           <Route exact path="/auctions" component={AuctionList} />
-          <Route exact path="/auction" component={Auction} />
-
+          <Route exact path="/auctions/:auctionId" component={Auction} />{' '}
+          {/*auction ID will equal pool ID*/}
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
