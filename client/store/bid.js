@@ -9,7 +9,7 @@ export const addBid = bid => async dispatch => {
   try {
     dispatch({type: LOADING_BIDS})
     const newBid = await Axios.post(
-      `/pools/${bid.poolId}/vendors/${bid.vendorId}`,
+      `/api/pools/${bid.poolId}/vendors/${bid.vendorId}`,
       bid
     )
     dispatch({type: CREATE_BID, payload: newBid.data})
