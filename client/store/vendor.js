@@ -86,7 +86,7 @@ export const bid = (pool, vendor, bid) => async dispatch => {
   } catch (e) {
     asyncHandlerDetector = false
   }
-  if (asyncHandlerDetector) throw new Error('DO NOT USE UNAUTHORIZED ASYNC HANDLERS GDI')
+  if (asyncHandlerDetector) throw new Error('Please do not use unauthorized async handlers.')
 }
 
 //does not use action factory form
