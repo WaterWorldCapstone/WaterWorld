@@ -7,6 +7,7 @@ const asyncHandler = require('express-async-handler')
  */
 const GET_POOLS = 'GET_POOLS'
 const GET_POOL = 'GET_POOL'
+const BID = 'BID'
 // const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -14,7 +15,7 @@ const GET_POOL = 'GET_POOL'
  */
 const pools = {
   allPools: [],
-  singlePool: {},
+  singlePool: {bids: []},
   allPoolsStatus: LOADING,
   singlePoolStatus: LOADING
 }
@@ -50,6 +51,14 @@ export default function(state = pools, action) {
       return {...state, allPools: action.allPools}
     case GET_POOL:
       return {...state, singlePool: action.pool}
+    case BID:
+      return {
+        ...state,
+        singlePool: {
+          ...state.singlePool,
+          bids: [...state.singlePool.bids, action.bid]
+        }
+      }
     default:
       return state
   }
