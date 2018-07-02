@@ -12,7 +12,7 @@ router.get(
 )
 
 router.get(
-  '/:poolId/:vendorId',
+  '/pools/:poolId/vendors/:vendorId',
   asyncHandler(async (req, res) => {
     const transaction = await Transaction.findOne({
       where: {
