@@ -3,8 +3,10 @@ const User = require('../db/models/user')
 const Donor = require('../db/models/Donor')
 const Vendor = require('../db/models/Vendor')
 module.exports = router
+
 router.use('/google', require('./google'))
 router.use('/facebook', require('./facebook'))
+
 router.post('/login', async (req, res, next) => {
   const user = await User.findOne({where: {email: req.body.email}})
   if (!user) {
@@ -25,11 +27,18 @@ router.post('/signup', async (req, res, next) => {
   const type = req.body.userType
   try {
     console.log('req.body.user is', req.body.user)
-    const user = await User.create(req.body.user)
+    let user
     if (type === 'donor') {
-      await Donor.create(req.body.type)
+      user = await User.create({...req.body.user, userType: 'donor'})
+      const newDonor = await Donor.create(req.body.type)
+      await newDonor.setUser(user)
     } else if (type === 'vendor') {
-      await Vendor.create(req.body.type)
+      user = await User.create({...req.body.user, userType: 'vendor'})
+      const newVendor = await Vendor.create({
+        ...req.body.type,
+        userType: 'vendor'
+      })
+      await newVendor.setUser(user)
     }
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {

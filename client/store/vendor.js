@@ -57,36 +57,30 @@ export const getSingleVendor = id => async dispatch => {
 }
 
 export const bid = (pool, vendor, bid) => async dispatch => {
-  let asyncHandlerDetector = true
-  try {
-    dispatch({type: BID, bid})
-    dispatch({type: LOADING_VENDOR})
-    dispatch({type: LOADING_POOL})
-    const [oldVendor, oldPool] = Array.prototype.map.call(
-      await Promise.all([
-        Axios.get(`/api/vendors/${vendor.id}`),
-        Axios.get(`/api/pools/${pool.id}`)
-      ]),
-      instance => instance.data
-    )
-    console.log('oldvendor', oldVendor, 'oldPool', oldPool)
-    const updatingVendor = Axios.put(`/api/vendors/${vendor.id}`, {
-      bids: [...oldVendor.bids, bid]
-    })
-    const updatingPool = Axios.put(`/api/pools/${pool.id}`, {
-      bids: [...oldPool.bids, bid]
-    })
-    const [updatedVendor, updatedPool] = Array.prototype.map.call(
-      await Promise.all([updatingVendor, updatingPool]),
-      instance => instance.data
-    )
-    dispatch({type: LOADED_POOL, pool: updatedPool})
-    dispatch({type: LOADED_VENDOR, vendor: updatedVendor})
-    throw new Error()
-  } catch (e) {
-    asyncHandlerDetector = false
-  }
-  if (asyncHandlerDetector) throw new Error('Please do not use unauthorized async handlers.')
+  dispatch({type: BID, bid})
+  dispatch({type: LOADING_VENDOR})
+  dispatch({type: LOADING_POOL})
+  console.log(pool.id, vendor.id)
+  const [oldVendor, oldPool] = Array.prototype.map.call(
+    await Promise.all([
+      Axios.get(`/api/vendors/${vendor.id}`),
+      Axios.get(`/api/pools/${pool.id}`)
+    ]),
+    instance => instance.data
+  )
+  console.log('oldvendor', oldVendor, 'oldPool', oldPool)
+  const updatingVendor = Axios.put(`/api/vendors/${vendor.id}`, {
+    bids: [...oldVendor.bids, bid]
+  })
+  const updatingPool = Axios.put(`/api/pools/${pool.id}`, {
+    bids: [...oldPool.bids, bid]
+  })
+  const [updatedVendor, updatedPool] = Array.prototype.map.call(
+    await Promise.all([updatingVendor, updatingPool]),
+    instance => instance.data
+  )
+  dispatch({type: LOADED_POOL, pool: updatedPool})
+  dispatch({type: LOADED_VENDOR, vendor: updatedVendor})
 }
 
 //does not use action factory form
