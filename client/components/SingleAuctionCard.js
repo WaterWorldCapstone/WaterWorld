@@ -23,7 +23,6 @@ const styles = {
 }
 
 function SingleAuctionCard(props) {
-  console.log('in single pool card', window.screen.availWidth)
   const {classes, pool} = props
 
   const redirect = () => {}
@@ -32,7 +31,7 @@ function SingleAuctionCard(props) {
     <div>
       <Card className={classes.card}>
         <Link to={`/auctions/${pool.id}`}>
-          <CardMedia className={classes.media} />
+          <CardMedia src="" className={classes.media} />
           <CardContent className="single-auction-card">
             <Typography gutterBottom variant="headline" component="h2">
               {pool.name}
@@ -40,7 +39,10 @@ function SingleAuctionCard(props) {
             <Typography component="p">
               Location: {pool.town}, {pool.country}
             </Typography>
-            <Typography variant="display2">{pool.targetQuantity}</Typography>
+            <Typography variant="display2">
+              {pool.targetQuantity}
+              {` liters`}
+            </Typography>
           </CardContent>
         </Link>
         <CardActions>
