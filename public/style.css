@@ -59,6 +59,14 @@ a {
   margin: 0 auto;
 }
 
+.loading-spinner {
+  margin: auto auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .donate-button-link {
   border: 1px solid #01547b;
   background-color: #01547b;

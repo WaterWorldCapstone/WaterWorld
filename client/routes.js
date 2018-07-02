@@ -53,6 +53,7 @@ class Routes extends Component {
             path="/donate"
             render={() => <Donate onChange={this.handleChange} />}
           />
+          <Route path="/pools/:poolId" component={Pool} />
           <Route exact path="/auctions" component={AuctionList} />
           <Route exact path="/auctions/:auctionId" component={Auction} />{' '}
           {/*auction ID will equal pool ID*/}
