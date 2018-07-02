@@ -1,4 +1,4 @@
-import {LOADING, LOADED, ERROR} from './store'
+import {LOADING, LOADED, ERROR} from './index'
 import Axios from 'axios'
 
 const [LOADING_VENDORS, LOADED_VENDORS, ERROR_VENDORS] = [
@@ -18,7 +18,7 @@ const [BID, LOADING_POOL, LOADED_POOL] = ['BID', 'LOADING_POOL', 'LOADED_POOL']
 //this one does not use action factory
 const initialState = {
   singleVendorStatus: LOADING,
-  singleVendor: {bids: []},
+  singleVendor: {},
   allVendorsStatus: LOADING,
   allVendors: []
 }

@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import {LOADING, LOADED, ERROR} from '.'
+import {LOADING, LOADED, ERROR} from './constants'
 
 const LOADING_BIDS = 'LOADING_BIDS'
 const LOADED_BIDS = 'LOADED_BIDS'
