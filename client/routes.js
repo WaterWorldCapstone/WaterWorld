@@ -45,12 +45,17 @@ class Routes extends Component {
           <Route exact path="/pools" component={Pools} />
           <Route
             exact
+            path="/pools/:poolId"
+            component={() => <h1>Sample Single Pool View</h1>}
+          />
+          <Route
+            exact
             path="/donate"
             render={() => <Donate onChange={this.handleChange} />}
           />
           <Route exact path="/auctions" component={AuctionList} />
-          <Route exact path="/auction" component={Auction} />
-
+          <Route exact path="/auctions/:auctionId" component={Auction} />{' '}
+          {/*auction ID will equal pool ID*/}
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}
