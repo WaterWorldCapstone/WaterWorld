@@ -19,7 +19,7 @@ class MainMap extends React.Component {
 
   render() {
     console.log('pools are', this.props.pools)
-    return <HomeMap />
+    return <HomeMap pools={this.props.pools} />
   }
 }
 
