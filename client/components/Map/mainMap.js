@@ -9,6 +9,7 @@ import {
   Marker,
   InfoWindow
 } from 'react-google-maps'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 class MainMap extends React.Component {
   componentDidMount() {
@@ -18,14 +19,28 @@ class MainMap extends React.Component {
   }
 
   render() {
-    console.log('pools are', this.props.pools)
-    return <HomeMap pools={this.props.pools} />
+    console.log('pools are', this.props)
+    return this.props.loading === true ? (
+      <div className="loading-spinner">
+        <CircularProgress
+          color="primary"
+          size={80}
+          thickness={3.6}
+          variant="indeterminate"
+        />{' '}
+      </div>
+    ) : (
+      <div>
+        <HomeMap pools={this.props.pools} />{' '}
+      </div>
+    )
   }
 }
 
 const mapState = state => {
   return {
-    pools: state.pool.allPools
+    pools: state.pool.allPools,
+    loading: state.pool.loading
   }
 }
 
