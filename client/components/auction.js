@@ -30,6 +30,8 @@ class Auction extends Component {
     this.props.gettingPool(this.props.match.params.auctionId)
   }
 
+  handleSubmit = evt => {}
+
   handleClick = () => {
     this.setState(prevState => ({
       bidButtonClicked: !prevState.bidButtonClicked
@@ -48,7 +50,9 @@ class Auction extends Component {
           justify="center"
         >
           <Grid item xs={12}>
-            <Typography variant="title">Welcome Vendors</Typography>
+            <Typography variant="title">
+              Auction for pool:{` ${this.props.currentPool.name}`}
+            </Typography>
             <SingleAuctionCard {...this.props} pool={this.props.currentPool} />
           </Grid>
           <Button
@@ -63,7 +67,7 @@ class Auction extends Component {
           {this.state.bidButtonClicked ? (
             <Grid item xs={12}>
               {' '}
-              <BidForm />{' '}
+              <BidForm pool={this.props.currentPool} />{' '}
             </Grid>
           ) : (
             ''

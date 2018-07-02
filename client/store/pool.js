@@ -5,6 +5,9 @@ const asyncHandler = require('express-async-handler')
 /**
  * ACTION TYPES
  */
+const GET_POOLS = 'GET_POOLS'
+const GET_POOL = 'GET_POOL'
+const BID = 'BID'
 const RECEIVE_POOLS = 'RECEIVE_POOLS'
 const RECEIVE_POOL = 'RECEIVE_POOL'
 const FETCHING = 'FETCHING'
@@ -15,7 +18,9 @@ const FETCHING = 'FETCHING'
  */
 const pools = {
   allPools: [],
-  singlePool: {},
+  singlePool: {bids: []},
+  allPoolsStatus: LOADING,
+  singlePoolStatus: LOADING,
   loading: false
 }
 
@@ -48,6 +53,18 @@ export const gettingPool = id =>
  */
 export default function(state = pools, action) {
   switch (action.type) {
+    case GET_POOLS:
+      return {...state, allPools: action.allPools}
+    case GET_POOL:
+      return {...state, singlePool: action.pool}
+    case BID:
+      return {
+        ...state,
+        singlePool: {
+          ...state.singlePool,
+          bids: [...state.singlePool.bids, action.bid]
+        }
+      }
     case FETCHING:
       return {...state, loading: true}
     case RECEIVE_POOLS:

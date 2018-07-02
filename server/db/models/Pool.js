@@ -33,7 +33,7 @@ const Pool = db.define('pool', {
   },
   waterQuality: Sequelize.STRING,
   bids: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
+    type: Sequelize.ARRAY(Sequelize.JSON),
     defaultValue: []
   },
   images: {

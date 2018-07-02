@@ -53,8 +53,10 @@ a {
   justify-content: space-around;
   margin-left: 30%;
 }
-.single-pool-card {
+
+.single-auction-card {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 0 auto;
 }
