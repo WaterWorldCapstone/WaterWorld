@@ -27,8 +27,7 @@ class Donate extends Component {
       .appendChild(cachedPaymentDiv || paymentDiv)
     window.addEventListener('input', findMostRecentDonationInput, false)
     function findMostRecentDonationInput() {
-      const targetThing = document.getElementById('IATS_Payment_TotalAmount')
-      if (targetThing) console.log('Most recent input for $$$ was: ' + targetThing.textContent)
+      let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
     }
     window.addEventListener('click', this.clearHashOnDonationFormSubmit, false)
     const determineSuccess = () => {

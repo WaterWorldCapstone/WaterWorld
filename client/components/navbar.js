@@ -46,6 +46,9 @@ const Navbar = props => {
           <Link className="navbar-link" to="/pools">
             <Button color="inherit">Pools</Button>
           </Link>
+          <Link className="navbar-link" to="/auctions">
+            <Button color="inherit">DEV-AUCTIONS</Button>
+          </Link>
           {isLoggedIn ? (
             <div>
               <Button color="inherit" onClick={handleClick}>
