@@ -27,9 +27,9 @@ router.post('/signup', async (req, res, next) => {
     console.log('req.body.user is', req.body.user)
     const user = await User.create(req.body.user)
     if (type === 'donor') {
-      await Donor.create({...req.body.type, userId: user.id})
+      await Donor.create(req.body.type)
     } else if (type === 'vendor') {
-      await Vendor.create({...req.body.type, userId: user.id})
+      await Vendor.create(req.body.type)
     }
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {

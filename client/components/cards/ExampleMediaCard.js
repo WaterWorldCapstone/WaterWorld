@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom'
 
 const styles = {
   card: {
-    maxWidth: 345
+    maxWidth: 1000
   },
   media: {
     height: 0,
