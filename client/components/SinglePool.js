@@ -43,8 +43,8 @@ const styles = theme => ({
     fontWeight: 'bold'
   },
   things: {
-    border: ' 1px auto solid #01547b'
-    // textAlign: 'center'
+    border: ' 1px auto solid #01547b',
+    textAlign: 'justify'
   },
   donateButton: {
     display: `flex`,
@@ -70,16 +70,16 @@ class Pool extends Component {
   render() {
     const {pool, classes} = this.props
     const date = pool.createdAt && pool.createdAt.slice(0, 10)
+    const tag = pool.name && pool.name.slice(0, 1)
     console.log(pool)
     return (
       <Card className={classes.card}>
         <CardHeader
           avatar={
             <Avatar aria-label="Pool" className={classes.avatar}>
-              P
+              {tag}
             </Avatar>
           }
-          action={pool.date}
           title={pool.name}
           subheader={`${pool.town}, ${pool.country}`}
         />
