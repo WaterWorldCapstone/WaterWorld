@@ -5,4 +5,4 @@ const Bid = db.define('bid', {
   amount: Sequelize.INTEGER
 })
 
-module.exports = Donation
+module.exports = Bid

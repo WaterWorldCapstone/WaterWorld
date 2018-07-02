@@ -57,14 +57,6 @@ export default function(state = pools, action) {
       return {...state, allPools: action.allPools}
     case GET_POOL:
       return {...state, singlePool: action.pool}
-    case BID:
-      return {
-        ...state,
-        singlePool: {
-          ...state.singlePool,
-          bids: [...state.singlePool.bids, action.bid]
-        }
-      }
     case FETCHING:
       return {...state, loading: true}
     case RECEIVE_POOLS:
