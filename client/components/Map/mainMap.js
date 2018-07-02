@@ -13,13 +13,9 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 class MainMap extends React.Component {
   componentDidMount() {
-    console.log('in component did mount', this.props)
     this.props.getPools()
-    console.log('in component did mount after thunk', this.props)
   }
-
   render() {
-    console.log('pools are', this.props)
     return this.props.loading === true ? (
       <div className="loading-spinner">
         <CircularProgress

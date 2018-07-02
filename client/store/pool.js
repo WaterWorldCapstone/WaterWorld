@@ -39,7 +39,6 @@ export const gettingPools = () =>
 export const gettingPool = id =>
   asyncHandler(async dispatch => {
     dispatch(fetching())
-    console.log('hiiiiiiis')
     const res = await axios.get(`/api/pools/${id}`)
     dispatch(receivePool(res.data))
   })

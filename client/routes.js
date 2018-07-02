@@ -9,7 +9,7 @@ import LandingPage from './components/LandingPage'
 import Donate from './components/donatePage'
 import Auction from './components/auction'
 import Pools from './components/Pools'
-import Pool from './components/pool'
+import Pool from './components/SinglePool'
 import AuctionList from './components/AuctionList'
 import CreateVendor from './components/createVendorForm'
 import CreateDonor from './components/createUserForm'
@@ -25,12 +25,6 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.targetSpan = document.querySelector('#IATS_Payment_TotalAmount')
   }
-
-  handleChange = evt => {
-    console.log('started this handleChange')
-    console.log(this.targetSpan, this.targetSpan.value)
-  }
-
   render() {
     const {isLoggedIn} = this.props
 
@@ -42,6 +36,7 @@ class Routes extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={CreateDonor} />
           <Route exact path="/map" component={MainMap} />
+          <Route exact path="/pools/:id" component={Pool} />
           <Route exact path="/pools" component={Pools} />
           <Route
             exact
@@ -53,7 +48,6 @@ class Routes extends Component {
             path="/donate"
             render={() => <Donate onChange={this.handleChange} />}
           />
-          <Route path="/pools/:poolId" component={Pool} />
           <Route exact path="/auctions" component={AuctionList} />
           <Route exact path="/auctions/:auctionId" component={Auction} />{' '}
           {/*auction ID will equal pool ID*/}
