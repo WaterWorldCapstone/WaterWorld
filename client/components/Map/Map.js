@@ -38,15 +38,5 @@ export const HomeMap = compose(
       <div />
     )}
     <HeatmapLayer data={getPoints()} />
-    {/* <InfoBox
-      defaultPosition={new google.maps.LatLng(40.705076, -74.00916)}
-      options={{ closeBoxURL: ``, enableEventPropagation: true }}
-    >
-      <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
-        <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-          Hello, Taipei!
-        </div>
-      </div>
-    </InfoBox> */}
   </GoogleMap>
 ))
