@@ -1,6 +1,6 @@
 import axios from 'axios'
 import history from '../history'
-import {LOADING} from './store'
+import {LOADING} from './index'
 const asyncHandler = require('express-async-handler')
 /**
  * ACTION TYPES

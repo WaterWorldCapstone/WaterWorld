@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import BidForm from '../components/bidForm'
 import SingleAuctionCard from './SingleAuctionCard'
-import {gettingPool} from '../constants'
+import {gettingPool} from '../store'
 
 const styles = theme => ({
   root: {
