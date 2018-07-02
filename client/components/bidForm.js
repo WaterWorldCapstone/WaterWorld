@@ -2,15 +2,16 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {bid} from '../store/vendor'
+import {addBid} from '../store/bid'
 
 class BidForm extends Component {
   state = {amount: 0}
   handleSubmit = evt => {
     evt.preventDefault()
-    this.props.bid(this.props.pool, this.props.user, {
+    this.props.addBid({
       poolId: this.props.pool.id,
       vendorId: this.props.user.id,
-      amount: this.state.amount
+      amount: this.state.amount * 100
     })
     this.props.history.push(`/auctions`)
   }
@@ -40,5 +41,5 @@ class BidForm extends Component {
 const mapStateToProps = state => ({
   user: state.user
 })
-const mapDispatchToProps = {bid}
+const mapDispatchToProps = {addBid}
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BidForm))

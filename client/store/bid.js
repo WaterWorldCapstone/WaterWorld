@@ -5,7 +5,7 @@ const LOADING_BIDS = 'LOADING_BIDS'
 const LOADED_BIDS = 'LOADED_BIDS'
 const CREATE_BID = 'CREATE_BID'
 
-const addBid = (bid = async dispatch => {
+export const addBid = bid => async dispatch => {
   try {
     dispatch({type: LOADING_BIDS})
     const newBid = await Axios.post(
@@ -16,7 +16,7 @@ const addBid = (bid = async dispatch => {
   } catch (e) {
     dispatch({type: ERROR, payload: e})
   }
-})
+}
 
 const initialState = {
   status: LOADING,
