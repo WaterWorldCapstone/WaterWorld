@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import {gettingPools} from '../store/pool'
 import {Grid, withStyles, Typography, Button} from '@material-ui/core'
 import {Link} from 'react-router-dom'
+import SinglePoolCard from './SinglePoolCard'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 class Pools extends Component {
   constructor() {
@@ -17,42 +19,23 @@ class Pools extends Component {
 
   render() {
     const pools = this.props.pools
-    return (
+    return this.props.loading === true ? (
+      <div className="loading-spinner">
+        <CircularProgress
+          color="primary"
+          size={80}
+          thickness={3.6}
+          variant="indeterminate"
+        />
+      </div>
+    ) : (
       <Grid container spacing={24} id="pools">
         {pools &&
           pools.map(pool => {
             return (
-              <Grid container className="pools-p" key={pool.id}>
-                <Grid item xs={6}>
-                  <Link to={`/pools/${pool.id}`}>
-                    <Typography variant="headline">
-                      Name: {pool.name}
-                    </Typography>
-                  </Link>
-                  <Grid
-                    item
-                    xs={6}
-                    className="pools-p-info"
-                    style={{margin: '0'}}
-                  >
-                    <Typography variant="subheading">
-                      Target: {pool.goalFunds}, Location: {pool.continent}
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  className="donate-button"
-                  style={{margin: 'auto', paddingRight: '1%'}}
-                >
-                  <Link
-                    to="/donate"
-                    className="donate-button-link"
-                    justify="center"
-                  >
-                    <Button color="inherit">Donate</Button>
-                  </Link>
+              <Grid container key={pool.id}>
+                <Grid item xs={12}>
+                  <SinglePoolCard pool={pool} />
                 </Grid>
               </Grid>
             )
@@ -64,7 +47,8 @@ class Pools extends Component {
 
 const mapState = state => {
   return {
-    pools: state.pool.allPools
+    pools: state.pool.allPools,
+    loading: state.pool.loading
   }
 }
 

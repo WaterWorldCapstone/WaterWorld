@@ -47,6 +47,26 @@ a {
   justify-content: left;
   text-align: left;
 }
+
+.single-pool-card {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 30%;
+}
+.single-pool-card {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.loading-spinner {
+  margin: auto auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .donate-button-link {
   border: 1px solid #01547b;
   background-color: #01547b;
@@ -188,4 +208,46 @@ form div {
 
 #landing-page-grid-demo {
   background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Vjkyj2hBg/bubbles-floating-up-animation-on-blue-background_eusn1gwsx__F0008.png');
+}
+
+#vendor-welcome-typography {
+  text-align: center;
+}
+#vendor-signup-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#vendor-signup-form-div {
+  display: flex;
+  justify-content: center;
+}
+#vendor-signup-submit-button {
+  margin: 0 10% 0 35%;
+}
+
+#donor-welcome-typography {
+  text-align: center;
+}
+#donor-signup-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#donor-signup-email-pw-row {
+  display: flex;
+  justify-content: center;
+}
+
+#donor-signup-form-div {
+  display: flex;
+  justify-content: center;
+}
+#donor-signup-submit-button {
+  margin: 0 10% 0 35%;
+}
+.signup-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }

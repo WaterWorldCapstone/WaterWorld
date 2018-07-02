@@ -3,9 +3,35 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {login} from '../store'
 import Button from '@material-ui/core/Button'
+import {TextField, withStyles as withStylez} from '@material-ui/core'
+
+const styles = theme => ({
+  root: {
+    margin: '10px 10% 0 0',
+    padding: '10px 0 10px 0'
+  },
+  button: {
+    margin: theme.spacing.unit
+  },
+  input: {
+    display: 'none'
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200
+  },
+  menu: {
+    width: 200
+  }
+})
 
 const AuthForm = props => {
-  const {name, handleSubmit, error, emaildata, passdata} = props
+  const {name, classes, handleSubmit, error, emaildata, passdata} = props
 
   return (
     <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
@@ -18,24 +44,31 @@ const AuthForm = props => {
             name={name}
           >
             <div className="form-container">
-              <h4 className="teal-text">Hello</h4>
+              <h4 className="teal-text">Sign in via email and password!</h4>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    id="email"
-                    type="email"
+                  <TextField
+                    id="donor-login-email"
+                    label="E-mail"
+                    margin="normal"
+                    className={classes.textField}
                     name="email"
-                    placeholder="Email"
+                    placeholder="E-mail"
+                    required
                   />
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <input
-                    id="password"
-                    type="password"
+                  <TextField
+                    id="donor-login-password"
+                    label="Password"
+                    margin="normal"
+                    className={classes.textField}
                     name="password"
                     placeholder="Password"
+                    type="password"
+                    required
                   />
                 </div>
               </div>
@@ -51,6 +84,8 @@ const AuthForm = props => {
               <center>
                 <Button
                   className="btn custom_btn waves-effect waves-light teal"
+                  color="primary"
+                  variant="contained"
                   type="submit"
                   name="action"
                   onSubmit={handleSubmit}
@@ -58,7 +93,7 @@ const AuthForm = props => {
                   Sign In
                 </Button>
                 <br />
-                <p>Sign in with</p>
+                <p>or sign in with</p>
                 <a href="/auth/google">
                   <div className="btn_google">
                     <img src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/48/Google-Chrome-icon.png" />
@@ -115,17 +150,14 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
+export const Login = withStylez(styles)(
+  connect(mapLogin, mapDispatch)(AuthForm)
+)
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
 AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object
-}
-
-AuthForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
+  classes: PropTypes.object.isRequired
 }

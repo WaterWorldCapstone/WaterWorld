@@ -32,6 +32,7 @@ export class MapInfoWindow extends React.Component {
   )
 
   render() {
+    console.log('in the markers')
     return (
       <Marker
         onClick={this.onToggleOpen}

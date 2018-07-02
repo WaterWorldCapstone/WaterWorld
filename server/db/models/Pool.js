@@ -20,15 +20,25 @@ const Pool = db.define('pool', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  status: Sequelize.STRING, //pool is in planning, collecting money, sent to vendor, complete
+  status: Sequelize.STRING, //pool is in planning, collecting money, open for bidding, sent to vendor, complete
   currentFunds: Sequelize.STRING,
   solutionType: Sequelize.STRING,
   goalFunds: Sequelize.STRING,
   needIntensity: Sequelize.STRING,
   population: Sequelize.INTEGER,
   mortalityRate: Sequelize.STRING,
-  factoids: Sequelize.ARRAY(Sequelize.STRING),
-  waterQuality: Sequelize.STRING
+  factoids: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: []
+  },
+  waterQuality: Sequelize.STRING,
+  bids: {
+    type: Sequelize.ARRAY(Sequelize.INTEGER),
+    defaultValue: []
+  },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  }
 })
 
 module.exports = Pool

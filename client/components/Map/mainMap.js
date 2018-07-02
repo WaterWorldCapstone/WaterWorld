@@ -1,27 +1,42 @@
 import React from 'react'
-import HomeMap from './Map'
+import {HomeMap} from './Map'
 import {connect} from 'react-redux'
 import {gettingPools} from '../../store/pool'
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from 'react-google-maps'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 class MainMap extends React.Component {
   componentDidMount() {
     this.props.getPools()
   }
   render() {
-    return (
-      <HomeMap
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEn6qWhn0flVzQ0uNzas6RCz9jYJT1xQM&v=3.exp&libraries=geometry,drawing,places"
-        loadingElement={<div style={{height: `100%`}} />}
-        containerElement={<div style={{height: `600px`}} />}
-        mapElement={<div style={{height: `100%`}} />}
-      />
+    return this.props.loading === true ? (
+      <div className="loading-spinner">
+        <CircularProgress
+          color="primary"
+          size={80}
+          thickness={3.6}
+          variant="indeterminate"
+        />{' '}
+      </div>
+    ) : (
+      <div>
+        <HomeMap pools={this.props.pools} />{' '}
+      </div>
     )
   }
 }
 
 const mapState = state => {
   return {
-    pools: state.pool.allPools
+    pools: state.pool.allPools,
+    loading: state.pool.loading
   }
 }
 
