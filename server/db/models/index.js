@@ -4,6 +4,7 @@ const Pool = require('./Pool')
 const Vendor = require('./Vendor')
 const Donation = require('./Donation')
 const Transaction = require('./Transaction')
+const Region = require('./Region')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -27,6 +28,8 @@ User.hasOne(Donor)
 Donor.belongsTo(User)
 User.hasOne(Vendor)
 Vendor.belongsTo(User)
+Region.hasMany(Pool)
+Pool.belongsTo(Region)
 
 module.exports = {
   User,
@@ -34,5 +37,6 @@ module.exports = {
   Pool,
   Vendor,
   Donation,
-  Transaction
+  Transaction,
+  Region
 }

@@ -35,6 +35,9 @@ const Pool = db.define('pool', {
   bids: {
     type: Sequelize.ARRAY(Sequelize.INTEGER),
     defaultValue: []
+  },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
   }
 })
 
