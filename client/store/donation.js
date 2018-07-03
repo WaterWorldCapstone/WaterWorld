@@ -24,6 +24,16 @@ export const getDonations = () => async dispatch => {
   }
 }
 
+export const getDonation = id => async dispatch => {
+  try {
+    dispatch({type: LOADING_DONATION})
+    const singleDonation = await Axios.get(`/api/donations/${id}`)
+    dispatch({type: LOADED_DONATION, payload: singleDonation})
+  } catch (e) {
+    dispatch({type: ERROR_DONATION, payload: e})
+  }
+}
+
 const initialState = {allDonations: [], singleDonation: {}, status: LOADING}
 
 export default function(state = initialState, action) {
