@@ -46,11 +46,6 @@ class Routes extends Component {
           <Route exact path="/pools" component={Pools} />
           <Route
             exact
-            path="/pools/:poolId"
-            component={() => <h1>Sample Single Pool View</h1>}
-          />
-          <Route
-            exact
             path="/donate"
             render={() => <Donate onChange={this.handleChange} noPool={true} />}
           />
