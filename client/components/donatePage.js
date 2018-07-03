@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
+import {gettingPool} from '../store'
+import DonationPoolSelector from './helpers/DonationPoolSelector'
 
 const paymentDiv = document.createElement('div')
 const IATSscript = document.createElement('script')
@@ -22,6 +24,7 @@ class Donate extends Component {
     }
   }
   componentDidMount() {
+    if (!this.props.noPool) this.props.gettingPool(this.props.match.params.poolId)
     document
       .getElementById('payment')
       .appendChild(cachedPaymentDiv || paymentDiv)
@@ -52,7 +55,11 @@ class Donate extends Component {
     window.removeEventListener('click', Donate.clearHashOnDonationFormSubmit)
   }
   render() {
-    return <div id="payment" />
+    return (
+      <div id="payment">
+        {this.props.noPool ? <DonationPoolSelector /> : ''}
+      </div>
+    )
   }
 }
 
@@ -61,6 +68,6 @@ const mapStateToProps = state => ({
   pool: state.pool.singlePool
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {gettingPool}
 
-export default withRouter(Donate)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Donate))
