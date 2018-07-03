@@ -23,6 +23,10 @@ class BidForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <p>
+          You can only have one bid. Further bids will overwrite your previous
+          bid; only the most recent bid will be counted.
+        </p>
         <label>
           Amount:
           <input
