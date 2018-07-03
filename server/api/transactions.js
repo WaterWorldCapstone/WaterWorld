@@ -6,19 +6,18 @@ module.exports = router
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const transactions = await Transaction.findAll()
+    const transactions = await Transaction.findAll({
+      include: [{all: true, nested: true}]
+    })
     res.json(transactions)
   })
 )
 
 router.get(
-  '/pools/:poolId/vendors/:vendorId',
+  '/:transactionId',
   asyncHandler(async (req, res) => {
-    const transaction = await Transaction.findOne({
-      where: {
-        vendorId: req.params.vendorId,
-        poolId: req.params.poolId
-      }
+    const transaction = await Transaction.findById(req.params.transactionId, {
+      include: [{all: true, nested: true}]
     })
     res.json(transaction)
   })
@@ -28,8 +27,6 @@ router.post(
   '/',
   asyncHandler(async (req, res) => {
     const transaction = await Transaction.create(req.body)
-    const pool = await Pool.findById(req.body.poolId)
-    await pool.updateFunds(req.body.amount, 'transaction')
     res.json(transaction)
   })
 )
