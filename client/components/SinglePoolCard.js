@@ -58,10 +58,20 @@ function SinglePoolCard(props) {
           <Button size="small" color="primary">
             Share
           </Button>
-          <Button size="small" color="primary">
+          <Button
+            component={Link}
+            to={`/pools/${pool.id}`}
+            size="small"
+            color="primary"
+          >
             Learn More
           </Button>
-          <Button href="/donate" variant="text" color="secondary">
+          <Button
+            component={Link}
+            to={`/pools/${pool.id}/donate`}
+            variant="text"
+            color="secondary"
+          >
             Donate
           </Button>
         </CardActions>

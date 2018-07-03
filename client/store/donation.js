@@ -13,6 +13,9 @@ const [LOADING_DONATION, LOADED_DONATION, ERROR_DONATION] = [
   'ERROR_DONATION'
 ]
 
+const ADD_DONATION = 'ADD_DONATION'
+const SELECT_POOL = 'SELECT_POOL'
+
 export const getDonations = () => async dispatch => {
   try {
     dispatch({type: LOADING_DONATIONS})
@@ -33,6 +36,25 @@ export const getDonation = id => async dispatch => {
   }
 }
 
+export const addDonation = (donorId, poolId, amount) => async dispatch => {
+  console.log(donorId, poolId, amount, 'DONATION')
+  try {
+    dispatch({type: LOADING_DONATIONS})
+    const newDonation = await Axios.post(`/api/donations/`, {
+      donorId,
+      poolId,
+      amount
+    })
+    dispatch({type: ADD_DONATION}, {payload: newDonation.data})
+  } catch (e) {
+    dispatch({type: ERROR_DONATIONS, payload: e})
+  }
+}
+
+export const selectPool = id => async dispatch => {
+  dispatch({type: SELECT_POOL, payload: id})
+}
+
 const initialState = {allDonations: [], singleDonation: {}, status: LOADING}
 
 export default function(state = initialState, action) {
@@ -45,6 +67,14 @@ export default function(state = initialState, action) {
       return {...state, status: LOADING}
     case LOADED_DONATION:
       return {...state, status: LOADED, singleDonation: action.payload}
+    case ADD_DONATION:
+      return {
+        ...state,
+        status: LOADED,
+        allDonations: [...state.allDonations, action.payload]
+      }
+    case SELECT_POOL:
+      return {...state, currentPoolId: action.payload}
     case ERROR_DONATION:
       return {...state, status: ERROR, error: action.payload}
     case ERROR_DONATIONS:

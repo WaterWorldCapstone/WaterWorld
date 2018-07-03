@@ -180,14 +180,14 @@ class Pool extends Component {
           <Typography component="p" className={classes.heading}>
             DONATIONS:{' '}
           </Typography>
-          {pool.donors &&
-            pool.donors.map(donor => {
+          {pool.donations &&
+            pool.donations.map(donation => {
               return (
-                <CardContent className={classes.things} key={donor.id}>
+                <CardContent className={classes.things} key={donation.id}>
                   <Typography component="p">
-                    {`${donor.user.firstName} has donated $${
-                      donor.donation.amount
-                    }`}
+                    {`${
+                      donation.donor.user.firstName
+                    } has donated $${donation.amount / 100}`}
                   </Typography>
                 </CardContent>
               )
@@ -195,7 +195,11 @@ class Pool extends Component {
         </CardContent>
         <CardContent className={classes.donateButton}>
           {/* <CardContent classes={classes.facts}> */}
-          <Button component={Link} to="/donate" className={classes.button}>
+          <Button
+            component={Link}
+            to={`/pools/${pool.id}/donate`}
+            className={classes.button}
+          >
             Donate
           </Button>
         </CardContent>

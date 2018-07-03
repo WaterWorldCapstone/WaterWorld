@@ -1,5 +1,10 @@
-import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
+import React, {Component, Fragment} from 'react'
+import {withRouter, Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {gettingPool, getCurrentUser} from '../store'
+import DonationPoolSelector from './helpers/DonationPoolSelector'
+import {addDonation} from '../store/donation'
+import {Typography, Button} from '@material-ui/core'
 
 const paymentDiv = document.createElement('div')
 const IATSscript = document.createElement('script')
@@ -12,48 +17,140 @@ let cachedPaymentDiv
 
 class Donate extends Component {
   state = {
-    success: false
+    success: false,
+    currentDonation: 0,
+    currentUserId: -1
   }
   clearHashOnDonationFormSubmit = e => {
     const IATSbutton = document.getElementById('IATS_ProcessAction_Button')
     if (!IATSbutton) return
     if (e.target === IATSbutton) {
-      this.props.history.push('/donate') //clears hash
+      if (!this.props.match.params.id) this.props.history.push('/donate') //clears hash
+      else this.props.history.push(`/pools/${this.props.match.params.id}/donate`)
     }
   }
+
   componentDidMount() {
+    console.log('this.psops', this.props.match)
+    if (this.props.match.params.id) {
+      console.log('gettingPool called')
+      this.props.gettingPool(this.props.match.params.id)
+      this.setState({
+        currentPoolMatchId: this.props.match.params.id
+      })
+    }
+    if (!this.props.match.params.id) {
+      this.setState({
+        currentPoolMatchId: this.props.selectedPoolId
+      })
+    }
+    this.props.getCurrentUser(this.props.user.id)
     document
       .getElementById('payment')
       .appendChild(cachedPaymentDiv || paymentDiv)
-    window.addEventListener('input', findMostRecentDonationInput, false)
-    function findMostRecentDonationInput() {
-      let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
-    }
+    window.addEventListener('input', this.findMostRecentDonationInput, false)
     window.addEventListener('click', this.clearHashOnDonationFormSubmit, false)
-    const determineSuccess = () => {
-      if (
-        document.querySelector('#IATS_BackAction_Button').style.display ===
-        'block'
-      ) {
-        console.log('Rejected')
-        //no thunk
-      } else {
-        console.log('success')
-        this.setState({
-          success: true
-        })
-      }
-    }
-    window.addEventListener('hashchange', determineSuccess, false)
+
+    window.addEventListener('hashchange', this.determineSuccess, false)
   }
+  findSelectedPoolId = () => {
+    console.log('findSelectedPoolId called')
+    console.log(this.props.selectedPoolId, 'returns this')
+    return this.props.selectedPoolId
+  }
+  findCurrentPoolMatchId = () => {
+    console.log('findCurrentPoolMatchId called')
+    console.log(this.props.pool.id, 'returns this')
+    return this.props.pool.id
+  }
+
+  findMostRecentDonationInput = () => {
+    let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
+    return targetThing.textContent * 100
+  }
+
+  determineSuccess = () => {
+    console.log(`determineSuccess called`)
+    if (
+      document.querySelector('#IATS_BackAction_Button').style.display ===
+      'block'
+    ) {
+      console.log('Rejected')
+      //no thunk
+    } else {
+      console.log('success')
+      console.log(
+        'about to succed: this.props.selectedPoolid',
+        this.props.selectedPoolId
+      )
+      this.setState({
+        success: true
+      })
+      this.state.currentPoolMatchId
+        ? this.props.addDonation(
+            this.props.currentUser.donor.id,
+            this.state.currentPoolMatchId,
+            this.findMostRecentDonationInput()
+          )
+        : this.props.addDonation(
+            this.props.currentUser.donor.id,
+            this.props.selectedPoolId,
+            this.findMostRecentDonationInput()
+          )
+    }
+  }
+
   componentWillUnmount() {
     if (this.state.success) cachedPaymentDiv = null
     else cachedPaymentDiv = paymentDiv
     window.removeEventListener('click', Donate.clearHashOnDonationFormSubmit)
   }
   render() {
-    return <div id="payment" />
+    console.log('match param', this.props.match.params.id)
+    console.log('selected pool id', this.props.selectedPoolId)
+    console.log('this.props', this.props)
+    console.log('this.state', this.state)
+    return (
+      <div id="payment">
+        {this.props.noPool ? (
+          <DonationPoolSelector loadstatus={this.props.status} />
+        ) : !this.state.success ? (
+          <Fragment>
+            <Typography variant="title">
+              {`Donating to pool: ${this.props.pool.name}`}
+            </Typography>
+            <Typography component={Link} to="/donate">
+              Select another pool?
+            </Typography>
+          </Fragment>
+        ) : (
+          ''
+        )}
+        {this.state.success ? (
+          <Button
+            variant="contained"
+            color="secondary"
+            component={Link}
+            to="/pools"
+          >
+            Back
+          </Button>
+        ) : (
+          ''
+        )}
+      </div>
+    )
   }
 }
 
-export default withRouter(Donate)
+const mapStateToProps = state => ({
+  user: state.user,
+  status: state.user.status,
+  currentUser: state.user.currentUser,
+  pool: state.pool.singlePool,
+  selectedPoolId: state.donation.currentPoolId
+})
+
+const mapDispatchToProps = {gettingPool, addDonation, getCurrentUser}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Donate))

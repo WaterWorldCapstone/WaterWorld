@@ -47,7 +47,11 @@ a {
   justify-content: left;
   text-align: left;
 }
-
+#payment {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
 .single-pool-card {
   display: flex;
   justify-content: space-around;
