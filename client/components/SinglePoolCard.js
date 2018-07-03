@@ -32,7 +32,7 @@ function SinglePoolCard(props) {
     <div>
       <Card className={classes.card}>
         <Link to={`/pools/${pool.id}`}>
-          <CardMedia className={classes.media} src="" />
+          <CardMedia className={classes.media} src="1" />
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
               {pool.name}

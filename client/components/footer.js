@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Grid, withStyles, Typography} from '@material-ui/core'
 import PropTypes from 'prop-types'
-
+import {Link} from 'react-router-dom'
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -29,8 +29,18 @@ class Footer extends Component {
         </Grid>
         <Grid id="footerText" item xs={6}>
           <Typography>Developed By:</Typography>
-          <Typography>Jesse Sullivan, Daniel Kerr</Typography>
-          <Typography>Teresa Li, Mouna Mallipeddi</Typography>
+          <Typography>
+            <Link to="https://github.com/Delune">Jesse Sullivan</Link>,<Link to="https://github.com/dk268">
+              {' '}
+              Daniel Kerr
+                                                                       </Link>
+          </Typography>
+          <Typography>
+            <Link to="https://github.com/teresay">Teresa Li</Link>,<Link to="https://github.com/mounamallipeddi">
+              {' '}
+              Mouna Mallipeddi
+                                                                   </Link>
+          </Typography>
         </Grid>
       </Grid>
     )
