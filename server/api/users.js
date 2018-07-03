@@ -15,7 +15,9 @@ router.get(
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id)
+    const user = await User.findById(req.params.id, {
+      include: {all: true, nested: true}
+    })
     user ? res.json(user) : res.status(404).end()
   } catch (error) {
     next(error)

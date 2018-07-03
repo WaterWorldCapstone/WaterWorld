@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
-import {gettingPool} from '../store'
+import {connect} from 'react-redux'
+import {gettingPool, getCurrentUser} from '../store'
 import DonationPoolSelector from './helpers/DonationPoolSelector'
+import {addDonation} from '../store/donation'
 
 const paymentDiv = document.createElement('div')
 const IATSscript = document.createElement('script')
@@ -14,7 +16,8 @@ let cachedPaymentDiv
 
 class Donate extends Component {
   state = {
-    success: false
+    success: false,
+    currentDonation: 0
   }
   clearHashOnDonationFormSubmit = e => {
     const IATSbutton = document.getElementById('IATS_ProcessAction_Button')
@@ -25,12 +28,14 @@ class Donate extends Component {
   }
   componentDidMount() {
     if (!this.props.noPool) this.props.gettingPool(this.props.match.params.poolId)
+    this.props.getCurrentUser(this.props.user.id)
     document
       .getElementById('payment')
       .appendChild(cachedPaymentDiv || paymentDiv)
     window.addEventListener('input', findMostRecentDonationInput, false)
     function findMostRecentDonationInput() {
       let targetThing = document.querySelector('#IATS_Payment_TotalAmount')
+      return targetThing.textContent * 100
     }
     window.addEventListener('click', this.clearHashOnDonationFormSubmit, false)
     const determineSuccess = () => {
@@ -45,6 +50,17 @@ class Donate extends Component {
         this.setState({
           success: true
         })
+        this.props.noPool
+          ? this.props.addDonation(
+              this.props.currentUser.donor.id,
+              this.props.selectedPoolId,
+              findMostRecentDonationInput()
+            )
+          : this.props.addDonation(
+              this.props.user.id,
+              this.props.match.params.poolId,
+              null
+            )
       }
     }
     window.addEventListener('hashchange', determineSuccess, false)
@@ -65,9 +81,12 @@ class Donate extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  pool: state.pool.singlePool
+  status: state.user.status,
+  currentUser: state.user.currentUser,
+  pool: state.pool.singlePool,
+  selectedPoolId: state.donation.currentPoolId
 })
 
-const mapDispatchToProps = {gettingPool}
+const mapDispatchToProps = {gettingPool, addDonation, getCurrentUser}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Donate))

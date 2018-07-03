@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {LOADING, LOADED} from './constants'
 const asyncHandler = require('express-async-handler')
 
 /**
@@ -7,7 +8,8 @@ const asyncHandler = require('express-async-handler')
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+const GETTING_CURRENT_USER = 'GETTING_CURRENT_USER'
+const GOT_CURRENT_USER = 'GOT_CURRENT_USER'
 /**
  * INITIAL STATE
  */
@@ -107,6 +109,11 @@ export const vendorSignup = ({
     history.push('/')
   })
 
+export const getCurrentUser = userId => async dispatch => {
+  dispatch({type: 'GETING_CURRENT_USER'})
+  const gottenUser = await axios.get(`/api/users/${userId}`)
+  dispatch({type: GOT_CURRENT_USER, payload: gottenUser.data})
+}
 /**
  * REDUCER
  */
@@ -116,6 +123,10 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case GETTING_CURRENT_USER:
+      return {...state, status: LOADING}
+    case GOT_CURRENT_USER:
+      return {...state, status: LOADED, currentUser: action.payload}
     default:
       return state
   }

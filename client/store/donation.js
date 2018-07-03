@@ -36,12 +36,12 @@ export const getDonation = id => async dispatch => {
   }
 }
 
-export const addDonation = (donor, pool, amount) => async dispatch => {
+export const addDonation = (donorId, poolId, amount) => async dispatch => {
   try {
     dispatch({type: LOADING_DONATIONS})
     const newDonation = await Axios.post(`/api/donations/`, {
-      donorId: donor.id,
-      poolId: pool.id,
+      donorId,
+      poolId,
       amount
     })
     dispatch({type: ADD_DONATION}, {payload: newDonation.data})

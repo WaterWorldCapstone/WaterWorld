@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import {selectPool} from '../../store/donation'
 import {connect} from 'react-redux'
+import {gettingPools} from '../../store'
 
 const styles = theme => ({
   root: {
@@ -26,7 +27,10 @@ const styles = theme => ({
 
 class DonationPoolSelector extends React.Component {
   state = {
-    pool: {}
+    poolId: 0
+  }
+  componentDidMount = () => {
+    this.props.gettingPools()
   }
 
   handleChange = event => {
@@ -35,26 +39,24 @@ class DonationPoolSelector extends React.Component {
   }
 
   render() {
-    const {classes, pools} = this.props
-
+    const {classes, filteredPools, loading} = this.props
+    if (loading) return <h1>Loading...</h1>
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="pool-helper">Pool</InputLabel>
           <Select
-            value={this.state.pool}
+            value={this.state.poolId}
             onChange={this.handleChange}
-            input={<Input name="pool" id="pool-helper" />}
+            input={<Input name="poolId" id="pool-helper" />}
           >
-            {pools
-              .filter(pool => pool.status === 'collecting money')
-              .map(pool => {
-                return (
-                  <MenuItem key={pool.id} value={pool.id}>
-                    {pool.name}
-                  </MenuItem>
-                )
-              })}
+            {filteredPools.map(pool => {
+              return (
+                <MenuItem key={pool.id} value={pool.id}>
+                  {pool.name}
+                </MenuItem>
+              )
+            })}
           </Select>
           <FormHelperText>Pick a pool!</FormHelperText>
         </FormControl>
@@ -64,9 +66,12 @@ class DonationPoolSelector extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  filteredPools: state.pools.filter(pool => pool.status === 'collecting money')
+  loading: state.pool.loading,
+  filteredPools: state.pool.allPools.filter(
+    pool => pool.status === 'collecting money'
+  )
 })
-const mapDispatchToProps = {selectPool}
+const mapDispatchToProps = {selectPool, gettingPools}
 
 DonationPoolSelector.propTypes = {
   classes: PropTypes.object.isRequired
