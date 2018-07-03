@@ -2,6 +2,7 @@ import React from 'react'
 import {HomeMap} from './Map'
 import {connect} from 'react-redux'
 import {gettingPools} from '../../store/pool'
+import {fetchedRegions} from '../../store/region'
 import {
   withScriptjs,
   withGoogleMap,
@@ -14,8 +15,11 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 class MainMap extends React.Component {
   componentDidMount() {
     this.props.getPools()
+    this.props.getRegions()
+    console.log('in mainmap componentdidmount')
   }
   render() {
+    console.log('in MainMap, props are:', this.props)
     return this.props.loading === true ? (
       <div className="loading-spinner">
         <CircularProgress
@@ -29,7 +33,7 @@ class MainMap extends React.Component {
       <div>
         <HomeMap
           pools={this.props.pools}
-          regions={[[40.705076, -74.00916], [40.700176, -74.00916]]}
+          regions={this.props.regions.allCoords}
         />{' '}
       </div>
     )
@@ -39,13 +43,15 @@ class MainMap extends React.Component {
 const mapState = state => {
   return {
     pools: state.pool.allPools,
-    loading: state.pool.loading
+    loading: state.pool.loading,
+    regions: state.region
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getPools: () => dispatch(gettingPools())
+    getPools: () => dispatch(gettingPools()),
+    getRegions: () => dispatch(fetchedRegions())
   }
 }
 
