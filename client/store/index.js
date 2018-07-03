@@ -5,9 +5,10 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import pool from './pool'
 import bid from './bid'
+import donation from './donation'
 import {vendorReducer as vendor} from './vendor'
 
-const reducer = combineReducers({user, pool, vendor, bid})
+const reducer = combineReducers({user, pool, vendor, bid, donation})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
