@@ -21,35 +21,43 @@ const Bid = require('./Bid')
  * instead of: const User = require('../db/models/user')
  */
 
-Donation.belongsToMany(Pool, {through: 'donation_pool', foreignKey: 'poolId'})
-Donation.belongsToMany(Donor, {
-  through: 'donation_donor',
-  foreignKey: 'donorId'
-})
-Pool.belongsToMany(Donation, {
-  through: 'donation_pool',
-  foreignKey: 'donationId'
-})
-Donor.belongsToMany(Donation, {
-  through: 'donation_donor',
-  foreignKey: 'donationId'
-})
-Transaction.belongsToMany(Pool, {
-  through: 'transaction_pool',
-  foreignKey: 'poolId'
-})
-Transaction.belongsToMany(Vendor, {
-  through: 'transaction_vendor',
-  foreignKey: 'vendorId'
-})
-Pool.belongsToMany(Transaction, {
-  through: 'transaction_pool',
-  foreignKey: 'transactionId'
-})
-Vendor.belongsToMany(Transaction, {
-  through: 'transaction_vendor',
-  foreignKey: 'transactionId'
-})
+// Donation.belongsToMany(Pool, {through: 'donation_pool', foreignKey: 'poolId'})
+// Donation.belongsToMany(Donor, {
+//   through: 'donation_donor',
+//   foreignKey: 'donorId'
+// })
+// Pool.belongsToMany(Donation, {
+//   through: 'donation_pool',
+//   foreignKey: 'donationId'
+// })
+// Donor.belongsToMany(Donation, {
+//   through: 'donation_donor',
+//   foreignKey: 'donationId'
+// })
+Donation.belongsTo(Pool)
+Donation.belongsTo(Donor)
+Pool.hasMany(Donation)
+Donor.hasMany(Donation)
+// Transaction.belongsToMany(Pool, {
+//   through: 'transaction_pool',
+//   foreignKey: 'poolId'
+// })
+// Transaction.belongsToMany(Vendor, {
+//   through: 'transaction_vendor',
+//   foreignKey: 'vendorId'
+// })
+// Pool.belongsToMany(Transaction, {
+//   through: 'transaction_pool',
+//   foreignKey: 'transactionId'
+// })
+// Vendor.belongsToMany(Transaction, {
+//   through: 'transaction_vendor',
+//   foreignKey: 'transactionId'
+// })
+Transaction.belongsTo(Pool)
+Transaction.belongsTo(Vendor)
+Pool.hasMany(Transaction)
+Vendor.hasMany(Transaction)
 Vendor.belongsToMany(Pool, {through: Bid, as: 'Bid', foreignKey: 'vendorId'})
 Pool.belongsToMany(Vendor, {through: Bid, as: 'Bid', foreignKey: 'poolId'})
 User.hasOne(Donor)

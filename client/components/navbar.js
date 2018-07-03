@@ -46,11 +46,11 @@ const Navbar = props => {
               </Button>
               <Button
                 component={Link}
-                to="/edit"
+                to="/donations"
                 className="navbar-link"
                 color="inherit"
               >
-                Profile
+                donations
               </Button>
             </div>
           ) : (

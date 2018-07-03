@@ -43,7 +43,7 @@ function DonationCard(props) {
           <Typography className={classes.pos} color="textSecondary">
             Thank you! a donation to:
           </Typography>
-          <Typography component="p">{donation.pool.poolName}</Typography>
+          <Typography component="p">{donation.pool.name}</Typography>
         </CardContent>
         <CardActions>
           <Button

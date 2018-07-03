@@ -1,6 +1,5 @@
-import {LOADING, LOADED, ERROR} from './index'
+import {LOADING, LOADED, ERROR} from './constants'
 import Axios from 'axios'
-import {triggerAsyncId} from 'async_hooks'
 
 const [LOADING_DONATIONS, LOADED_DONATIONS, ERROR_DONATIONS] = [
   'LOADING_DONATIONS',
@@ -18,7 +17,7 @@ export const getDonations = () => async dispatch => {
   try {
     dispatch({type: LOADING_DONATIONS})
     const allDonations = await Axios.get(`/api/donations/`)
-    dispatch({type: LOADED_DONATIONS, payload: allDonations})
+    dispatch({type: LOADED_DONATIONS, payload: allDonations.data})
   } catch (e) {
     dispatch({type: ERROR_DONATIONS, payload: e})
   }
@@ -28,7 +27,7 @@ export const getDonation = id => async dispatch => {
   try {
     dispatch({type: LOADING_DONATION})
     const singleDonation = await Axios.get(`/api/donations/${id}`)
-    dispatch({type: LOADED_DONATION, payload: singleDonation})
+    dispatch({type: LOADED_DONATION, payload: singleDonation.data})
   } catch (e) {
     dispatch({type: ERROR_DONATION, payload: e})
   }

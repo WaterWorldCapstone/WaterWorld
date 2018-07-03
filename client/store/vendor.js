@@ -1,4 +1,4 @@
-import {LOADING, LOADED, ERROR} from './index'
+import {LOADING, LOADED, ERROR} from './constants'
 import Axios from 'axios'
 
 const [LOADING_VENDORS, LOADED_VENDORS, ERROR_VENDORS] = [
