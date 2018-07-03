@@ -195,7 +195,11 @@ class Pool extends Component {
         </CardContent>
         <CardContent className={classes.donateButton}>
           {/* <CardContent classes={classes.facts}> */}
-          <Button component={Link} to="/donate" className={classes.button}>
+          <Button
+            component={Link}
+            to={`/pools/${pool.id}/donate`}
+            className={classes.button}
+          >
             Donate
           </Button>
         </CardContent>

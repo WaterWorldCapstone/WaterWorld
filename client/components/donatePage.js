@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {gettingPool, getCurrentUser} from '../store'
 import DonationPoolSelector from './helpers/DonationPoolSelector'
 import {addDonation} from '../store/donation'
+import {Typography} from '@material-ui/core'
 
 const paymentDiv = document.createElement('div')
 const IATSscript = document.createElement('script')
@@ -29,7 +30,9 @@ class Donate extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.noPool) this.props.gettingPool(this.props.match.params.poolId)
+    if (!this.props.noPool) {
+      this.props.gettingPool(this.props.match.params.id)
+    }
     this.props.getCurrentUser(this.props.user.id)
     document
       .getElementById('payment')
@@ -45,7 +48,7 @@ class Donate extends Component {
         document.querySelector('#IATS_BackAction_Button').style.display ===
         'block'
       ) {
-        console.log('Rejecteda')
+        console.log('Rejected')
         //no thunk
       } else {
         console.log('success')
@@ -78,7 +81,10 @@ class Donate extends Component {
         {this.props.noPool ? (
           <DonationPoolSelector loadstatus={this.props.status} />
         ) : (
-          ''
+          <Typography variant="title">{`Donating to pool: ${
+            this.props.pool.name
+          }`}
+          </Typography>
         )}
       </div>
     )
