@@ -14,6 +14,7 @@ const [LOADING_DONATION, LOADED_DONATION, ERROR_DONATION] = [
 ]
 
 const ADD_DONATION = 'ADD_DONATION'
+const SELECT_POOL = 'SELECT_POOL'
 
 export const getDonations = () => async dispatch => {
   try {
@@ -49,6 +50,10 @@ export const addDonation = (donor, pool, amount) => async dispatch => {
   }
 }
 
+export const selectPool = id => async dispatch => {
+  dispatch({type: SELECT_POOL, payload: id})
+}
+
 const initialState = {allDonations: [], singleDonation: {}, status: LOADING}
 
 export default function(state = initialState, action) {
@@ -67,6 +72,8 @@ export default function(state = initialState, action) {
         status: LOADED,
         allDonations: [...state.allDonations, action.payload]
       }
+    case SELECT_POOL:
+      return {...state, currentPoolId: action.payload}
     case ERROR_DONATION:
       return {...state, status: ERROR, error: action.payload}
     case ERROR_DONATIONS:

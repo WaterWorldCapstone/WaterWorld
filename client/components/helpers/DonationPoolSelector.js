@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
+import {selectPool} from '../../store/donation'
 
 const styles = theme => ({
   root: {
@@ -29,6 +30,7 @@ class DonationPoolSelector extends React.Component {
 
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
+    this.props.selectPool(event.target.value)
   }
 
   render() {
@@ -43,16 +45,15 @@ class DonationPoolSelector extends React.Component {
             onChange={this.handleChange}
             input={<Input name="pool" id="pool-helper" />}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            {pools.map(pool => {
-              return (
-                <MenuItem key={pool.id} value={pool.id}>
-                  {pool.name}
-                </MenuItem>
-              )
-            })}
+            {pools
+              .filter(pool => pool.status === 'collecting money')
+              .map(pool => {
+                return (
+                  <MenuItem key={pool.id} value={pool.id}>
+                    {pool.name}
+                  </MenuItem>
+                )
+              })}
           </Select>
           <FormHelperText>Pick a pool!</FormHelperText>
         </FormControl>
@@ -61,8 +62,10 @@ class DonationPoolSelector extends React.Component {
   }
 }
 
-const mapStateToProps = state => {}
-const mapDispatchToProps = {}
+const mapStateToProps = state => ({
+  filteredPools: state.pools.filter(pool => pool.status === 'collecting money')
+})
+const mapDispatchToProps = {selectPool}
 
 DonationPoolSelector.propTypes = {
   classes: PropTypes.object.isRequired
