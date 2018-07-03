@@ -56,4 +56,11 @@ class Donate extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.user,
+  pool: state.pool.singlePool
+})
+
+const mapDispatchToProps = {}
+
 export default withRouter(Donate)

@@ -37,6 +37,11 @@ class Routes extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={CreateDonor} />
           <Route exact path="/map" component={MainMap} />
+          <Route
+            exact
+            path="/pools/:id/donate"
+            render={() => <Donate onChange={this.handleChange} />}
+          />
           <Route exact path="/pools/:id" component={Pool} />
           <Route exact path="/pools" component={Pools} />
           <Route
@@ -47,7 +52,7 @@ class Routes extends Component {
           <Route
             exact
             path="/donate"
-            render={() => <Donate onChange={this.handleChange} />}
+            render={() => <Donate onChange={this.handleChange} noPool={true} />}
           />
           <Route exact path="/auctions" component={AuctionList} />
           <Route exact path="/auctions/:auctionId" component={Auction} />{' '}
