@@ -18,6 +18,15 @@ class MainMap extends React.Component {
     console.log('in component did mount after thunk', this.props)
   }
 
+  getPoints = () => {
+    return [
+      // new google.maps.LatLng(40.705076, -74.00916),
+      // new google.maps.LatLng(40.700176, -74.00916)
+      1,
+      2
+    ]
+  }
+
   render() {
     console.log('pools are', this.props)
     return this.props.loading === true ? (
@@ -31,7 +40,10 @@ class MainMap extends React.Component {
       </div>
     ) : (
       <div>
-        <HomeMap pools={this.props.pools} />{' '}
+        <HomeMap
+          pools={this.props.pools}
+          regions={[[40.705076, -74.00916], [40.700176, -74.00916]]}
+        />{' '}
       </div>
     )
   }
