@@ -14,7 +14,11 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
-    const vendor = await Vendor.findById(req.params.id)
+    const vendor = await Vendor.findOne({
+      where: {
+        userId: req.params.id
+      }
+    })
     res.json(vendor)
   })
 )
@@ -32,7 +36,7 @@ router.put(
   asyncHandler(async (req, res) => {
     const [, vendor] = await Vendor.update(req.body, {
       where: {
-        id: req.params.id
+        userId: req.params.id
       },
       returning: true
     })

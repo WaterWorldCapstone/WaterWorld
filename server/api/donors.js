@@ -14,7 +14,7 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
-    const donor = await Donor.findById(req.params.id)
+    const donor = await Donor.findById(req.params.id, {include: [{all: true}]})
     res.json(donor)
   })
 )

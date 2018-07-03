@@ -28,6 +28,7 @@ function SinglePoolCard(props) {
     <div>
       <Card className={classes.card}>
         <Link to={`/pools/${pool.id}`}>
+
           <CardMedia
             className={classes.media}
             title="picture"

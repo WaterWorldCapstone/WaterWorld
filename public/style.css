@@ -54,6 +54,13 @@ a {
   margin-left: 30%;
 }
 
+.single-auction-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 .loading-spinner {
   margin: auto auto;
   min-height: 100vh;
