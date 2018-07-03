@@ -7,8 +7,9 @@ import pool from './pool'
 import bid from './bid'
 import donation from './donation'
 import {vendorReducer as vendor} from './vendor'
+import region from './region'
 
-const reducer = combineReducers({user, pool, vendor, bid, donation})
+const reducer = combineReducers({user, pool, vendor, bid, donation, region})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -17,3 +18,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './pool'
+export * from './region'
