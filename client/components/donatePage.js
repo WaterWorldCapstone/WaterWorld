@@ -17,7 +17,8 @@ let cachedPaymentDiv
 class Donate extends Component {
   state = {
     success: false,
-    currentDonation: 0
+    currentDonation: 0,
+    currentUserId: -1
   }
   clearHashOnDonationFormSubmit = e => {
     const IATSbutton = document.getElementById('IATS_ProcessAction_Button')
@@ -26,6 +27,7 @@ class Donate extends Component {
       this.props.history.push('/donate') //clears hash
     }
   }
+
   componentDidMount() {
     if (!this.props.noPool) this.props.gettingPool(this.props.match.params.poolId)
     this.props.getCurrentUser(this.props.user.id)
@@ -43,7 +45,7 @@ class Donate extends Component {
         document.querySelector('#IATS_BackAction_Button').style.display ===
         'block'
       ) {
-        console.log('Rejected')
+        console.log('Rejecteda')
         //no thunk
       } else {
         console.log('success')
@@ -73,7 +75,11 @@ class Donate extends Component {
   render() {
     return (
       <div id="payment">
-        {this.props.noPool ? <DonationPoolSelector /> : ''}
+        {this.props.noPool ? (
+          <DonationPoolSelector loadstatus={this.props.status} />
+        ) : (
+          ''
+        )}
       </div>
     )
   }

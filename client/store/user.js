@@ -29,6 +29,7 @@ export const me = () =>
   asyncHandler(async dispatch => {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
+    return res.data
   })
 
 // export const auth = (email, password, method) => async dispatch => {
@@ -110,7 +111,13 @@ export const vendorSignup = ({
   })
 
 export const getCurrentUser = userId => async dispatch => {
-  dispatch({type: 'GETING_CURRENT_USER'})
+  if (!userId) {
+    console.log('entered if')
+    userId = await me()(dispatch)
+    userId = userId.id
+  }
+  console.log(userId)
+  dispatch({type: GETTING_CURRENT_USER})
   const gottenUser = await axios.get(`/api/users/${userId}`)
   dispatch({type: GOT_CURRENT_USER, payload: gottenUser.data})
 }
