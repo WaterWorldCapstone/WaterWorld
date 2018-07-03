@@ -8,6 +8,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import NavSwitch from './helpers/NavSwitch'
 // import IconButton from '@material-ui/core/IconButton'
 
 const styles = {
@@ -23,7 +24,7 @@ const styles = {
   }
 }
 const Navbar = props => {
-  const {classes, isLoggedIn, handleClick} = props
+  const {classes, isLoggedIn, handleClick, userType} = props
   return (
     <div className={classes.root}>
       <AppBar position="static" id="navbar">
@@ -33,38 +34,7 @@ const Navbar = props => {
               Home
             </Link>
           </Typography>
-          <Button
-            component={Link}
-            to="/donate"
-            className="navbar-link"
-            color="inherit"
-          >
-            Donate
-          </Button>
-          <Button
-            component={Link}
-            to="/map"
-            className="navbar-link"
-            color="inherit"
-          >
-            Map
-          </Button>
-          <Button
-            component={Link}
-            to="/pools"
-            className="navbar-link"
-            color="inherit"
-          >
-            Pools
-          </Button>
-          <Button
-            component={Link}
-            to="/auctions"
-            className="navbar-link"
-            color="inherit"
-          >
-            DEV-AUCTIONS
-          </Button>
+          <NavSwitch userType={userType} />
           {isLoggedIn ? (
             <div>
               <Button
@@ -111,8 +81,8 @@ const Navbar = props => {
 
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
-    // userType:
+    isLoggedIn: !!state.user.id,
+    userType: state.user.userType
   }
 }
 
