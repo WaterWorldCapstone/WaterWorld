@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import {connect} from 'tls'
-import {LOADING, ERROR, LOADED} from '../../store'
+import {LOADING, ERROR, LOADED} from '../../store/constants'
 
 const styles = {
   card: {

@@ -2,15 +2,16 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {bid} from '../store/vendor'
+import {addBid} from '../store/bid'
 
 class BidForm extends Component {
   state = {amount: 0}
   handleSubmit = evt => {
     evt.preventDefault()
-    this.props.bid(this.props.pool, this.props.user, {
+    this.props.addBid({
       poolId: this.props.pool.id,
       vendorId: this.props.user.id,
-      amount: this.state.amount
+      amount: this.state.amount * 100
     })
     this.props.history.push(`/auctions`)
   }
@@ -22,6 +23,10 @@ class BidForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <p>
+          You can only have one bid. Further bids will overwrite your previous
+          bid; only the most recent bid will be counted.
+        </p>
         <label>
           Amount:
           <input
@@ -40,5 +45,5 @@ class BidForm extends Component {
 const mapStateToProps = state => ({
   user: state.user
 })
-const mapDispatchToProps = {bid}
+const mapDispatchToProps = {addBid}
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BidForm))

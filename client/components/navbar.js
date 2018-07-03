@@ -8,6 +8,7 @@ import {withStyles} from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import NavSwitch from './helpers/NavSwitch'
 // import IconButton from '@material-ui/core/IconButton'
 
 const styles = {
@@ -23,7 +24,7 @@ const styles = {
   }
 }
 const Navbar = props => {
-  const {classes, isLoggedIn, handleClick} = props
+  const {classes, isLoggedIn, handleClick, userType} = props
   return (
     <div className={classes.root}>
       <AppBar position="static" id="navbar">
@@ -33,39 +34,43 @@ const Navbar = props => {
               Home
             </Link>
           </Typography>
-          <div>
-            <Link className="navbar-link" to="/donate">
-              <Button color="inherit">Donate</Button>
-            </Link>
-          </div>
-          <Button color="inherit">
-            <Link className="navbar-link" to="/map">
-              Map
-            </Link>
-          </Button>
-          <Link className="navbar-link" to="/pools">
-            <Button color="inherit">Pools</Button>
-          </Link>
-          <Link className="navbar-link" to="/auctions">
-            <Button color="inherit">DEV-AUCTIONS</Button>
-          </Link>
+          <NavSwitch userType={userType} />
           {isLoggedIn ? (
             <div>
-              <Button color="inherit" onClick={handleClick}>
+              <Button
+                className="navbar-link"
+                color="inherit"
+                onClick={handleClick}
+              >
                 Log Out
               </Button>
-              <Link className="navbar-link" to="/edit">
-                <Button color="inherit">Edit</Button>
-              </Link>
+              <Button
+                component={Link}
+                to="/donations"
+                className="navbar-link"
+                color="inherit"
+              >
+                donations
+              </Button>
             </div>
           ) : (
             <div>
-              <Link className="navbar-link" to="/login">
-                <Button color="inherit">Login</Button>
-              </Link>
-              <Link className="navbar-link" to="/signup">
-                <Button color="inherit">Sign Up</Button>
-              </Link>
+              <Button
+                component={Link}
+                to="/login"
+                className="navbar-link"
+                color="inherit"
+              >
+                Login
+              </Button>
+              <Button
+                component={Link}
+                to="/signup"
+                className="navbar-link"
+                color="inherit"
+              >
+                Sign Up
+              </Button>
             </div>
           )}
         </Toolbar>
@@ -76,8 +81,8 @@ const Navbar = props => {
 
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
-    // userType:
+    isLoggedIn: !!state.user.id,
+    userType: state.user.userType
   }
 }
 

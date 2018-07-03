@@ -15,13 +15,22 @@ const users = [
     email: 'cody@email.com',
     password: '123',
     firstName: 'Cody',
-    lastName: 'mnb'
+    lastName: 'mnb',
+    userType: 'admin'
   },
   {
     email: 'jesse@email.com',
     password: '234',
     firstName: 'Jesse',
-    lastName: 'Sullivan'
+    lastName: 'Sullivan',
+    userType: 'donor'
+  },
+  {
+    email: 'pluto@crat.com',
+    password: `$$$`,
+    firstName: `Ava`,
+    lastName: `Ricious`,
+    userType: 'vendor'
   }
 ]
 
@@ -112,14 +121,14 @@ async function seed() {
     vendors.map(vendor => Vendor.create(vendor))
   )
   const createdPools = await Promise.all(pools.map(pool => Pool.create(pool)))
+  const createdDonation = await Donation.create(donations[0])
+  const createdTransaction = await Transaction.create(transactions[0])
   await createdUsers[0].setDonor(createdDonors[0])
-  await createdUsers[1].setVendor(createdVendors[0])
-  await createdPools[0].addDonor(createdDonors[0])
-  await createdPools[0].addVendor(createdVendors[0])
-  const foundDonations = await Donation.findAll()
-  const foundTransactions = await Transaction.findAll()
-  await foundDonations[0].update(donations[0])
-  await foundTransactions[0].update(transactions[0])
+  await createdUsers[2].setVendor(createdVendors[0])
+  await createdDonation.setDonor(createdDonors[0])
+  await createdDonation.setPool(createdPools[0])
+  await createdTransaction.setVendor(createdVendors[0])
+  await createdTransaction.setPool(createdPools[0])
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

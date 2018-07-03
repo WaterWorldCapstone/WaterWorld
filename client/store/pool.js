@@ -1,13 +1,12 @@
 import axios from 'axios'
 import history from '../history'
-import {LOADING} from '.'
+import {LOADING} from './constants'
 const asyncHandler = require('express-async-handler')
 /**
  * ACTION TYPES
  */
 const GET_POOLS = 'GET_POOLS'
 const GET_POOL = 'GET_POOL'
-const BID = 'BID'
 const RECEIVE_POOLS = 'RECEIVE_POOLS'
 const RECEIVE_POOL = 'RECEIVE_POOL'
 const FETCHING = 'FETCHING'
@@ -18,7 +17,7 @@ const FETCHING = 'FETCHING'
  */
 const pools = {
   allPools: [],
-  singlePool: {bids: []},
+  singlePool: {},
   allPoolsStatus: LOADING,
   singlePoolStatus: LOADING,
   loading: false
@@ -57,14 +56,6 @@ export default function(state = pools, action) {
       return {...state, allPools: action.allPools}
     case GET_POOL:
       return {...state, singlePool: action.pool}
-    case BID:
-      return {
-        ...state,
-        singlePool: {
-          ...state.singlePool,
-          bids: [...state.singlePool.bids, action.bid]
-        }
-      }
     case FETCHING:
       return {...state, loading: true}
     case RECEIVE_POOLS:

@@ -13,11 +13,7 @@ const Vendor = db.define('vendor', {
   totalWaterDistributed: Sequelize.INTEGER,
   disbursementCount: Sequelize.INTEGER,
   totalDisbursement: Sequelize.STRING,
-  averagePrice: Sequelize.STRING,
-  bids: {
-    type: Sequelize.ARRAY(Sequelize.JSON),
-    defaultValue: []
-  }
+  averagePrice: Sequelize.STRING
 })
 
 module.exports = Vendor
