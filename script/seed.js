@@ -15,13 +15,22 @@ const users = [
     email: 'cody@email.com',
     password: '123',
     firstName: 'Cody',
-    lastName: 'mnb'
+    lastName: 'mnb',
+    userType: 'admin'
   },
   {
     email: 'jesse@email.com',
     password: '234',
     firstName: 'Jesse',
-    lastName: 'Sullivan'
+    lastName: 'Sullivan',
+    userType: 'donor'
+  },
+  {
+    email: 'pluto@crat.com',
+    password: `$$$`,
+    firstName: `Ava`,
+    lastName: `Ricious`,
+    userType: 'vendor'
   }
 ]
 
@@ -113,7 +122,7 @@ async function seed() {
   )
   const createdPools = await Promise.all(pools.map(pool => Pool.create(pool)))
   await createdUsers[0].setDonor(createdDonors[0])
-  await createdUsers[1].setVendor(createdVendors[0])
+  await createdUsers[2].setVendor(createdVendors[0])
   await createdPools[0].addDonor(createdDonors[0])
   await createdPools[0].addVendor(createdVendors[0])
   const foundDonations = await Donation.findAll()

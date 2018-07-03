@@ -33,39 +33,74 @@ const Navbar = props => {
               Home
             </Link>
           </Typography>
-          <div>
-            <Link className="navbar-link" to="/donate">
-              <Button color="inherit">Donate</Button>
-            </Link>
-          </div>
-          <Button color="inherit">
-            <Link className="navbar-link" to="/map">
-              Map
-            </Link>
+          <Button
+            component={Link}
+            to="/donate"
+            className="navbar-link"
+            color="inherit"
+          >
+            Donate
           </Button>
-          <Link className="navbar-link" to="/pools">
-            <Button color="inherit">Pools</Button>
-          </Link>
-          <Link className="navbar-link" to="/auctions">
-            <Button color="inherit">DEV-AUCTIONS</Button>
-          </Link>
+          <Button
+            component={Link}
+            to="/map"
+            className="navbar-link"
+            color="inherit"
+          >
+            Map
+          </Button>
+          <Button
+            component={Link}
+            to="/pools"
+            className="navbar-link"
+            color="inherit"
+          >
+            Pools
+          </Button>
+          <Button
+            component={Link}
+            to="/auctions"
+            className="navbar-link"
+            color="inherit"
+          >
+            DEV-AUCTIONS
+          </Button>
           {isLoggedIn ? (
             <div>
-              <Button color="inherit" onClick={handleClick}>
+              <Button
+                className="navbar-link"
+                color="inherit"
+                onClick={handleClick}
+              >
                 Log Out
               </Button>
-              <Link className="navbar-link" to="/edit">
-                <Button color="inherit">Edit</Button>
-              </Link>
+              <Button
+                component={Link}
+                to="/edit"
+                className="navbar-link"
+                color="inherit"
+              >
+                Profile
+              </Button>
             </div>
           ) : (
             <div>
-              <Link className="navbar-link" to="/login">
-                <Button color="inherit">Login</Button>
-              </Link>
-              <Link className="navbar-link" to="/signup">
-                <Button color="inherit">Sign Up</Button>
-              </Link>
+              <Button
+                component={Link}
+                to="/login"
+                className="navbar-link"
+                color="inherit"
+              >
+                Login
+              </Button>
+              <Button
+                component={Link}
+                to="/signup"
+                className="navbar-link"
+                color="inherit"
+              >
+                Sign Up
+              </Button>
             </div>
           )}
         </Toolbar>
