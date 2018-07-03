@@ -27,7 +27,10 @@ class MainMap extends React.Component {
       </div>
     ) : (
       <div>
-        <HomeMap pools={this.props.pools} />{' '}
+        <HomeMap
+          pools={this.props.pools}
+          regions={[[40.705076, -74.00916], [40.700176, -74.00916]]}
+        />{' '}
       </div>
     )
   }

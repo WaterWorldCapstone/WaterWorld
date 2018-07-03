@@ -16,9 +16,7 @@ const styles = {
   },
   media: {
     height: 0,
-    paddingRight: '0.8%', //'56.25%', // 16:9
-    maxWidth: '100%',
-    flexBasis: '100%'
+    paddingTop: '25vh' // 16:9
   }
 }
 
@@ -26,13 +24,16 @@ function SinglePoolCard(props) {
   console.log('in single pool card', window.screen.availWidth)
   const {classes, pool} = props
 
-  const redirect = () => {}
-
   return (
     <div>
       <Card className={classes.card}>
         <Link to={`/pools/${pool.id}`}>
-          <CardMedia className={classes.media} src="" />
+
+          <CardMedia
+            className={classes.media}
+            title="picture"
+            image="https://kids.nationalgeographic.com/content/dam/kids/photos/articles/Nature/H-P/Habitats/Deserts/deserts-palm.ngsversion.1478272215144.jpg"
+          />
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
               {pool.name}
@@ -41,11 +42,16 @@ function SinglePoolCard(props) {
               Location: {pool.town}, {pool.country}
             </Typography>
             <div className="single-pool-card">
-              <Typography variant="display2">
-                ${pool.currentFunds}/${pool.goalFunds}
-              </Typography>
-              <Typography variant="display2">{pool.mortalityRate}</Typography>
-              <Typography variant="display2">{pool.waterQuality}</Typography>
+              <div>
+                <Typography variant="body1">Donation Progress</Typography>
+                <Typography color="primary" variant="body2">
+                  ${pool.currentFunds}
+                </Typography>
+                <Typography variant="body2">/${pool.goalFunds}</Typography>
+                {/* ${pool.currentFunds}/${pool.goalFunds} */}
+              </div>
+              <Typography variant="body2">{pool.mortalityRate}</Typography>
+              <Typography variant="body2">{pool.waterQuality}</Typography>
             </div>
           </CardContent>
         </Link>

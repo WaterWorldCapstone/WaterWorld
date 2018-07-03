@@ -7,7 +7,8 @@ const {
   Vendor,
   Pool,
   Donation,
-  Transaction
+  Transaction,
+  Region
 } = require('../server/db/models')
 
 const users = [
@@ -96,6 +97,89 @@ const pools = [
   }
 ]
 
+const regions = [
+  {
+    latitude: '17.060',
+    longitude: '-61.796',
+    weight: 5
+  },
+  {
+    latitude: '26.066',
+    longitude: '50.557',
+    weight: 5
+  },
+  {
+    latitude: '13.193',
+    longitude: '-59.543',
+    weight: 5
+  },
+  {
+    latitude: '-11.645',
+    longitude: '43.333',
+    weight: 5
+  },
+  {
+    latitude: '35.126',
+    longitude: '33.429',
+    weight: 5
+  },
+  {
+    latitude: '15.414',
+    longitude: '-61.370',
+    weight: 5
+  },
+  {
+    latitude: '18.109',
+    longitude: '-77.297',
+    weight: 5
+  },
+  {
+    latitude: '35.937',
+    longitude: '14.375',
+    weight: 5
+  },
+  {
+    latitude: '25.354',
+    longitude: '51.183',
+    weight: 5
+  },
+  {
+    latitude: '13.909',
+    longitude: '-60.978',
+    weight: 5
+  },
+  {
+    latitude: '12.984',
+    longitude: '-61.287',
+    weight: 5
+  },
+  {
+    latitude: '43.942',
+    longitude: '12.457',
+    weight: 5
+  },
+  {
+    latitude: '1.352',
+    longitude: '103.819',
+    weight: 5
+  },
+  {
+    latitude: '10.691',
+    longitude: '-61.222',
+    weight: 5
+  },
+  {
+    latitude: '23.424',
+    longitude: '53.847',
+    weight: 5
+  },
+  {
+    latitude: '24.215',
+    longitude: '-12.885',
+    weight: 5
+  }
+]
+
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
  *
@@ -119,6 +203,9 @@ async function seed() {
   )
   const createdVendors = await Promise.all(
     vendors.map(vendor => Vendor.create(vendor))
+  )
+  const createdRegions = await Promise.all(
+    regions.map(region => Region.create(region))
   )
   const createdPools = await Promise.all(pools.map(pool => Pool.create(pool)))
   const createdDonation = await Donation.create(donations[0])
@@ -164,5 +251,6 @@ module.exports = {
   donors,
   vendors,
   transactions,
-  pools
+  pools,
+  regions
 }
