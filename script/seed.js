@@ -93,7 +93,12 @@ const pools = [
     population: 37,
     mortalityRate: '10',
     factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
-    waterQuality: 'poor'
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
   }
 ]
 

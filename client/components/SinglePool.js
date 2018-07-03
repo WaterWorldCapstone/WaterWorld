@@ -14,7 +14,6 @@ import red from '@material-ui/core/colors/red'
 import {withStyles} from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import PropTypes from 'prop-types'
-import {CardActions} from 'material-ui'
 
 const styles = theme => ({
   card: {
@@ -22,13 +21,10 @@ const styles = theme => ({
   },
   media: {
     /* padding-top: 56.25%; */
-    padding: '10% 10%',
-    height: 'auto',
+    padding: '15% 15%',
     width: 'auto',
-    maxHeight: '40%',
     maxWidth: '50%',
     margin: '0 auto'
-    // 16:9
   },
   actions: {
     display: 'flex'
@@ -61,9 +57,16 @@ const styles = theme => ({
 class Pool extends Component {
   constructor() {
     super()
-    this.state = {}
+    this.state = {counter: 0}
   }
   componentDidMount() {
+    setInterval(
+      () =>
+        this.setState({
+          counter: this.state.counter + 1
+        }),
+      2000
+    )
     this.props.getPool(this.props.match.params.id)
   }
 
@@ -71,7 +74,6 @@ class Pool extends Component {
     const {pool, classes} = this.props
     const date = pool.createdAt && pool.createdAt.slice(0, 10)
     const tag = pool.name && pool.name.slice(0, 1)
-    console.log(pool)
     return (
       <Card className={classes.card}>
         <CardHeader
@@ -85,7 +87,12 @@ class Pool extends Component {
         />
         <CardMedia
           className={classes.media}
-          image="https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg"
+          image={
+            pool.images &&
+            pool.images.filter(
+              (msg, idx) => idx === this.state.counter % pool.images.length
+            )
+          }
           title={`Water needs in ${pool.country}`}
         />
         <CardContent className={classes.facts}>
