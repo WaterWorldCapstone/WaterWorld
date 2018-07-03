@@ -4,8 +4,7 @@ import {connect} from 'react-redux'
 import {Grid} from '@material-ui/core'
 import DonationCard from './cards/DonationCard'
 import {LOADING, LOADED, ERROR} from '../store/constants'
-import LoadingBar from './helpers/LoadingBar'
-
+import CircularProgress from '@material-ui/core/CircularProgress'
 class AllDonations extends Component {
   componentDidMount = () => {
     this.props.getDonations()
@@ -14,7 +13,16 @@ class AllDonations extends Component {
   render = () => {
     switch (this.props.status) {
       case LOADING:
-        return <LoadingBar />
+        return (
+          <div className="loading-spinner">
+            <CircularProgress
+              color="primary"
+              size={80}
+              thickness={3.6}
+              variant="indeterminate"
+            />
+          </div>
+        )
       case LOADED:
         return (
           <Grid container spacing={24} id="all-donations-grid">
