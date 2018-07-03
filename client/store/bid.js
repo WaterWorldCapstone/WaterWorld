@@ -8,10 +8,7 @@ const CREATE_BID = 'CREATE_BID'
 export const addBid = bid => async dispatch => {
   try {
     dispatch({type: LOADING_BIDS})
-    const newBid = await Axios.post(
-      `/api/pools/${bid.poolId}/vendors/${bid.vendorId}`,
-      bid
-    )
+    const newBid = await Axios.post(`/api/bids/`, bid)
     dispatch({type: CREATE_BID, payload: newBid.data})
   } catch (e) {
     dispatch({type: ERROR, payload: e})

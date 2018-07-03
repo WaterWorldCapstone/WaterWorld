@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
-const {Bid} = require('../db/models')
+const {Bid, Pool, Vendor} = require('../db/models')
 module.exports = router
 
 router.get(
@@ -27,7 +27,13 @@ router.get(
 router.post(
   '/',
   asyncHandler(async (req, res) => {
-    const bid = await Bid.create(req.body)
+    const targetPool = await Pool.findById(req.body.poolId)
+    const targetVendor = await Vendor.findOne({
+      where: {userId: req.body.vendorId}
+    })
+    const bid = await targetPool.addBid(targetVendor, {
+      through: {amount: req.body.amount}
+    })
     res.json(bid)
   })
 )

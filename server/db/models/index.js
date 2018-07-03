@@ -5,6 +5,7 @@ const Vendor = require('./Vendor')
 const Donation = require('./Donation')
 const Transaction = require('./Transaction')
 const Region = require('./Region')
+const Bid = require('./Bid')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -24,8 +25,8 @@ Donor.belongsToMany(Pool, {through: 'donation'})
 Pool.belongsToMany(Donor, {through: 'donation'})
 Vendor.belongsToMany(Pool, {through: 'transaction'})
 Pool.belongsToMany(Vendor, {through: 'transaction'})
-Vendor.belongsToMany(Pool, {through: 'bid'})
-Pool.belongsToMany(Vendor, {through: 'bid'})
+Vendor.belongsToMany(Pool, {through: Bid, as: 'Bid', foreignKey: 'vendorId'})
+Pool.belongsToMany(Vendor, {through: Bid, as: 'Bid', foreignKey: 'poolId'})
 User.hasOne(Donor)
 Donor.belongsTo(User)
 User.hasOne(Vendor)
@@ -40,5 +41,6 @@ module.exports = {
   Vendor,
   Donation,
   Transaction,
-  Region
+  Region,
+  Bid
 }
