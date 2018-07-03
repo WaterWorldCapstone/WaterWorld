@@ -65,10 +65,10 @@ class LandingPage extends Component {
               className="main-title"
               color="inherit"
             >
-              Waterworld!
+              Waterworld
             </Typography>
             <Typography variant="headline" justify="center" color="inherit">
-              Let's Donate !!!
+              --------------
             </Typography>
           </Grid>
           <Grid item xs={6}>

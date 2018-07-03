@@ -58,6 +58,11 @@ a {
   margin-left: 30%;
 }
 
+.single-pool-list {
+  padding: 3px;
+  border-radius: 10%;
+}
+
 .single-auction-card {
   display: flex;
   flex-direction: column;
@@ -287,4 +292,8 @@ form div {
     margin-left: -100%;
     width: 100%;
   }
+}
+
+#about-paper {
+  background-color: white;
 }

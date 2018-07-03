@@ -3,7 +3,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingPools} from '../store/pool'
-import {Grid, withStyles, Typography, Button} from '@material-ui/core'
+import {Grid, withStyles, Typography, Button, Paper} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import SinglePoolCard from './SinglePoolCard'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -35,7 +35,12 @@ class Pools extends Component {
             return (
               <Grid container key={pool.id}>
                 <Grid item xs={12}>
-                  <SinglePoolCard pool={pool} />
+                  <Paper
+                    className="single-pool-list"
+                    style={{backgroundColor: `lightgray`}}
+                  >
+                    <SinglePoolCard pool={pool} />
+                  </Paper>
                 </Grid>
               </Grid>
             )
