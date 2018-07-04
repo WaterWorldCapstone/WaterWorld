@@ -42,7 +42,7 @@ class LandingPage extends Component {
         id="landing-page-grid"
         justify="center"
       >
-        <Grid container id="landingPage" spacing={24}>
+        <Grid container id="landing-page" spacing={24}>
           <Grid className={classes.paper} id="ticker" item xs={12}>
             {paperMessages.filter(
               (msg, idx) => idx === this.state.counter % paperMessages.length
@@ -69,19 +69,18 @@ class LandingPage extends Component {
               <div className="earth" />
             </a>
           </Grid>
-          <Grid item xs={12} />
-          <Grid item xs={12} />
-          <Grid item xs={12} />
         </Grid>
         <Grid item xs={12} />
         <Grid id="text" container spacing={24}>
           <Grid item xs={12} />
-          <Grid item xs={2} className={classes.text} />
+          <Grid item xs={2} className={classes.text}>
+            <img src="../../public/favicon.ico" />
+          </Grid>
           <Grid item xs={10} className={classes.text}>
-            <Typography id="aboutText" variant="headline" justify="center">
+            <Typography id="about-text" variant="headline" justify="center">
               About
             </Typography>
-            <Typography id="text" color="primary" justify="center">
+            <Typography id="text-inside" color="primary" justify="center">
               Waterworld is a crowdfunding facilitator program that enables
               users, prospective donors, to inspect worldwide water needs and
               donate money earmarked for a specific location selected by the

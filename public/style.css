@@ -12,27 +12,32 @@ body {
   flex-grow: 1;
 }
 
-#landingPage {
-  margin: 0 auto;
-  background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
+#landing-page-grid {
+  background-image: url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg'),
+    url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
   background-size: cover;
-  background-blend-mode: color;
-  background-color: darkblue;
+  background-blend-mode: multiply;
+  background-color: antiquewhite;
+  background-attachment: fixed;
+}
+
+#landing-page {
+  margin: 0 auto;
 }
 a {
   text-decoration: none;
 }
 #text {
-  margin-right: 10px;
-  background-image: url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg');
-  background-attachment: fixed;
+  margin-left: 30%;
+  margin-right: 4%;
+  margin-bottom: 2%;
   color: #05a2d2;
   text-align: justify;
   line-break: auto;
   line-height: 30px;
   background-color: antiquewhite;
 }
-#aboutText {
+#about-text {
   color: #01547b;
   text-align: center;
   margin: 5px 5px 5px 5px;
