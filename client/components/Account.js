@@ -48,29 +48,23 @@ const styles = theme => ({
 
 class Account extends Component {
   componentDidMount = () => {
-    console.log('Account mounted!')
     this.props.populateForm()
-    console.log(this.props)
   }
 
   handleSubmit = evt => {
     evt.preventDefault()
     let anonymous = false
-    console.log('got here')
     if (!evt.target.firstName.value || !evt.target.lastName.value) anonymous = true
     const NU = {
       firstName: anonymous ? `anonymous` : evt.target.firstName.value,
       lastName: anonymous ? `donor` : evt.target.lastName.value,
       email: evt.target.email.value,
-      // password: evt.target.password.value,
+      password: evt.target.password.value,
       type: 'donor',
       address: evt.target.address.value,
       id: this.props.user.id
     }
-    console.log(NU)
-    console.log('got here')
     this.props.editUser(NU)
-    console.log('got here')
   }
 
   handleChange = evt => {

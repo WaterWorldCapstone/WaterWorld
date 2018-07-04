@@ -30,16 +30,16 @@ class Footer extends Component {
         <Grid id="footerText" item xs={6}>
           <Typography>Developed By:</Typography>
           <Typography>
-            <Link to="https://github.com/Delune">Jesse Sullivan</Link>,<Link to="https://github.com/dk268">
+            <a href="//github.com/Delune">Jesse Sullivan</a>,<a href="https://github.com/dk268">
               {' '}
               Daniel Kerr
-                                                                       </Link>
+                                                             </a>
           </Typography>
           <Typography>
-            <Link to="https://github.com/teresay">Teresa Li</Link>,<Link to="https://github.com/mounamallipeddi">
+            <a href="https://github.com/teresay">Teresa Li</a>,<a href="https://github.com/mounamallipeddi">
               {' '}
               Mouna Mallipeddi
-                                                                   </Link>
+                                                               </a>
           </Typography>
         </Grid>
       </Grid>

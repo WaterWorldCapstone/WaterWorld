@@ -16,17 +16,21 @@ body {
   margin: 0 auto;
   background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
   background-size: cover;
+  background-blend-mode: color;
+  background-color: darkblue;
 }
 a {
   text-decoration: none;
 }
 #text {
   margin-right: 10px;
-  background-color: white;
+  background-image: url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg');
+  background-attachment: fixed;
   color: #05a2d2;
   text-align: justify;
   line-break: auto;
   line-height: 30px;
+  background-color: antiquewhite;
 }
 #aboutText {
   color: #01547b;
@@ -296,6 +300,15 @@ form div {
 }
 #about-paper {
   background-color: white;
+}
+
+#donor-edit-master-div {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg');
+  background-attachment: fixed;
 }
 
 #donor-edit-welcome-typography {
