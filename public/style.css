@@ -137,6 +137,7 @@ form div {
 
 #main-title-landing {
   font-size: 6rem;
+  text-emphasis-style: sesame;
 }
 
 .navbar-link {
@@ -293,7 +294,32 @@ form div {
     width: 100%;
   }
 }
-
 #about-paper {
   background-color: white;
+}
+
+#donor-edit-welcome-typography {
+  text-align: center;
+}
+#donor-edit-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#donor-edit-email-pw-row {
+  display: flex;
+  justify-content: center;
+}
+
+#donor-edit-form-div {
+  display: flex;
+  justify-content: center;
+}
+#donor-edit-submit-button {
+  margin: 0 10% 0 35%;
+}
+.edit-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
