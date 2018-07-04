@@ -37,6 +37,19 @@ export const gettingPools = () =>
   asyncHandler(async dispatch => {
     dispatch(fetching())
     const res = await axios.get('/api/pools')
+    console.log('in the gettingPools thunk', res.data)
+    res.data.map(elem => {
+      let progress = Number(elem.currentFunds) * 1.0 / Number(elem.goalFunds)
+      console.log('in da thunk, progress is:', progress)
+      if (0 < progress && progress < 0.3) {
+        elem.progress = 'gettingstarted'
+      } else if (0.29 < progress && progress < 0.67) {
+        elem.progress = 'halfway'
+      } else if (0.66 < progress) {
+        elem.progress = 'nearlythere'
+      }
+      console.log('after progress setting', elem)
+    })
     dispatch(receivePools(res.data))
   })
 
