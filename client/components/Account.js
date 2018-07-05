@@ -23,8 +23,8 @@ import {
 
 const styles = theme => ({
   root: {
-    margin: '10px 10% 0 0',
-    padding: '10px 0 10px 0'
+    margin: `0 7% 0 7%`,
+    padding: `0 7%`
   },
   button: {
     margin: theme.spacing.unit
@@ -102,7 +102,8 @@ class Account extends Component {
         <Paper className={classes.root}>
           {' '}
           <Typography id="donor-edit-welcome-typography" variant="title">
-            Welcome to profile edit!{' '}
+            Welcome to profile edit!{'\n'}
+            <br />
             {`\nIf you prefer to be anonymous, leave the First Name and Last Name fields blank.`}
           </Typography>
         </Paper>
@@ -141,7 +142,7 @@ class Account extends Component {
                   value={form.address}
                 />
               </div>
-              <div className="edit-column" id="donor-edit-email-pw-row">
+              {/* <div className="edit-column" id="donor-edit-email-pw-row">
                 <TextField
                   id="donor-edit-email"
                   label="E-mail"
@@ -165,7 +166,7 @@ class Account extends Component {
                   onChange={this.handleChange}
                   value={form.password}
                 />
-              </div>
+              </div> */}
             </Paper>
           </div>
           <div id="donor-edit-buttons-div">
@@ -180,6 +181,7 @@ class Account extends Component {
             </Button>
           </div>
         </form>
+        <div>past donations here :)</div>
       </div>
     )
   }

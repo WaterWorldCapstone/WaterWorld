@@ -46,9 +46,8 @@ const AuthForm = props => {
             <div className="form-container">
               <h4 className="teal-text">Sign in via email and password!</h4>
               <div className="row">
-                <div className="input-field col s12">
+                <div id="donor-login-email" className="input-field col s12">
                   <TextField
-                    id="donor-login-email"
                     label="E-mail"
                     margin="normal"
                     className={classes.textField}
@@ -59,9 +58,8 @@ const AuthForm = props => {
                 </div>
               </div>
               <div className="row">
-                <div className="input-field col s12">
+                <div id="donor-login-password" className="input-field col s12">
                   <TextField
-                    id="donor-login-password"
                     label="Password"
                     margin="normal"
                     className={classes.textField}
@@ -93,17 +91,17 @@ const AuthForm = props => {
                   Sign In
                 </Button>
                 <br />
-                <p>or sign in with</p>
+                <p id="sign-in-with">or sign in with</p>
                 <a href="/auth/google">
                   <div className="btn_google">
                     <img src="http://icons.iconarchive.com/icons/marcus-roberto/google-play/48/Google-Chrome-icon.png" />
-                    <p>Google</p>
+                    <p className="oauth-text">Google</p>
                   </div>
                 </a>
                 <a href="/auth/facebook">
                   <div className="btn_google">
                     <img src="http://icons.iconarchive.com/icons/yootheme/social-bookmark/48/social-facebook-box-blue-icon.png" />
-                    <p>Facebook</p>
+                    <p className="oauth-text">Facebook</p>
                   </div>
                 </a>
               </center>

@@ -25,12 +25,11 @@ class LandingPage extends Component {
   }
 
   componentDidMount = () => {
-    //   const ticker = document.getElementById('ticker')
-    //   ticker.addEventListener(`animationiteration`, () =>
-    //     this.setState({
-    //       counter: this.state.counter + 1
-    //     })
-    //   )
+    const ticker = document.getElementById('ticker')
+    ticker.addEventListener(`animationiteration`, () =>
+      this.setState({
+        counter: this.state.counter + 1
+      }))
   }
 
   render = () => {
@@ -44,11 +43,11 @@ class LandingPage extends Component {
         justify="center"
       >
         <Grid container id="landing-page" spacing={24}>
-          {/* <Grid className={classes.paper} id="ticker" item xs={12}>
+          <Grid className={classes.paper} id="ticker" item xs={12}>
             {paperMessages.filter(
               (msg, idx) => idx === this.state.counter % paperMessages.length
             )}
-          </Grid> */}
+          </Grid>
           <Grid item xs={6} className={classes.text}>
             <Typography
               variant="title"
