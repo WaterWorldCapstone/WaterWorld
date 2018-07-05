@@ -99,6 +99,9 @@ const pools = [
       'https://images.indianexpress.com/2015/06/water-crisis.jpg',
       'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
     ]
+  },
+  {
+    name: ''
   }
 ]
 
@@ -184,18 +187,6 @@ const regions = [
     weight: 5
   }
 ]
-
-/**
- * Welcome to the seed file! This seed file uses a newer language feature called...
- *
- *                  -=-= ASYNC...AWAIT -=-=
- *
- * Async-await is a joy to use! Read more about it in the MDN docs:
- *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
- *
- * Now that you've got the main idea, check it out in practice below!
- */
 
 async function seed() {
   await db.sync({force: true})

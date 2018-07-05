@@ -3,19 +3,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingPools} from '../store/pool'
-import {Grid, withStyles, Typography, Button} from '@material-ui/core'
-import {Link} from 'react-router-dom'
+import {Grid, withStyles, Button} from '@material-ui/core'
 import SinglePoolCard from './SinglePoolCard'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import Card from '@material-ui/core/Card'
 import PropTypes from 'prop-types'
 import CardContent from '@material-ui/core/CardContent'
 import FormLabel from '@material-ui/core/FormLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormHelperText from '@material-ui/core/FormHelperText'
 import Checkbox from '@material-ui/core/Checkbox'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 
 const styles = {
   card: {
@@ -32,6 +30,13 @@ const styles = {
   },
   pos: {
     marginBottom: 12
+  },
+  button: {
+    border: '1px solid #9191bc',
+    backgroundColor: '#9191bc',
+    color: 'whitesmoke',
+    padding: '0.5%',
+    fontSize: 15
   }
 }
 
@@ -52,7 +57,8 @@ class Pools extends Component {
         nearlythere: false,
         halfway: false,
         gettingstarted: false
-      }
+      },
+      open: false
     }
   }
   componentDidMount() {
@@ -63,31 +69,25 @@ class Pools extends Component {
     this.setState({
       continent: {...this.state.continent, [name]: event.target.checked}
     })
-    console.log('after handleChange', this.state.continent)
   }
-
+  handleClick = () => {
+    this.setState({
+      open: !this.state.open
+    })
+  }
   render() {
-    console.log('upon rendering', this.props.pools)
-    console.log('rendering state is', this.state.continent)
     let conts = []
     for (var i in this.state.continent) {
       if (this.state.continent[i] === true) {
         conts.push(i)
       }
     }
-    console.log('conts should be', conts)
     let pools = this.props.pools
     if (conts.length > 0) {
       pools = this.props.pools.filter(pool => {
-        console.log(
-          'filter check',
-          conts.includes(String(pool.continent.replace(' ', '')))
-        )
         return conts.includes(String(pool.continent.replace(' ', '')))
       })
     }
-
-    console.log('filtered pools:', pools)
     const {classes} = this.props
     return this.props.loading === true ? (
       <div className="loading-spinner">
@@ -100,9 +100,19 @@ class Pools extends Component {
       </div>
     ) : (
       <Grid container spacing={24} id="pools">
+        <Grid item xs={12}>
+          <Button onClick={this.handleClick} className={classes.button}>
+            Filter
+          </Button>
+        </Grid>
         {/* <Grid container > */}
-        <Grid item xs={12} sm={4}>
-          <Card className={classes.card}>
+        {
+          <SwipeableDrawer
+            open={this.state.open}
+            onClose={this.handleClick}
+            onOpen={this.handleClick}
+            onClick={this.handleClick}
+          >
             <CardContent>
               <FormControl component="fieldset">
                 <FormLabel component="legend">Select Continents</FormLabel>
@@ -216,22 +226,20 @@ class Pools extends Component {
 
               {/* </Typography> */}
             </CardContent>
-          </Card>
-        </Grid>
+          </SwipeableDrawer>
+        }
         {/* </Grid> */}
-        <Grid item xs={12} sm={8}>
-          {pools &&
-            pools.map(pool => {
-              console.log('each pools cont', pool.continent.replace(' ', ''))
-              return (
-                <Grid container key={pool.id}>
-                  <Grid item xs={12}>
-                    <SinglePoolCard pool={pool} />
-                  </Grid>
+        {pools &&
+          pools.map(pool => {
+            console.log('each pools cont', pool.continent.replace(' ', ''))
+            return (
+              <Grid container key={pool.id}>
+                <Grid item xs={12}>
+                  <SinglePoolCard pool={pool} />
                 </Grid>
-              )
-            })}
-        </Grid>
+              </Grid>
+            )
+          })}
       </Grid>
     )
   }
