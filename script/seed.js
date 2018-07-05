@@ -130,7 +130,7 @@ const pools = [
     town: 'New York',
     country: 'Trump Land',
     continent: 'North America',
-    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
     currentFunds: '800',
     solutionType: 'water',
     goalFunds: '1000',
@@ -180,7 +180,7 @@ const pools = [
     town: 'New York',
     country: 'Trump Land',
     continent: 'North America',
-    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
     currentFunds: '800',
     solutionType: 'water',
     goalFunds: '2000',
@@ -205,7 +205,7 @@ const pools = [
     town: 'New York',
     country: 'Trump Land',
     continent: 'North America',
-    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
     currentFunds: '200',
     solutionType: 'water',
     goalFunds: '2000',
@@ -255,7 +255,7 @@ const pools = [
     town: 'New York',
     country: 'Trump Land',
     continent: 'North America',
-    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
     currentFunds: '500',
     solutionType: 'water',
     goalFunds: '2200',
@@ -280,7 +280,7 @@ const pools = [
     town: 'New York',
     country: 'Trump Land',
     continent: 'North America',
-    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
     currentFunds: '500',
     solutionType: 'water',
     goalFunds: '2600',
@@ -305,7 +305,7 @@ const pools = [
     town: 'New York',
     country: 'Trump Land',
     continent: 'North America',
-    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
     currentFunds: '500',
     solutionType: 'water',
     goalFunds: '3100',
