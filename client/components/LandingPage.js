@@ -25,11 +25,12 @@ class LandingPage extends Component {
   }
 
   componentDidMount = () => {
-    const ticker = document.getElementById('ticker')
-    ticker.addEventListener(`animationiteration`, () =>
-      this.setState({
-        counter: this.state.counter + 1
-      }))
+    //   const ticker = document.getElementById('ticker')
+    //   ticker.addEventListener(`animationiteration`, () =>
+    //     this.setState({
+    //       counter: this.state.counter + 1
+    //     })
+    //   )
   }
 
   render = () => {
@@ -43,14 +44,11 @@ class LandingPage extends Component {
         justify="center"
       >
         <Grid container id="landing-page" spacing={24}>
-          <Grid className={classes.paper} id="ticker" item xs={12}>
+          {/* <Grid className={classes.paper} id="ticker" item xs={12}>
             {paperMessages.filter(
               (msg, idx) => idx === this.state.counter % paperMessages.length
             )}
-          </Grid>
-          <Grid item xs={12} />
-          <Grid item xs={12} />
-          <Grid item xs={12} />
+          </Grid> */}
           <Grid item xs={6} className={classes.text}>
             <Typography
               variant="title"
@@ -72,25 +70,35 @@ class LandingPage extends Component {
         </Grid>
         <Grid item xs={12} />
         <Grid id="text" container spacing={24}>
-          <Grid item xs={12} />
-          <Grid item xs={2} className={classes.text}>
-            <img src="../../public/favicon.ico" />
+          <Grid item xs={12} id="filler-0" />
+          <Grid item xs={12} id="exegesis-right">
+            <Typography id="mission-text" variant="headline" justify="center">
+              Mission
+            </Typography>
+            <Typography
+              id="text-inside-mission"
+              color="primary"
+              justify="center"
+            >
+              Water is life; the world would be barren wasteland without it. The
+              mission of Waterworld is to bring clean, plentiful water to every
+              living being on earth. To do it, we need your help.
+            </Typography>
           </Grid>
-          <Grid item xs={10} className={classes.text}>
+          <Grid item xs={12} id="exegesis-left">
             <Typography id="about-text" variant="headline" justify="center">
               About
             </Typography>
-            <Typography id="text-inside" color="primary" justify="center">
-              Waterworld is a crowdfunding facilitator program that enables
-              users, prospective donors, to inspect worldwide water needs and
-              donate money earmarked for a specific location selected by the
-              donor. The user can see a map overlaid with a heat map of
-              calculated need for water.
+            <Typography id="text-inside-about" color="primary" justify="center">
+              Waterworld is a next-generation platform for connecting those who
+              would do good for the world with the capacity to do that good. We
+              give everyday people the opportunity to quickly and effectively
+              give the gift of water, of life, to those elsewhere who need it
+              most.
             </Typography>
           </Grid>
-          <Grid item xs={12} />
-          <Grid item xs={12} />
         </Grid>
+        <Grid item xs={12} id="filler-1" />
       </Grid>
     )
   }

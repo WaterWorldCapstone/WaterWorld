@@ -1,7 +1,6 @@
 body {
   font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
 }
 .site {
   min-height: 100vh;
@@ -13,35 +12,66 @@ body {
 }
 
 #landing-page-grid {
-  background-image: url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg'),
-    url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
+  background-image: url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg');
   background-size: cover;
-  background-blend-mode: multiply;
-  background-color: antiquewhite;
   background-attachment: fixed;
+  background-color: antiquewhite;
+}
+
+#filler-1 {
+  min-height: 15vh;
+  background-color: rgba(0, 0, 0, 0);
+}
+#filler-0 {
+  min-height: 15vh;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #landing-page {
-  margin: 0 auto;
+  background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
+  background-blend-mode: unset;
+  background-color: antiquewhite;
+  background-size: cover;
 }
 a {
   text-decoration: none;
 }
-#text {
-  margin-left: 30%;
-  margin-right: 4%;
-  margin-bottom: 2%;
-  color: #05a2d2;
-  text-align: justify;
+#exegesis-right {
+  margin: 0 auto;
+  max-width: 40%;
+  color: antiquewhite;
+  text-align: center;
   line-break: auto;
   line-height: 30px;
-  background-color: antiquewhite;
+  background-color: #05a2d2;
+}
+#exegesis-left {
+  margin: 0 auto;
+  max-width: 40%;
+  color: antiquewhite;
+  text-align: center;
+  line-break: auto;
+  line-height: 30px;
+  background-color: #05a2d2;
 }
 #about-text {
-  color: #01547b;
+  text-emphasis-style: open;
   text-align: center;
   margin: 5px 5px 5px 5px;
 }
+#mission-text {
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+}
+
+#text-inside-mission {
+  color: white;
+}
+
+#text-inside-about {
+  color: white;
+}
+
 #pools {
   margin: 10px auto;
   padding: 1%;
