@@ -72,7 +72,6 @@ class Pool extends Component {
 
   render() {
     const {pool, classes} = this.props
-    const date = pool.createdAt && pool.createdAt.slice(0, 10)
     const tag = pool.name && pool.name.slice(0, 1)
     return (
       <Card className={classes.card}>
