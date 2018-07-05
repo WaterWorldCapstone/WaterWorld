@@ -82,7 +82,7 @@ class LandingPage extends Component {
             >
               Water is life; the world would be barren wasteland without it. The
               mission of Waterworld is to bring clean, plentiful water to every
-              living being on earth. To do it, we need your help.
+              living being on Earth. But to do it, we need your help.
             </Typography>
           </Grid>
           <Grid item xs={12} id="exegesis-left">
