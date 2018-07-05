@@ -32,6 +32,7 @@ const styles = theme => ({
 
 const AuthForm = props => {
   const {name, classes, handleSubmit, error, emaildata, passdata} = props
+  console.log(props)
 
   return (
     <div className="container container__sign-in-form white z-depth-2 animated fadeIn">
@@ -91,6 +92,7 @@ const AuthForm = props => {
                   Sign In
                 </Button>
                 <br />
+                {error ? <p>{emaildata || passdata}}</p> : ''}
                 <p id="sign-in-with">or sign in with</p>
                 <a href="/auth/google">
                   <div className="btn_google">
