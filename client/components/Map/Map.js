@@ -17,7 +17,7 @@ function getPoints(dataR) {
   let data = dataR
   let coords = data.map(region => {
     console.log('in getPoints', region, region[0], region[1])
-    return new google.maps.LatLng(region[0], region[1])
+    return {location: new google.maps.LatLng(region[0], region[1]), weight: 100}
   })
 
   console.log('coords are', coords)
@@ -58,7 +58,7 @@ export const HomeMap = compose(
       ) : (
         <div />
       )}
-      <HeatmapLayer data={getPoints(props.regions)} />
+      <HeatmapLayer data={getPoints(props.regions)} radius={1000} />
     </MarkerClusterer>
   </GoogleMap>
 ))

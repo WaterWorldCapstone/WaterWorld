@@ -14,6 +14,8 @@ import AuctionList from './components/AuctionList'
 import CreateVendor from './components/createVendorForm'
 import CreateDonor from './components/createUserForm'
 import AllDonations from './components/AllDonations'
+import editUserForm from './components/editUserForm'
+import Account from './components/Account'
 /**
  * COMPONENT
  */
@@ -52,6 +54,7 @@ class Routes extends Component {
           <Route exact path="/auctions" component={AuctionList} />
           <Route exact path="/auctions/:auctionId" component={Auction} />{' '}
           <Route exact path="/donations" component={AllDonations} />
+          <Route exact path="/account" component={Account} />
           {/*auction ID will equal pool ID*/}
           {isLoggedIn && (
             <Switch>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {getDonations} from '../store/donation'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import {Grid} from '@material-ui/core'
 import DonationCard from './cards/DonationCard'
 import {LOADING, LOADED, ERROR} from '../store/constants'
@@ -23,18 +24,21 @@ class AllDonations extends Component {
             />
           </div>
         )
-      case LOADED:
+      case LOADED: {
         return (
           <Grid container spacing={24} id="all-donations-grid">
-            {this.props.allDonations.map(donation => {
-              return (
-                <Grid item xs={4} key={donation.id}>
-                  <DonationCard donation={donation} />
-                </Grid>
-              )
-            })}
+            {this.props.allDonations
+              .filter(donation => !!donation.pool)
+              .map(donation => {
+                return (
+                  <Grid item xs={4} key={donation.id}>
+                    <DonationCard donation={donation} />
+                  </Grid>
+                )
+              })}
           </Grid>
         )
+      }
       case ERROR:
         return <h1>Error...</h1>
       default:
@@ -44,9 +48,12 @@ class AllDonations extends Component {
 }
 const mapStateToProps = state => ({
   allDonations: state.donation.allDonations,
-  status: state.donation.status
+  status: state.donation.status,
+  user: state.user
 })
 
 const mapDispatchToProps = {getDonations}
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllDonations)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(AllDonations)
+)
