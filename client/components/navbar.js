@@ -38,14 +38,6 @@ const Navbar = props => {
           {isLoggedIn ? (
             <div>
               <Button
-                component={Link}
-                to="/account"
-                className="navbar-link"
-                color="inherit"
-              >
-                Profile
-              </Button>
-              <Button
                 className="navbar-link"
                 color="inherit"
                 onClick={handleClick}
@@ -58,7 +50,7 @@ const Navbar = props => {
                 className="navbar-link"
                 color="inherit"
               >
-                donations
+                Donations
               </Button>
             </div>
           ) : (
