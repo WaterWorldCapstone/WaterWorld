@@ -20,6 +20,8 @@ import {
   writePassword,
   writeAddress
 } from '../store/form'
+import {getPastDonations} from '../store/donation'
+import SinglePoolCard from './SinglePoolCard'
 
 const styles = theme => ({
   root: {
@@ -49,6 +51,7 @@ const styles = theme => ({
 class Account extends Component {
   componentDidMount = () => {
     this.props.populateForm()
+    this.props.getPastDonations(2)
   }
 
   handleSubmit = evt => {
@@ -96,7 +99,7 @@ class Account extends Component {
   }
 
   render() {
-    const {classes, error, form} = this.props
+    const {classes, error, form, pastDonations} = this.props
     return (
       <div id="donor-edit-master-div">
         <Paper className={classes.root}>
@@ -181,7 +184,16 @@ class Account extends Component {
             </Button>
           </div>
         </form>
-        <div>past donations here :)</div>
+        <div>
+          {pastDonations ? (
+            <div id="profile-past-donations">
+              {' '}
+              {pastDonations.map(elem => <SinglePoolCard pool={elem} />)}{' '}
+            </div>
+          ) : (
+            <div />
+          )}
+        </div>
       </div>
     )
   }
@@ -190,7 +202,8 @@ class Account extends Component {
 const stateToProps = state => ({
   user: state.user,
   error: state.user.error,
-  form: state.form
+  form: state.form,
+  pastDonations: state.donation.pastDonations
 })
 
 const mapToProps = {
@@ -200,7 +213,8 @@ const mapToProps = {
   writeLastName,
   writeEmail,
   writePassword,
-  writeAddress
+  writeAddress,
+  getPastDonations
 }
 
 Account.propTypes = {
