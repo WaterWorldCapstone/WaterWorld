@@ -48,6 +48,7 @@ export const gettingPools = () =>
       }
     })
     dispatch(receivePools(res.data))
+    return res.data
   })
 
 export const gettingPool = id =>

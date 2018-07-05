@@ -414,6 +414,10 @@ form div {
   justify-content: flex-start;
 }
 
+#main-map {
+  height: 75vh;
+}
+
 #home-map-div {
   height: 100%;
   display: flex;
@@ -425,5 +429,15 @@ form div {
     rgba(240, 250, 240, 1),
     rgba(255, 255, 255, 1)
   );
-  min-height: 20vh;
+  min-height: 0vh;
+}
+
+#single-pool-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#single-pool-content > * {
+  border: '1px solid #000000';
 }

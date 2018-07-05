@@ -33,7 +33,7 @@ const styles = theme => ({
     backgroundColor: red[500]
   },
   facts: {
-    border: ' 1px auto solid #01547b'
+    border: '1px solid black'
   },
   heading: {
     fontWeight: 'bold'
@@ -94,7 +94,7 @@ class Pool extends Component {
           }
           title={`Water needs in ${pool.country}`}
         />
-        <CardContent className={classes.facts}>
+        <CardContent>
           <Typography component="p" className={classes.heading}>
             ABOUT:{' '}
           </Typography>
@@ -132,83 +132,91 @@ class Pool extends Component {
             </Typography>
           </CardContent>
         </CardContent>
-        <CardContent className={classes.facts}>
-          <Typography component="p" className={classes.heading}>
-            DETAILS:{' '}
-          </Typography>
-          <Grid container spacing={24}>
-            <Grid item xs={6}>
-              <CardContent className={classes.facts}>
-                <Typography component="p">
-                  Current: {pool.currentFunds}{' '}
-                </Typography>{' '}
-              </CardContent>
-              <CardContent className={classes.facts}>
-                <Typography component="p">Target: {pool.goalFunds}</Typography>{' '}
-              </CardContent>
-              <CardContent className={classes.facts}>
-                <Typography component="p">
-                  Population: {pool.population}
-                </Typography>{' '}
-              </CardContent>
-            </Grid>
-            <Grid item xs={6}>
-              <CardContent className={classes.facts}>
-                <Typography component="p">
-                  Mortality Rate: {pool.mortalityRate}{' '}
-                </Typography>{' '}
-              </CardContent>
-              <CardContent className={classes.facts}>
-                <Typography component="p">
-                  Need Intensity: {pool.needIntensity}
-                </Typography>{' '}
-              </CardContent>
-              <CardContent className={classes.facts}>
-                <Typography component="p">
-                  Water Quality: {pool.waterQuality}
-                </Typography>{' '}
-              </CardContent>
-            </Grid>
-          </Grid>
-        </CardContent>
-        <CardContent className={classes.facts}>
-          <Typography component="p" className={classes.heading}>
-            INTERESTING FACTS:{' '}
-          </Typography>
-          {pool.factoids &&
-            pool.factoids.map((factoid, idx) => (
-              <CardContent key={idx} className={classes.things}>
-                <Typography component="p"> {factoid} </Typography>{' '}
-              </CardContent>
-            ))}
-        </CardContent>
-        <CardContent className={classes.facts}>
-          <Typography component="p" className={classes.heading}>
-            DONATIONS:{' '}
-          </Typography>
-          {pool.donations &&
-            pool.donations.map(donation => {
-              return (
-                <CardContent className={classes.things} key={donation.id}>
+        <Grid container spacing={24} id="single-pool-content">
+          <CardContent className={classes.facts}>
+            <Typography component="p" className={classes.heading}>
+              DETAILS:{' '}
+            </Typography>
+            <Grid container spacing={24}>
+              <Grid item xs={6}>
+                <CardContent>
                   <Typography component="p">
-                    {`${
-                      donation.donor.user.firstName
-                    } has donated $${donation.amount / 100}`}
-                  </Typography>
+                    Current: {pool.currentFunds}{' '}
+                  </Typography>{' '}
                 </CardContent>
-              )
-            })}
-        </CardContent>
-        <CardContent className={classes.donateButton}>
-          {/* <CardContent classes={classes.facts}> */}
-          <Button
-            component={Link}
-            to={`/pools/${pool.id}/donate`}
-            className={classes.button}
-          >
-            Donate
-          </Button>
-        </CardContent>
+                <CardContent>
+                  <Typography component="p">
+                    Target: {pool.goalFunds}
+                  </Typography>{' '}
+                </CardContent>
+                <CardContent>
+                  <Typography component="p">
+                    Population: {pool.population}
+                  </Typography>{' '}
+                </CardContent>
+              </Grid>
+              <Grid item xs={6}>
+                <CardContent>
+                  <Typography component="p">
+                    Mortality Rate: {pool.mortalityRate}{' '}
+                  </Typography>{' '}
+                </CardContent>
+                <Grid item xs={6}>
+                  <CardContent>
+                    <Typography component="p">
+                      Need Intensity: {pool.needIntensity}
+                    </Typography>{' '}
+                  </CardContent>
+                  <CardContent>
+                    <Typography component="p">
+                      Water Quality: {pool.waterQuality}
+                    </Typography>{' '}
+                  </CardContent>
+                </Grid>
+              </Grid>
+            </Grid>
+          </CardContent>
+          <CardContent className={classes.facts}>
+            <Typography component="p" className={classes.heading}>
+              INTERESTING FACTS:{' '}
+            </Typography>
+            {pool.factoids &&
+              pool.factoids.map((factoid, idx) => (
+                <CardContent key={idx} className={classes.things}>
+                  <Typography component="p"> {factoid} </Typography>{' '}
+                </CardContent>
+              ))}
+          </CardContent>
+          <CardContent className={classes.facts}>
+            <Typography component="p" className={classes.heading}>
+              DONATIONS:{' '}
+            </Typography>
+            {pool.donations &&
+              pool.donations.map(donation => {
+                return (
+                  <CardContent className={classes.things} key={donation.id}>
+                    <Typography component="p">
+                      {`${
+                        donation.donor.user.firstName
+                      } has donated $${donation.amount / 100}`}
+                    </Typography>
+                  </CardContent>
+                )
+              })}
+          </CardContent>
+          <Grid item xs={12}>
+            <CardContent className={classes.donateButton}>
+              {/* <CardContent classes={classes.facts}> */}
+              <Button
+                component={Link}
+                to={`/pools/${pool.id}/donate`}
+                className={classes.button}
+              >
+                Donate
+              </Button>
+            </CardContent>
+          </Grid>
+        </Grid>
       </Card>
     )
   }

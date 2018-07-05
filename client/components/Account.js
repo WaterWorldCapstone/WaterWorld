@@ -100,6 +100,7 @@ class Account extends Component {
 
   render() {
     const {classes, error, form, pastDonations} = this.props
+    console.log(pastDonations)
     return (
       <div id="donor-edit-master-div">
         <Paper className={classes.root}>
@@ -188,7 +189,9 @@ class Account extends Component {
           {pastDonations ? (
             <div id="profile-past-donations">
               {' '}
-              {pastDonations.map(elem => <SinglePoolCard pool={elem} />)}{' '}
+              {pastDonations
+                .filter(elem => elem.pool)
+                .map(elem => <SinglePoolCard pool={elem} />)}{' '}
             </div>
           ) : (
             <div />

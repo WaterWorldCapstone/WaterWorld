@@ -35,6 +35,7 @@ class MainMap extends React.Component {
         <HomeMap
           pools={this.props.pools}
           regions={this.props.regions.allCoords}
+          id="main-map"
         />{' '}
         <div id="filler-map-div" />
       </div>
