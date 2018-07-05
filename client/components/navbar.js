@@ -52,6 +52,14 @@ const Navbar = props => {
               >
                 donations
               </Button>
+              <Button
+                component={Link}
+                to="/account"
+                className="navbar-link"
+                color="inherit"
+              >
+                Profile
+              </Button>
             </div>
           ) : (
             <div>

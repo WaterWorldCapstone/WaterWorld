@@ -30,14 +30,6 @@ const DonorNav = props => {
       >
         Pools
       </Button>
-      <Button
-        component={Link}
-        to="/account"
-        className="navbar-link"
-        color="inherit"
-      >
-        Profile
-      </Button>
     </Fragment>
   )
 }

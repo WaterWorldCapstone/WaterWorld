@@ -58,7 +58,7 @@ class LandingPage extends Component {
               Waterworld
             </Typography>
             <Typography variant="headline" justify="center" color="inherit">
-              --------------
+              Lets Donate for a cause
             </Typography>
           </Grid>
           <Grid item xs={6}>
