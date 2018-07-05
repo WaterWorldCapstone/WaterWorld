@@ -11,6 +11,7 @@ import {
   InfoWindow
 } from 'react-google-maps'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer'
 
 class MainMap extends React.Component {
   componentDidMount() {
