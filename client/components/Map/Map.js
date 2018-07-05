@@ -17,11 +17,15 @@ function getPoints(dataR) {
   let data = dataR
   let coords = data.map(region => {
     console.log('in getPoints', region, region[0], region[1])
-    return {location: new google.maps.LatLng(region[0], region[1]), weight: 100}
+    return new google.maps.LatLng(region[0], region[1])
   })
 
   console.log('coords are', coords)
   return coords
+}
+
+function getRadius() {
+  return 25
 }
 
 export const HomeMap = compose(
@@ -42,7 +46,10 @@ export const HomeMap = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={3} defaultCenter={{lat: 40.705076, lng: -74.00916}}>
+  <GoogleMap
+    defaultZoom={3}
+    defaultCenter={{lat: 30.970507112789292, lng: 60.424804689999974}}
+  >
     <MarkerClusterer
       onClick={props.onMarkerClustererClick}
       averageCenter
@@ -58,7 +65,10 @@ export const HomeMap = compose(
       ) : (
         <div />
       )}
-      <HeatmapLayer data={getPoints(props.regions)} radius={1000} />
+      <HeatmapLayer
+        data={getPoints(props.regions)}
+        defaultRadius={getRadius()}
+      />
     </MarkerClusterer>
   </GoogleMap>
 ))

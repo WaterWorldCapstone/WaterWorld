@@ -299,6 +299,131 @@ const pools = [
       'https://images.indianexpress.com/2015/06/water-crisis.jpg',
       'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
     ]
+  },
+  {
+    name: 'Kappa',
+    latitude: '20.283192949184588',
+    longitude: '74.17968750249997',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '4100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Lambda',
+    latitude: '20.213192949184588',
+    longitude: '74.17968750249997',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '4100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Mu',
+    latitude: '21.001404',
+    longitude: '75.914631',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '4100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Nu',
+    latitude: '20.521848',
+    longitude: '76.916451',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '900',
+    solutionType: 'water',
+    goalFunds: '4100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Ksi',
+    latitude: '18.49226',
+    longitude: '75.158638',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '100',
+    solutionType: 'water',
+    goalFunds: '4100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
   }
 ]
 
@@ -381,6 +506,81 @@ const regions = [
   {
     latitude: '24.215',
     longitude: '-12.885',
+    weight: 5
+  },
+  {
+    latitude: '20.027179',
+    longitude: '78.850045',
+    weight: 5
+  },
+  {
+    latitude: '19.027179',
+    longitude: '76.850045',
+    weight: 5
+  },
+  {
+    latitude: '21.027179',
+    longitude: '76.850045',
+    weight: 5
+  },
+  {
+    latitude: '19.027179',
+    longitude: '79.850045',
+    weight: 5
+  },
+  {
+    latitude: '18.027179',
+    longitude: '75.850045',
+    weight: 5
+  },
+  {
+    latitude: '19.027179',
+    longitude: '80.850045',
+    weight: 5
+  },
+  {
+    latitude: '15.027179',
+    longitude: '75.850045',
+    weight: 5
+  },
+  {
+    latitude: '12.027179',
+    longitude: '77.850045',
+    weight: 5
+  },
+  {
+    latitude: '11.027179',
+    longitude: '76.850045',
+    weight: 5
+  },
+  {
+    latitude: '21.477324',
+    longitude: '26.247506',
+    weight: 5
+  },
+  {
+    latitude: '16.239699',
+    longitude: '30.202584',
+    weight: 5
+  },
+  {
+    latitude: '22.941926',
+    longitude: '6.911568',
+    weight: 5
+  },
+  {
+    latitude: '16.637384',
+    longitude: '18.637384',
+    weight: 5
+  },
+  {
+    latitude: '12.898702',
+    longitude: '37.847384',
+    weight: 5
+  },
+  {
+    latitude: '9.970076',
+    longitude: '29.327384',
     weight: 5
   }
 ]
