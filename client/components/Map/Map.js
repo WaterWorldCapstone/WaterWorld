@@ -65,10 +65,7 @@ export const HomeMap = compose(
       ) : (
         <div />
       )}
-      <HeatmapLayer
-        data={getPoints(props.regions)}
-        defaultRadius={getRadius()}
-      />
+      <HeatmapLayer data={getPoints(props.regions)} radius={25} />
     </MarkerClusterer>
   </GoogleMap>
 ))
