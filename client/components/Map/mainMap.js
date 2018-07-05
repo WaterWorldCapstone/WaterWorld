@@ -31,11 +31,12 @@ class MainMap extends React.Component {
         />{' '}
       </div>
     ) : (
-      <div>
+      <div id="home-map-div">
         <HomeMap
           pools={this.props.pools}
           regions={this.props.regions.allCoords}
         />{' '}
+        <div id="filler-map-div" />
       </div>
     )
   }

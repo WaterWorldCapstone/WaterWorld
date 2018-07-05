@@ -7,9 +7,18 @@ import pool from './pool'
 import bid from './bid'
 import donation from './donation'
 import {vendorReducer as vendor} from './vendor'
+import form from './form.js'
 import region from './region'
 
-const reducer = combineReducers({user, pool, vendor, bid, donation, region})
+const reducer = combineReducers({
+  user,
+  pool,
+  vendor,
+  bid,
+  donation,
+  form,
+  region
+})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

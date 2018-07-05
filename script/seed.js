@@ -93,6 +93,26 @@ const pools = [
     population: 37,
     mortalityRate: '10',
     factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor'
+  },
+  {
+    name: 'Mori Volo',
+    latitude: '42.75',
+    longitude: '70.32',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'Panta Kakista',
+    country: 'Thanatos archein',
+    continent: 'Nemo caret',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 37,
+    mortalityRate: '10',
+    factoids: ['Nihil est vivere ratio', 'Summa stultitia sum'],
     waterQuality: 'poor',
     images: [
       'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',

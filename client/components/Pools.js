@@ -3,7 +3,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingPools} from '../store/pool'
-import {Grid, withStyles, Typography, Button} from '@material-ui/core'
+import {Grid, withStyles, Typography, Button, Paper} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import SinglePoolCard from './SinglePoolCard'
 import CircularProgress from '@material-ui/core/CircularProgress'

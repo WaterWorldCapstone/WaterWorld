@@ -1,7 +1,6 @@
 body {
   font-family: sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
 }
 .site {
   min-height: 100vh;
@@ -12,27 +11,77 @@ body {
   flex-grow: 1;
 }
 
-#landingPage {
-  margin: 0 auto;
+#routes-and-footer {
+  background-image: url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg');
+  background-color: antiquewhite;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#landing-page-grid {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#filler-1 {
+  min-height: 15vh;
+  background-color: rgba(0, 0, 0, 0);
+}
+#filler-0 {
+  min-height: 15vh;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#landing-page {
   background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
+  background-blend-mode: unset;
   background-size: cover;
 }
 a {
   text-decoration: none;
 }
-#text {
-  margin-right: 10px;
-  background-color: white;
-  color: #05a2d2;
-  text-align: justify;
+#exegesis-right {
+  margin: 0 auto;
+  max-width: 40%;
+  color: antiquewhite;
+  text-align: center;
   line-break: auto;
   line-height: 30px;
+  background-color: rgba(5, 162, 210, 0.35);
 }
-#aboutText {
-  color: #01547b;
+#exegesis-left {
+  margin: 0 auto;
+  max-width: 40%;
+  color: antiquewhite;
+  text-align: center;
+  line-break: auto;
+  line-height: 30px;
+  background-color: rgba(5, 162, 210, 0.35);
+}
+#about-text {
+  text-emphasis-style: open;
   text-align: center;
   margin: 5px 5px 5px 5px;
 }
+#mission-text {
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+}
+
+#text-inside-mission {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#text-inside-about {
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
 #pools {
   margin: 10px auto;
   padding: 1%;
@@ -56,6 +105,11 @@ a {
   display: flex;
   justify-content: space-around;
   margin-left: 30%;
+}
+
+.single-pool-list {
+  padding: 3px;
+  border-radius: 10%;
 }
 
 .single-auction-card {
@@ -132,16 +186,28 @@ form div {
 
 #main-title-landing {
   font-size: 6rem;
+  text-emphasis-style: sesame;
 }
 
 .navbar-link {
   color: white;
 }
+
+.oauth-text {
+  background-color: white;
+}
+
+#sign-in-with {
+  background-color: white;
+  max-width: 25%;
+}
+
 #login {
   justify-content: center;
   align-items: center;
   border: indigo;
   border-block-start-width: 2px;
+  /* background-image: linear-gradient(rgb(240, 240, 240), rgb(255, 255, 255)); */
 }
 .earth {
   /* position: absolute;
@@ -207,7 +273,6 @@ form div {
 }
 
 #landing-page-grid {
-  background-color: whitesmoke;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -227,9 +292,22 @@ form div {
 #vendor-signup-form-div {
   display: flex;
   justify-content: center;
+  background-color: white;
 }
 #vendor-signup-submit-button {
   margin: 0 10% 0 35%;
+}
+
+#donor-login-email {
+  background-color: white;
+}
+
+.background-white {
+  background-color: white;
+}
+
+#donor-login-password {
+  background-color: white;
 }
 
 #donor-welcome-typography {
@@ -248,6 +326,7 @@ form div {
 #donor-signup-form-div {
   display: flex;
   justify-content: center;
+  background-color: white;
 }
 #donor-signup-submit-button {
   margin: 0 10% 0 35%;
@@ -256,4 +335,89 @@ form div {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+
+#ticker {
+  overflow: hidden;
+}
+
+.tick-me {
+  animation-duration: 7s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 200%;
+  }
+
+  15% {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  90% {
+    margin-left: 0%;
+    width: 100%;
+  }
+  to {
+    margin-left: -100%;
+    width: 100%;
+  }
+}
+#about-paper {
+  background-color: white;
+}
+
+#donor-edit-master-div {
+  background-image: linear-gradient(
+      rgba(0, 0, 255, 0.5),
+      rgba(255, 255, 0, 0.5)
+    ),
+    url('https://i.pinimg.com/736x/13/41/f5/1341f5ee8e5314b9ce8da7fae4da4c87.jpg');
+  background-size: cover;
+  min-height: 80vh;
+  background-attachment: fixed;
+}
+
+#donor-edit-welcome-typography {
+  text-align: center;
+}
+#donor-edit-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#donor-edit-email-pw-row {
+  display: flex;
+  justify-content: center;
+}
+
+#donor-edit-form-div {
+  display: flex;
+  justify-content: center;
+}
+#donor-edit-submit-button {
+  margin: 0 auto;
+}
+.edit-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#home-map-div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#filler-map-div {
+  background-image: linear-gradient(
+    rgba(240, 250, 240, 1),
+    rgba(255, 255, 255, 1)
+  );
+  min-height: 20vh;
 }
