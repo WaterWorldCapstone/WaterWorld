@@ -9,10 +9,13 @@ import LandingPage from './components/LandingPage'
 import Donate from './components/donatePage'
 import Auction from './components/auction'
 import Pools from './components/Pools'
-import Pool from './components/pool'
+import Pool from './components/SinglePool'
 import AuctionList from './components/AuctionList'
 import CreateVendor from './components/createVendorForm'
 import CreateDonor from './components/createUserForm'
+import AllDonations from './components/AllDonations'
+import editUserForm from './components/editUserForm'
+import Account from './components/Account'
 /**
  * COMPONENT
  */
@@ -25,12 +28,6 @@ class Routes extends Component {
     this.props.loadInitialData()
     this.targetSpan = document.querySelector('#IATS_Payment_TotalAmount')
   }
-
-  handleChange = evt => {
-    console.log('started this handleChange')
-    console.log(this.targetSpan, this.targetSpan.value)
-  }
-
   render() {
     const {isLoggedIn} = this.props
 
@@ -42,15 +39,23 @@ class Routes extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={CreateDonor} />
           <Route exact path="/map" component={MainMap} />
+          <Route
+            exact
+            path="/pools/:id/donate"
+            render={() => <Donate onChange={this.handleChange} />}
+          />
+          <Route exact path="/pools/:id" component={Pool} />
           <Route exact path="/pools" component={Pools} />
           <Route
             exact
             path="/donate"
-            render={() => <Donate onChange={this.handleChange} />}
+            render={() => <Donate onChange={this.handleChange} noPool={true} />}
           />
           <Route exact path="/auctions" component={AuctionList} />
-          <Route exact path="/auction" component={Auction} />
-
+          <Route exact path="/auctions/:auctionId" component={Auction} />{' '}
+          <Route exact path="/donations" component={AllDonations} />
+          <Route exact path="/account" component={Account} />
+          {/*auction ID will equal pool ID*/}
           {isLoggedIn && (
             <Switch>
               {/* Routes placed here are only available after logging in */}

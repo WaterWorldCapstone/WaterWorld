@@ -6,7 +6,9 @@ module.exports = router
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const pools = await Pool.findAll()
+    const pools = await Pool.findAll({
+      include: [{all: true, nested: true}]
+    })
     res.json(pools)
   })
 )
@@ -14,7 +16,9 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
-    const pool = await Pool.findById(req.params.id)
+    const pool = await Pool.findById(req.params.id, {
+      include: [{all: true, nested: true}]
+    })
     res.json(pool)
   })
 )

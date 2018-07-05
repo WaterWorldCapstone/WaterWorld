@@ -4,6 +4,8 @@ const Pool = require('./Pool')
 const Vendor = require('./Vendor')
 const Donation = require('./Donation')
 const Transaction = require('./Transaction')
+const Region = require('./Region')
+const Bid = require('./Bid')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -19,14 +21,51 @@ const Transaction = require('./Transaction')
  * instead of: const User = require('../db/models/user')
  */
 
-Donor.belongsToMany(Pool, {through: 'donation'})
-Pool.belongsToMany(Donor, {through: 'donation'})
-Vendor.belongsToMany(Pool, {through: 'transaction'})
-Pool.belongsToMany(Vendor, {through: 'transaction'})
+// Donation.belongsToMany(Pool, {through: 'donation_pool', foreignKey: 'poolId'})
+// Donation.belongsToMany(Donor, {
+//   through: 'donation_donor',
+//   foreignKey: 'donorId'
+// })
+// Pool.belongsToMany(Donation, {
+//   through: 'donation_pool',
+//   foreignKey: 'donationId'
+// })
+// Donor.belongsToMany(Donation, {
+//   through: 'donation_donor',
+//   foreignKey: 'donationId'
+// })
+Donation.belongsTo(Pool)
+Donation.belongsTo(Donor)
+Pool.hasMany(Donation)
+Donor.hasMany(Donation)
+// Transaction.belongsToMany(Pool, {
+//   through: 'transaction_pool',
+//   foreignKey: 'poolId'
+// })
+// Transaction.belongsToMany(Vendor, {
+//   through: 'transaction_vendor',
+//   foreignKey: 'vendorId'
+// })
+// Pool.belongsToMany(Transaction, {
+//   through: 'transaction_pool',
+//   foreignKey: 'transactionId'
+// })
+// Vendor.belongsToMany(Transaction, {
+//   through: 'transaction_vendor',
+//   foreignKey: 'transactionId'
+// })
+Transaction.belongsTo(Pool)
+Transaction.belongsTo(Vendor)
+Pool.hasMany(Transaction)
+Vendor.hasMany(Transaction)
+Vendor.belongsToMany(Pool, {through: Bid, as: 'Bid', foreignKey: 'vendorId'})
+Pool.belongsToMany(Vendor, {through: Bid, as: 'Bid', foreignKey: 'poolId'})
 User.hasOne(Donor)
 Donor.belongsTo(User)
 User.hasOne(Vendor)
 Vendor.belongsTo(User)
+Region.hasMany(Pool)
+Pool.belongsTo(Region)
 
 module.exports = {
   User,
@@ -34,5 +73,7 @@ module.exports = {
   Pool,
   Vendor,
   Donation,
-  Transaction
+  Transaction,
+  Region,
+  Bid
 }

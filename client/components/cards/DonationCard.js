@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {withStyles} from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
+import {Link} from 'react-router-dom'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
@@ -25,8 +26,8 @@ const styles = {
   }
 }
 
-function SimpleCard(props) {
-  const {classes} = props
+function DonationCard(props) {
+  const {classes, donation} = props
   const bull = <span className={classes.bullet}>•</span>
 
   return (
@@ -34,29 +35,32 @@ function SimpleCard(props) {
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary">
-            Word of the Day
+            {donation.donor.user.fullName}
           </Typography>
           <Typography variant="headline" component="h2">
-            be{bull}nev{bull}o{bull}lent
+            {donation.amount}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            adjective
+            Thank you! a donation to:
           </Typography>
-          <Typography component="p">
-            well meaning and kindly.<br />
-            {'"a benevolent smile"'}
-          </Typography>
+          <Typography component="p">{donation.pool.name}</Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button
+            component={Link}
+            to={`/pools/${donation.pool.id}`}
+            size="small"
+          >
+            Learn More
+          </Button>
         </CardActions>
       </Card>
     </div>
   )
 }
 
-SimpleCard.propTypes = {
+DonationCard.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(SimpleCard)
+export default withStyles(styles)(DonationCard)

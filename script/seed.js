@@ -7,7 +7,8 @@ const {
   Vendor,
   Pool,
   Donation,
-  Transaction
+  Transaction,
+  Region
 } = require('../server/db/models')
 
 const users = [
@@ -15,13 +16,22 @@ const users = [
     email: 'cody@email.com',
     password: '123',
     firstName: 'Cody',
-    lastName: 'mnb'
+    lastName: 'mnb',
+    userType: 'admin'
   },
   {
     email: 'jesse@email.com',
     password: '234',
     firstName: 'Jesse',
-    lastName: 'Sullivan'
+    lastName: 'Sullivan',
+    userType: 'donor'
+  },
+  {
+    email: 'pluto@crat.com',
+    password: `$$$`,
+    firstName: `Ava`,
+    lastName: `Ricious`,
+    userType: 'vendor'
   }
 ]
 
@@ -66,7 +76,7 @@ const transactions = [
 
 const pools = [
   {
-    name: 'Haskell',
+    name: 'Alpha',
     latitude: '42.75',
     longitude: '70.32',
     mostRecentDonation: '200',
@@ -84,6 +94,514 @@ const pools = [
     mortalityRate: '10',
     factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
     waterQuality: 'poor'
+  },
+  {
+    name: 'Mori Volo',
+    latitude: '42.75',
+    longitude: '70.32',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'Panta Kakista',
+    country: 'Thanatos archein',
+    continent: 'Nemo caret',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 37,
+    mortalityRate: '10',
+    factoids: ['Nihil est vivere ratio', 'Summa stultitia sum'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Beta',
+    latitude: '17.030',
+    longitude: '-61.796',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '1000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Gamma',
+    latitude: '26.066',
+    longitude: '50.557',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '5000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Delta',
+    latitude: '13.193',
+    longitude: '-59.543',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Epsilon',
+    latitude: '13.183',
+    longitude: '-59.543',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '200',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Zeta',
+    latitude: '13.189',
+    longitude: '-59.543',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '300',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Eta',
+    latitude: '13.193',
+    longitude: '-59.523',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '2200',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Theta',
+    latitude: '-11.645',
+    longitude: '43.333',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '2600',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Iota',
+    latitude: '35.156',
+    longitude: '33.429',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '3100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Beta',
+    latitude: '17.030',
+    longitude: '-61.796',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '1000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Gamma',
+    latitude: '26.066',
+    longitude: '50.557',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '5000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Delta',
+    latitude: '13.193',
+    longitude: '-59.543',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '800',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Epsilon',
+    latitude: '13.183',
+    longitude: '-59.543',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '200',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Zeta',
+    latitude: '13.189',
+    longitude: '-59.543',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '300',
+    solutionType: 'water',
+    goalFunds: '2000',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Eta',
+    latitude: '13.193',
+    longitude: '-59.523',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '2200',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Theta',
+    latitude: '-11.645',
+    longitude: '43.333',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '2600',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Iota',
+    latitude: '35.156',
+    longitude: '33.429',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'collecting money', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '500',
+    solutionType: 'water',
+    goalFunds: '3100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  }
+]
+
+const regions = [
+  {
+    latitude: '17.060',
+    longitude: '-61.796',
+    weight: 5
+  },
+  {
+    latitude: '26.066',
+    longitude: '50.557',
+    weight: 5
+  },
+  {
+    latitude: '13.193',
+    longitude: '-59.543',
+    weight: 5
+  },
+  {
+    latitude: '-11.645',
+    longitude: '43.333',
+    weight: 5
+  },
+  {
+    latitude: '35.126',
+    longitude: '33.429',
+    weight: 5
+  },
+  {
+    latitude: '15.414',
+    longitude: '-61.370',
+    weight: 5
+  },
+  {
+    latitude: '18.109',
+    longitude: '-77.297',
+    weight: 5
+  },
+  {
+    latitude: '35.937',
+    longitude: '14.375',
+    weight: 5
+  },
+  {
+    latitude: '25.354',
+    longitude: '51.183',
+    weight: 5
+  },
+  {
+    latitude: '13.909',
+    longitude: '-60.978',
+    weight: 5
+  },
+  {
+    latitude: '12.984',
+    longitude: '-61.287',
+    weight: 5
+  },
+  {
+    latitude: '43.942',
+    longitude: '12.457',
+    weight: 5
+  },
+  {
+    latitude: '1.352',
+    longitude: '103.819',
+    weight: 5
+  },
+  {
+    latitude: '10.691',
+    longitude: '-61.222',
+    weight: 5
+  },
+  {
+    latitude: '23.424',
+    longitude: '53.847',
+    weight: 5
+  },
+  {
+    latitude: '24.215',
+    longitude: '-12.885',
+    weight: 5
   }
 ]
 
@@ -102,8 +620,7 @@ const pools = [
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
-  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-  // executed until that promise resolves!
+
   const createdUsers = await Promise.all(users.map(user => User.create(user)))
   const createdDonors = await Promise.all(
     donors.map(donor => Donor.create(donor))
@@ -111,16 +628,23 @@ async function seed() {
   const createdVendors = await Promise.all(
     vendors.map(vendor => Vendor.create(vendor))
   )
+  const createdRegions = await Promise.all(
+    regions.map(region => Region.create(region))
+  )
   const createdPools = await Promise.all(pools.map(pool => Pool.create(pool)))
+  const createdDonation = await Donation.create(donations[0])
+  const createdTransaction = await Transaction.create(transactions[0])
   await createdUsers[0].setDonor(createdDonors[0])
-  await createdUsers[1].setVendor(createdVendors[0])
-  await createdPools[0].addDonor(createdDonors[0])
-  await createdPools[0].addVendor(createdVendors[0])
-  const foundDonations = await Donation.findAll()
-  const foundTransactions = await Transaction.findAll()
-  await foundDonations[0].update(donations[0])
-  await foundTransactions[0].update(transactions[0])
+  await createdUsers[2].setVendor(createdVendors[0])
+  await createdDonation.setDonor(createdDonors[0])
+  await createdDonation.setPool(createdPools[0])
+  await createdTransaction.setVendor(createdVendors[0])
+  await createdTransaction.setPool(createdPools[0])
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${createdPools.length} pools`)
+  console.log(
+    `seeded ${createdVendors.length + createdDonors.length + 2} other things`
+  )
   console.log(`seeded successfully`)
 }
 
@@ -155,5 +679,6 @@ module.exports = {
   donors,
   vendors,
   transactions,
-  pools
+  pools,
+  regions
 }

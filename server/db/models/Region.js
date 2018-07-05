@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Location = db.define('location', {
+const Region = db.define('region', {
   latitude: {
     type: Sequelize.STRING
   },
@@ -16,4 +16,4 @@ const Location = db.define('location', {
   }
 })
 
-module.exports = Location
+module.exports = Region

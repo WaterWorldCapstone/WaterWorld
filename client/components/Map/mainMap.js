@@ -2,6 +2,7 @@ import React from 'react'
 import {HomeMap} from './Map'
 import {connect} from 'react-redux'
 import {gettingPools} from '../../store/pool'
+import {fetchedRegions} from '../../store/region'
 import {
   withScriptjs,
   withGoogleMap,
@@ -9,29 +10,51 @@ import {
   Marker,
   InfoWindow
 } from 'react-google-maps'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer'
 
 class MainMap extends React.Component {
   componentDidMount() {
-    console.log('in component did mount', this.props)
     this.props.getPools()
-    console.log('in component did mount after thunk', this.props)
+    this.props.getRegions()
+    console.log('in mainmap componentdidmount')
   }
-
   render() {
-    console.log('pools are', this.props.pools)
-    return <HomeMap />
+    console.log('in MainMap, props are:', this.props)
+    return this.props.loading === true ? (
+      <div className="loading-spinner">
+        <CircularProgress
+          color="primary"
+          size={80}
+          thickness={3.6}
+          variant="indeterminate"
+        />{' '}
+      </div>
+    ) : (
+      <div id="home-map-div">
+        <HomeMap
+          pools={this.props.pools}
+          regions={this.props.regions.allCoords}
+          id="main-map"
+        />{' '}
+        <div id="filler-map-div" />
+      </div>
+    )
   }
 }
 
 const mapState = state => {
   return {
-    pools: state.pool.allPools
+    pools: state.pool.allPools,
+    loading: state.pool.loading,
+    regions: state.region
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getPools: () => dispatch(gettingPools())
+    getPools: () => dispatch(gettingPools()),
+    getRegions: () => dispatch(fetchedRegions())
   }
 }
 

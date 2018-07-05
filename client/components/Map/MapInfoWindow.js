@@ -18,11 +18,9 @@ export class MapInfoWindow extends React.Component {
   }
 
   onToggleOpen = () => {
-    console.log('in ToggleOpen before setstate', this.state.isOpen)
     this.setState(prevState => ({
       isOpen: !prevState.isOpen
     }))
-    console.log('in ToggleOpen after setstate', this.state.isOpen)
   }
 
   waterIcon = new google.maps.MarkerImage(
@@ -34,6 +32,7 @@ export class MapInfoWindow extends React.Component {
   )
 
   render() {
+    console.log('in the markers')
     return (
       <Marker
         onClick={this.onToggleOpen}

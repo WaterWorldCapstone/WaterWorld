@@ -1,12 +1,15 @@
 import axios from 'axios'
 import history from '../history'
-import {LOADING} from '.'
+import {LOADING} from './constants'
 const asyncHandler = require('express-async-handler')
 /**
  * ACTION TYPES
  */
 const GET_POOLS = 'GET_POOLS'
 const GET_POOL = 'GET_POOL'
+const RECEIVE_POOLS = 'RECEIVE_POOLS'
+const RECEIVE_POOL = 'RECEIVE_POOL'
+const FETCHING = 'FETCHING'
 // const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -16,29 +19,43 @@ const pools = {
   allPools: [],
   singlePool: {},
   allPoolsStatus: LOADING,
-  singlePoolStatus: LOADING
+  singlePoolStatus: LOADING,
+  loading: false
 }
 
 /**
  * ACTION CREATORS
  */
-const getPools = allPools => ({type: GET_POOLS, allPools})
-const getPool = pool => ({type: GET_POOL, pool})
+const fetching = () => ({type: FETCHING})
+const receivePools = allPools => ({type: RECEIVE_POOLS, allPools})
+const receivePool = pool => ({type: RECEIVE_POOL, pool})
 
 /**
  * THUNK CREATORS
  */
 export const gettingPools = () =>
   asyncHandler(async dispatch => {
+    dispatch(fetching())
     const res = await axios.get('/api/pools')
-    dispatch(getPools(res.data || pools))
+    res.data.map(elem => {
+      let progress = Number(elem.currentFunds) * 1.0 / Number(elem.goalFunds)
+      if (0 < progress && progress < 0.3) {
+        elem.progress = 'gettingstarted'
+      } else if (0.29 < progress && progress < 0.67) {
+        elem.progress = 'halfway'
+      } else if (0.66 < progress) {
+        elem.progress = 'nearlythere'
+      }
+    })
+    dispatch(receivePools(res.data))
+    return res.data
   })
 
 export const gettingPool = id =>
   asyncHandler(async dispatch => {
-    console.log('hiiiiiiis')
+    dispatch(fetching())
     const res = await axios.get(`/api/pools/${id}`)
-    dispatch(getPool(res.data))
+    dispatch(receivePool(res.data))
   })
 
 /**
@@ -50,6 +67,12 @@ export default function(state = pools, action) {
       return {...state, allPools: action.allPools}
     case GET_POOL:
       return {...state, singlePool: action.pool}
+    case FETCHING:
+      return {...state, loading: true}
+    case RECEIVE_POOLS:
+      return {...state, allPools: action.allPools, loading: false}
+    case RECEIVE_POOL:
+      return {...state, singlePool: action.pool, loading: false}
     default:
       return state
   }

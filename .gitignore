@@ -1,5 +1,5 @@
-bundle.js
-bundle.js.map
+public/bundle.js
+public/bundle.js.map
 node_modules
 secrets.js
 package_lock.json
