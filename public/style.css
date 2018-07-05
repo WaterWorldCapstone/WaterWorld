@@ -425,3 +425,13 @@ form div {
   );
   min-height: 0vh;
 }
+
+#single-pool-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#single-pool-content > .MuiCardContent-root-118 {
+  border: 1px solid black;
+}
