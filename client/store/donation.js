@@ -15,6 +15,7 @@ const [LOADING_DONATION, LOADED_DONATION, ERROR_DONATION] = [
 
 const ADD_DONATION = 'ADD_DONATION'
 const SELECT_POOL = 'SELECT_POOL'
+const PAST_DONATIONS = 'PAST_DONATIONS'
 
 export const getDonations = () => async dispatch => {
   try {
@@ -55,6 +56,20 @@ export const selectPool = id => async dispatch => {
   dispatch({type: SELECT_POOL, payload: id})
 }
 
+export const getPastDonations = donorId => async dispatch => {
+  try {
+    dispatch({type: LOADING_DONATIONS})
+    const pastDonations = await Axios.get(`/api/donors/${donorId}`)
+    console.log('pastDonations are:', pastDonations.data)
+    let donations = []
+    pastDonations.data.donations.forEach(elem => donations.push(elem.pool))
+    console.log('donations are', donations)
+    dispatch({type: PAST_DONATIONS, payload: donations})
+  } catch (e) {
+    dispatch({type: ERROR_DONATIONS, payload: e})
+  }
+}
+
 const initialState = {allDonations: [], singleDonation: {}, status: LOADING}
 
 export default function(state = initialState, action) {
@@ -75,6 +90,8 @@ export default function(state = initialState, action) {
       }
     case SELECT_POOL:
       return {...state, currentPoolId: action.payload}
+    case PAST_DONATIONS:
+      return {...state, pastDonations: action.payload}
     case ERROR_DONATION:
       return {...state, status: ERROR, error: action.payload}
     case ERROR_DONATIONS:

@@ -6,10 +6,13 @@ const asyncHandler = require('express-async-handler')
 /**
  * ACTION TYPES
  */
+
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const GETTING_CURRENT_USER = 'GETTING_CURRENT_USER'
 const GOT_CURRENT_USER = 'GOT_CURRENT_USER'
+const EDIT_USER = 'EDIT_USER'
+
 /**
  * INITIAL STATE
  */
@@ -77,6 +80,9 @@ export const donorSignup = ({email, password, address, firstName, lastName}) =>
     history.push('/')
   })
 
+export const editUser = obj => async dispatch => {
+  await axios.put(`/api/users/${obj.id}`, obj)
+}
 //vendor signup
 export const vendorSignup = ({
   email,
@@ -118,6 +124,7 @@ export const getCurrentUser = userId => async dispatch => {
   dispatch({type: GETTING_CURRENT_USER})
   const gottenUser = await axios.get(`/api/users/${userId}`)
   dispatch({type: GOT_CURRENT_USER, payload: gottenUser.data})
+  return gottenUser.data
 }
 /**
  * REDUCER
@@ -132,6 +139,9 @@ export default function(state = defaultUser, action) {
       return {...state, status: LOADING}
     case GOT_CURRENT_USER:
       return {...state, status: LOADED, currentUser: action.payload}
+    case EDIT_USER: {
+      return {...state, status: LOADED, currentUser: action.payload}
+    }
     default:
       return state
   }

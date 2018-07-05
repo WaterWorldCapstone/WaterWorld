@@ -90,7 +90,7 @@ class Pool extends Component {
             pool.images &&
             pool.images.filter(
               (msg, idx) => idx === this.state.counter % pool.images.length
-            )
+            )[0]
           }
           title={`Water needs in ${pool.country}`}
         />
