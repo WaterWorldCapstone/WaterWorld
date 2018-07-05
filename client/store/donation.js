@@ -62,7 +62,9 @@ export const getPastDonations = donorId => async dispatch => {
     const pastDonations = await Axios.get(`/api/donors/${donorId}`)
     console.log('pastDonations are:', pastDonations.data)
     let donations = []
-    pastDonations.data.donations.forEach(elem => donations.push(elem.pool))
+    pastDonations.data.donations.forEach(elem => {
+      if (elem.pool) donations.push(elem.pool)
+    })
     console.log('donations are', donations)
     dispatch({type: PAST_DONATIONS, payload: donations})
   } catch (e) {
