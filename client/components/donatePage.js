@@ -31,9 +31,7 @@ class Donate extends Component {
   }
 
   componentDidMount() {
-    console.log('this.psops', this.props.match)
     if (this.props.match.params.id) {
-      console.log('gettingPool called')
       this.props.gettingPool(this.props.match.params.id)
       this.setState({
         currentPoolMatchId: this.props.match.params.id
@@ -54,13 +52,9 @@ class Donate extends Component {
     window.addEventListener('hashchange', this.determineSuccess, false)
   }
   findSelectedPoolId = () => {
-    console.log('findSelectedPoolId called')
-    console.log(this.props.selectedPoolId, 'returns this')
     return this.props.selectedPoolId
   }
   findCurrentPoolMatchId = () => {
-    console.log('findCurrentPoolMatchId called')
-    console.log(this.props.pool.id, 'returns this')
     return this.props.pool.id
   }
 
@@ -70,7 +64,6 @@ class Donate extends Component {
   }
 
   determineSuccess = () => {
-    console.log(`determineSuccess called`)
     if (
       document.querySelector('#IATS_BackAction_Button').style.display ===
       'block'
@@ -79,10 +72,6 @@ class Donate extends Component {
       //no thunk
     } else {
       console.log('success')
-      console.log(
-        'about to succed: this.props.selectedPoolid',
-        this.props.selectedPoolId
-      )
       this.setState({
         success: true
       })
@@ -106,10 +95,6 @@ class Donate extends Component {
     window.removeEventListener('click', Donate.clearHashOnDonationFormSubmit)
   }
   render() {
-    console.log('match param', this.props.match.params.id)
-    console.log('selected pool id', this.props.selectedPoolId)
-    console.log('this.props', this.props)
-    console.log('this.state', this.state)
     return (
       <div id="payment">
         {this.props.noPool ? (
