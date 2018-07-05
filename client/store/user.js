@@ -112,11 +112,9 @@ export const vendorSignup = ({
 
 export const getCurrentUser = userId => async dispatch => {
   if (!userId) {
-    console.log('entered if')
     userId = await me()(dispatch)
     userId = userId.id
   }
-  console.log(userId)
   dispatch({type: GETTING_CURRENT_USER})
   const gottenUser = await axios.get(`/api/users/${userId}`)
   dispatch({type: GOT_CURRENT_USER, payload: gottenUser.data})
