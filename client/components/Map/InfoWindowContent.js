@@ -7,20 +7,22 @@ export const InfoWindowContent = ({pool}) => {
 
   return (
     <div>
-      <div>
-        {' '}
-        {pool.town}, {pool.country}{' '}
-      </div>
-      <p>
-        Goal: {pool.goalFunds} <br />
-        Current: {pool.currentFunds}
-      </p>
+      <a href={`/pools/${pool.id}`}>
+        <div>
+          {' '}
+          {pool.town}, {pool.country}{' '}
+        </div>
+        <p>
+          Goal: {pool.goalFunds} <br />
+          Current: {pool.currentFunds}
+        </p>
 
-      <p>
-        <a href="/donate">
+        <p>
+          {/* <a href="/donate">
           <button onClick={() => redirect()}>Donate</button>
-        </a>
-      </p>
+        </a> */}
+        </p>
+      </a>
     </div>
   )
 }
