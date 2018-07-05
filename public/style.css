@@ -384,6 +384,7 @@ form div {
 
 #donor-edit-welcome-typography {
   text-align: center;
+  background-color: blue;
 }
 #donor-edit-buttons-div {
   display: flex;
@@ -402,6 +403,11 @@ form div {
 #donor-edit-submit-button {
   margin: 0 auto;
 }
+
+#profile-past-donations {
+  max-height: 30%;
+}
+
 .edit-column {
   display: flex;
   flex-direction: row;

@@ -22,6 +22,17 @@ router.get(
     res.json(donation)
   })
 )
+
+router.get(
+  '/:donorId',
+  asyncHandler(async (req, res) => {
+    const userDonations = await Donation.findAll({
+      where: {donorId: req.params.donorId}
+    })
+    res.json(userDonations)
+  })
+)
+
 //req.body expects donorid and poolid to be passed
 router.post(
   '/',
