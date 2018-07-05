@@ -33,7 +33,7 @@ const styles = theme => ({
     backgroundColor: red[500]
   },
   facts: {
-    border: ' 1px auto solid #01547b'
+    border: '1px solid black'
   },
   heading: {
     fontWeight: 'bold'
@@ -95,7 +95,7 @@ class Pool extends Component {
           }
           title={`Water needs in ${pool.country}`}
         />
-        <CardContent className={classes.facts}>
+        <CardContent>
           <Typography component="p" className={classes.heading}>
             ABOUT:{' '}
           </Typography>
@@ -140,35 +140,35 @@ class Pool extends Component {
             </Typography>
             <Grid container spacing={24}>
               <Grid item xs={6}>
-                <CardContent className={classes.facts}>
+                <CardContent>
                   <Typography component="p">
                     Current: {pool.currentFunds}{' '}
                   </Typography>{' '}
                 </CardContent>
-                <CardContent className={classes.facts}>
+                <CardContent>
                   <Typography component="p">
                     Target: {pool.goalFunds}
                   </Typography>{' '}
                 </CardContent>
-                <CardContent className={classes.facts}>
+                <CardContent>
                   <Typography component="p">
                     Population: {pool.population}
                   </Typography>{' '}
                 </CardContent>
               </Grid>
               <Grid item xs={6}>
-                <CardContent className={classes.facts}>
+                <CardContent>
                   <Typography component="p">
                     Mortality Rate: {pool.mortalityRate}{' '}
                   </Typography>{' '}
                 </CardContent>
                 <Grid item xs={6}>
-                  <CardContent className={classes.facts}>
+                  <CardContent>
                     <Typography component="p">
                       Need Intensity: {pool.needIntensity}
                     </Typography>{' '}
                   </CardContent>
-                  <CardContent className={classes.facts}>
+                  <CardContent>
                     <Typography component="p">
                       Water Quality: {pool.waterQuality}
                     </Typography>{' '}
