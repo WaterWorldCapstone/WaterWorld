@@ -65,10 +65,18 @@ class Pools extends Component {
     this.props.getPools()
   }
 
-  handleChange = name => event => {
-    this.setState({
-      continent: {...this.state.continent, [name]: event.target.checked}
-    })
+
+  handleChange = (name, type) => event => {
+    if (type === 'continent') {
+      this.setState({
+        continent: {...this.state.continent, [name]: event.target.checked}
+      })
+      console.log('after handleChange', this.state.continent)
+    } else if (type === 'progress') {
+      this.setState({
+        progress: {...this.state.progress, [name]: event.target.checked}
+      })
+    }
   }
   handleClick = () => {
     this.setState({
@@ -79,15 +87,40 @@ class Pools extends Component {
     let conts = []
     for (var i in this.state.continent) {
       if (this.state.continent[i] === true) {
+        console.log('trying to push to conts', i)
         conts.push(i)
       }
     }
+    console.log('conts should be', conts)
+    let progs = []
+    console.log('before progs pushing', this.state)
+    for (var i in this.state.progress) {
+      if (this.state.progress[i] === true) {
+        console.log('trying to push to progs', i)
+        progs.push(i)
+      }
+    }
+    console.log('progs should be', progs)
     let pools = this.props.pools
     if (conts.length > 0) {
       pools = this.props.pools.filter(pool => {
+        console.log(
+          'filter check',
+          conts.includes(String(pool.continent.replace(' ', ''))) ||
+            progs.includes(pool.progress),
+          pool
+        )
         return conts.includes(String(pool.continent.replace(' ', '')))
       })
     }
+
+    if (progs.length > 0) {
+      pools = pools.filter(pool => {
+        return progs.includes(pool.progress)
+      })
+    }
+
+    console.log('filtered pools:', pools)
     const {classes} = this.props
     return this.props.loading === true ? (
       <div className="loading-spinner">
@@ -120,8 +153,11 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.NorthAmerica}
-                        onChange={this.handleChange('NorthAmerica')}
+                        checked={this.state.continent.NorthAmerica}
+                        onChange={this.handleChange(
+                          'NorthAmerica',
+                          'continent'
+                        )}
                         value="NorthAmerica"
                       />
                     }
@@ -130,8 +166,8 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.Africa}
-                        onChange={this.handleChange('Africa')}
+                        checked={this.state.continent.Africa}
+                        onChange={this.handleChange('Africa', 'continent')}
                         value="Africa"
                       />
                     }
@@ -140,8 +176,11 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.SouthAmerica}
-                        onChange={this.handleChange('SouthAmerica')}
+                        checked={this.state.continent.SouthAmerica}
+                        onChange={this.handleChange(
+                          'SouthAmerica',
+                          'continent'
+                        )}
                         value="SouthAmerica"
                       />
                     }
@@ -150,8 +189,8 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.Asia}
-                        onChange={this.handleChange('Asia')}
+                        checked={this.state.continent.Asia}
+                        onChange={this.handleChange('Asia', 'continent')}
                         value="Asia"
                       />
                     }
@@ -160,8 +199,8 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.Europe}
-                        onChange={this.handleChange('Europe')}
+                        checked={this.state.continent.Europe}
+                        onChange={this.handleChange('Europe', 'continent')}
                         value="Europe"
                       />
                     }
@@ -170,8 +209,8 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.Antarctica}
-                        onChange={this.handleChange('Antarctica')}
+                        checked={this.state.continent.Antarctica}
+                        onChange={this.handleChange('Antarctica', 'continent')}
                         value="Antarctica"
                       />
                     }
@@ -180,8 +219,8 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.Australia}
-                        onChange={this.handleChange('Australia')}
+                        checked={this.state.continent.Australia}
+                        onChange={this.handleChange('Australia', 'continent')}
                         value="Australia"
                       />
                     }
@@ -194,8 +233,8 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.nearlythere}
-                        onChange={this.handleChange('nearlythere')}
+                        checked={this.state.progress.nearlythere}
+                        onChange={this.handleChange('nearlythere', 'progress')}
                         value="nearlythere"
                       />
                     }
@@ -204,8 +243,8 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.halfway}
-                        onChange={this.handleChange('halfway')}
+                        checked={this.state.progress.halfway}
+                        onChange={this.handleChange('halfway', 'progress')}
                         value="halfway"
                       />
                     }
@@ -214,8 +253,11 @@ class Pools extends Component {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={this.state.gettingstarted}
-                        onChange={this.handleChange('gettingstarted')}
+                        checked={this.state.progress.gettingstarted}
+                        onChange={this.handleChange(
+                          'gettingstarted',
+                          'progress'
+                        )}
                         value="gettingstarted"
                       />
                     }

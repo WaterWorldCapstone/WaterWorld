@@ -1,5 +1,5 @@
 import React from 'react'
-import {compose, withProps} from 'recompose'
+import {compose, withProps, withHandlers} from 'recompose'
 import {
   withScriptjs,
   withGoogleMap,
@@ -11,7 +11,7 @@ import {gettingPools} from '../../store/pool'
 import {connect} from 'react-redux'
 import {MapInfoWindow} from './MapInfoWindow'
 import HeatmapLayer from 'react-google-maps/lib/components/visualization/HeatmapLayer'
-const {InfoBox} = require('react-google-maps/lib/components/addons/InfoBox')
+import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer'
 
 function getPoints(dataR) {
   let data = dataR
@@ -32,19 +32,33 @@ export const HomeMap = compose(
     containerElement: <div style={{height: `400px`}} />,
     mapElement: <div style={{height: `100%`}} />
   }),
+  withHandlers({
+    onMarkerClustererClick: () => markerClusterer => {
+      const clickedMarkers = markerClusterer.getMarkers()
+      console.log(`Current clicked markers length: ${clickedMarkers.length}`)
+      console.log(clickedMarkers)
+    }
+  }),
   withScriptjs,
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={3} defaultCenter={{lat: 40.705076, lng: -74.00916}}>
-    {console.log('in the map', props)}
-    {props.pools ? (
-      props.pools.map(pool => {
-        console.log('in pool mapping, pool is', pool)
-        return <MapInfoWindow key={pool.id} pool={pool} />
-      })
-    ) : (
-      <div />
-    )}
-    <HeatmapLayer data={getPoints(props.regions)} />
+    <MarkerClusterer
+      onClick={props.onMarkerClustererClick}
+      averageCenter
+      enableRetinaIcons
+      gridSize={50}
+    >
+      {console.log('in the map', props)}
+      {props.pools ? (
+        props.pools.map(pool => {
+          console.log('in pool mapping, pool is', pool)
+          return <MapInfoWindow key={pool.id} pool={pool} />
+        })
+      ) : (
+        <div />
+      )}
+      <HeatmapLayer data={getPoints(props.regions)} />
+    </MarkerClusterer>
   </GoogleMap>
 ))
