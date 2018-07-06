@@ -50,7 +50,7 @@ function DonationCard(props) {
         <CardActions>
           <Button
             component={Link}
-            to={`/pools/${donation.pool.id}`}
+            to={`/pools/$${donation.pool.id}`}
             size="small"
           >
             Learn More

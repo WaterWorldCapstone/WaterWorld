@@ -19,7 +19,7 @@ class Donate extends Component {
   state = {
     success: false,
     currentDonation: 0,
-    currentUserId: -1
+    currentUserId: 4
   }
   clearHashOnDonationFormSubmit = e => {
     const IATSbutton = document.getElementById('IATS_ProcessAction_Button')
@@ -68,10 +68,11 @@ class Donate extends Component {
       document.querySelector('#IATS_BackAction_Button').style.display ===
       'block'
     ) {
-      console.log('Rejected')
+      console.log('Rejected') //do not delete
       //no thunk
     } else {
-      console.log('success')
+      console.log('success') //do not delete
+      //especialy do not delete this ^^
       this.setState({
         success: true
       })
