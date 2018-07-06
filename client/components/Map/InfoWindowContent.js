@@ -1,26 +1,22 @@
 import React from 'react'
 
 export const InfoWindowContent = ({pool}) => {
-  const redirect = () => {
-    console.log('in the redirect function')
-  }
+  console.log('pool is', pool)
 
   return (
     <div>
-      <div>
-        {' '}
-        {pool.town}, {pool.country}{' '}
-      </div>
-      <p>
-        Goal: {pool.goalFunds} <br />
-        Current: {pool.currentFunds}
-      </p>
+      <a href={`/pools/${pool.id}`}>
+        <div> {pool.name} </div>
+        <p />
+        {pool.currentFunds ? <div>Current: ${pool.currentFunds}</div> : <div />}
+        {pool.goalFunds ? <div> Goal: ${pool.goalFunds}</div> : <div />}
 
-      <p>
-        <a href="/donate">
+        <p>
+          {/* <a href="/donate">
           <button onClick={() => redirect()}>Donate</button>
-        </a>
-      </p>
+        </a> */}
+        </p>
+      </a>
     </div>
   )
 }

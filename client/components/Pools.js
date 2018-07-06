@@ -70,6 +70,7 @@ class Pools extends Component {
       this.setState({
         continent: {...this.state.continent, [name]: event.target.checked}
       })
+      console.log('after handleChange', this.state.continent)
     } else if (type === 'progress') {
       this.setState({
         progress: {...this.state.progress, [name]: event.target.checked}
@@ -85,26 +86,40 @@ class Pools extends Component {
     let conts = []
     for (var i in this.state.continent) {
       if (this.state.continent[i] === true) {
+        console.log('trying to push to conts', i)
         conts.push(i)
       }
     }
+    console.log('conts should be', conts)
     let progs = []
+    console.log('before progs pushing', this.state)
     for (var i in this.state.progress) {
       if (this.state.progress[i] === true) {
+        console.log('trying to push to progs', i)
         progs.push(i)
       }
     }
+    console.log('progs should be', progs)
     let pools = this.props.pools
     if (conts.length > 0) {
       pools = this.props.pools.filter(pool => {
+        console.log(
+          'filter check',
+          conts.includes(String(pool.continent.replace(' ', ''))) ||
+            progs.includes(pool.progress),
+          pool
+        )
         return conts.includes(String(pool.continent.replace(' ', '')))
       })
     }
+
     if (progs.length > 0) {
       pools = pools.filter(pool => {
         return progs.includes(pool.progress)
       })
     }
+
+    console.log('filtered pools:', pools)
     const {classes} = this.props
     return this.props.loading === true ? (
       <div className="loading-spinner">
@@ -122,6 +137,7 @@ class Pools extends Component {
             Filter
           </Button>
         </Grid>
+        {/* <Grid container > */}
         {
           <SwipeableDrawer
             open={this.state.open}
@@ -248,11 +264,15 @@ class Pools extends Component {
                   />
                 </FormGroup>
               </FormControl>
+
+              {/* </Typography> */}
             </CardContent>
           </SwipeableDrawer>
         }
+        {/* </Grid> */}
         {pools &&
           pools.map(pool => {
+            console.log('each pools cont', pool.continent.replace(' ', ''))
             return (
               <Grid container key={pool.id}>
                 <Grid item xs={12}>
