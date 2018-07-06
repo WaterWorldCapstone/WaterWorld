@@ -35,15 +35,17 @@ function DonationCard(props) {
       <Card className={classes.card}>
         <CardContent>
           <Typography className={classes.title} color="textSecondary">
-            {donation.donor.user.fullName}
+            {donation.donor ? donation.donor.user.fullName : `anonymous donor`}
           </Typography>
           <Typography variant="headline" component="h2">
-            {donation.amount}
+            {`${donation.amount / 100}`}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
             Thank you! a donation to:
           </Typography>
-          <Typography component="p">{donation.pool.name}</Typography>
+          <Typography component="p">
+            {donation.pool ? donation.pool.name : `any pool`}
+          </Typography>
         </CardContent>
         <CardActions>
           <Button

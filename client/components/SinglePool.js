@@ -73,6 +73,7 @@ class Pool extends Component {
   render() {
     const {pool, classes} = this.props
     const tag = pool.name && pool.name.slice(0, 1)
+    console.log(this.props)
     return (
       <Card className={classes.card}>
         <CardHeader

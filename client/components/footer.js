@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import {Grid, withStyles, Typography} from '@material-ui/core'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    textAlign: 'center'
+    backgroundColor: `white`
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -18,12 +16,21 @@ const styles = theme => ({
 class Footer extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      path: this.props.match.path
+    }
   }
   render = () => {
+    console.log(this.props, this.props.match.path === `/map`)
     const {classes} = this.props
+    const {path} = this.state
+    console.log(path, typeof path, this.props.match.url)
     return (
-      <Grid container spacing={24}>
+      <Grid
+        container
+        spacing={24}
+        id={path === `/map` ? `footer-container-whitened` : ``}
+      >
         <Grid id="footerImg" item xs={6}>
           <img src="https://www.fullstackacademy.com/images/fa-logo.png" />
         </Grid>
@@ -54,4 +61,4 @@ Footer.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Footer)
+export default withRouter(withStyles(styles)(Footer))

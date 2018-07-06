@@ -25,8 +25,8 @@ import SinglePoolCard from './SinglePoolCard'
 
 const styles = theme => ({
   root: {
-    margin: `0 7% 0 7%`,
-    padding: `0 7%`
+    margin: `15%, 0`,
+    padding: `0.9%, 0`
   },
   button: {
     margin: theme.spacing.unit

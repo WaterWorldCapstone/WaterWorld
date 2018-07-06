@@ -21,6 +21,10 @@ body {
   flex-direction: column;
 }
 
+#footer-container-whitened {
+  background-color: white;
+}
+
 #landing-page-grid {
   background-color: rgba(0, 0, 0, 0);
 }
@@ -384,7 +388,10 @@ form div {
 
 #donor-edit-welcome-typography {
   text-align: center;
-  background-color: blue;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  background-color: rgba(0, 0, 255, 0.4);
 }
 #donor-edit-buttons-div {
   display: flex;
