@@ -31,6 +31,15 @@ router.post(
   })
 )
 
+router.post(
+  '/input',
+  asyncHandler(async (req, res) => {
+    console.log('in the input route', req.body)
+    const newPool = await Pool.create(req.body)
+    res.json(newPool)
+  })
+)
+
 router.put(
   '/:id',
   asyncHandler(async (req, res) => {

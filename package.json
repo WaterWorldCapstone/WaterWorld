@@ -63,6 +63,7 @@
     "prop-types": "^15.5.8",
     "react": "^16.3.1",
     "react-dom": "^16.0.0",
+    "react-geocode": "0.0.9",
     "react-google-maps": "^9.4.5",
     "react-redux": "^5.0.2",
     "react-responsive-carousel": "^3.1.41",

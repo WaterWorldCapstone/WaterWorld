@@ -10,6 +10,7 @@ const GET_POOL = 'GET_POOL'
 const RECEIVE_POOLS = 'RECEIVE_POOLS'
 const RECEIVE_POOL = 'RECEIVE_POOL'
 const FETCHING = 'FETCHING'
+const ADD_POOL = 'ADD_POOL'
 // const REMOVE_USER = 'REMOVE_USER'
 
 /**
@@ -18,8 +19,6 @@ const FETCHING = 'FETCHING'
 const pools = {
   allPools: [],
   singlePool: {},
-  allPoolsStatus: LOADING,
-  singlePoolStatus: LOADING,
   loading: false
 }
 
@@ -29,6 +28,7 @@ const pools = {
 const fetching = () => ({type: FETCHING})
 const receivePools = allPools => ({type: RECEIVE_POOLS, allPools})
 const receivePool = pool => ({type: RECEIVE_POOL, pool})
+const addPool = pool => ({type: ADD_POOL, pool})
 
 /**
  * THUNK CREATORS
@@ -37,10 +37,8 @@ export const gettingPools = () =>
   asyncHandler(async dispatch => {
     dispatch(fetching())
     const res = await axios.get('/api/pools')
-    console.log('in the gettingPools thunk', res.data)
     res.data.map(elem => {
       let progress = Number(elem.currentFunds) * 1.0 / Number(elem.goalFunds)
-      console.log('in da thunk, progress is:', progress)
       if (0 < progress && progress < 0.3) {
         elem.progress = 'gettingstarted'
       } else if (0.29 < progress && progress < 0.67) {
@@ -48,7 +46,6 @@ export const gettingPools = () =>
       } else if (0.66 < progress) {
         elem.progress = 'nearlythere'
       }
-      console.log('after progress setting', elem)
     })
     dispatch(receivePools(res.data))
   })
@@ -58,6 +55,21 @@ export const gettingPool = id =>
     dispatch(fetching())
     const res = await axios.get(`/api/pools/${id}`)
     dispatch(receivePool(res.data))
+  })
+
+export const userCreatePool = geoObj =>
+  asyncHandler(async dispatch => {
+    console.log('reached userCreatePool')
+    const res = await axios.post(`/api/pools/input`, {
+      name: geoObj.formatted_address,
+      latitude: geoObj.geometry.location.lat,
+      longitude: geoObj.geometry.location.lng,
+      town: geoObj.address_components[1].long_name,
+      country: geoObj.address_components[2].long_name,
+      continent: 'Africa'
+    })
+    console.log('userCreatePool', res.data)
+    dispatch(addPool(res.data))
   })
 
 /**
@@ -75,6 +87,12 @@ export default function(state = pools, action) {
       return {...state, allPools: action.allPools, loading: false}
     case RECEIVE_POOL:
       return {...state, singlePool: action.pool, loading: false}
+    case ADD_POOL:
+      return {
+        ...state,
+        singlePool: action.pool,
+        allPools: [...state.allPools, action.pool]
+      }
     default:
       return state
   }

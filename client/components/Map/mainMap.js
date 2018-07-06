@@ -1,5 +1,5 @@
 import React from 'react'
-import {HomeMap} from './Map'
+import HomeMap from './Map'
 import {connect} from 'react-redux'
 import {gettingPools} from '../../store/pool'
 import {fetchedRegions} from '../../store/region'
