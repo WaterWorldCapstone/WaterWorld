@@ -1,0 +1,259 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#site-content {
+  flex-grow: 1;
+}
+
+#landingPage {
+  margin: 0 auto;
+  background-image: url('https://orig00.deviantart.net/aef5/f/2011/140/d/0/nokia_water_theme_by_atisorn_badboy-d3gsa9d.jpg');
+  background-size: cover;
+}
+a {
+  text-decoration: none;
+}
+#text {
+  margin-right: 10px;
+  background-color: white;
+  color: #05a2d2;
+  text-align: justify;
+  line-break: auto;
+  line-height: 30px;
+}
+#aboutText {
+  color: #01547b;
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+}
+#pools {
+  margin: 10px auto;
+  padding: 1%;
+  padding-right: 2.5%;
+}
+.pools-p {
+  border: 3px solid #01547b;
+  padding: 0.8%;
+}
+.pools-p-info {
+  padding-left: 1%;
+  justify-content: left;
+  text-align: left;
+}
+#payment {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+.single-pool-card {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 30%;
+}
+
+.single-auction-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.loading-spinner {
+  margin: auto auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.donate-button-link {
+  border: 1px solid #01547b;
+  background-color: #01547b;
+  color: whitesmoke;
+  padding: 2.5%;
+}
+.donate-button {
+  text-align: right;
+  margin: auto;
+}
+#footer {
+  top: 100%;
+  bottom: 10px;
+  position: relative;
+  justify-content: end;
+  width: 100%;
+  display: block;
+}
+/* #footerImg { } */
+#footerText {
+  color: black;
+  text-align: right;
+  margin-top: 19px;
+  padding-right: 2.5%;
+}
+
+#navbar {
+  margin: 0 auto;
+  background-color: #01547b;
+  background-size: cover;
+}
+label {
+  display: block;
+}
+#about {
+  background-color: #05a2d2;
+  background-size: cover;
+  margin: 0 auto;
+}
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+.ticker-message {
+  color: white;
+}
+
+.main-title {
+  padding: 24% 0 0;
+}
+
+#main-title-landing {
+  font-size: 6rem;
+}
+
+.navbar-link {
+  color: white;
+}
+#login {
+  justify-content: center;
+  align-items: center;
+  border: indigo;
+  border-block-start-width: 2px;
+}
+.earth {
+  /* position: absolute;
+    top: 1;
+    left: 1;
+    right: 0; */
+  bottom: 1;
+  margin: 0 auto;
+  width: 500px;
+  height: 500px;
+  background-origin: inherit;
+  background-image: url('http://soileiragusgonta.com/wp-content/uploads/2018/04/full-earth-map-2-maps-google-com-1024x512.jpg');
+  border-radius: 50%;
+  background-size: initial;
+  box-shadow: -20px -20px 50px 2px #000 inset, 0px 0px 5px 2px #555;
+  /* animation: spin 10s linear alternate infinite;
+  animation-direction: normal; */
+  -webkit-animation: rotating 30s linear infinite;
+  -moz-animation: rotating 30s linear infinite;
+  -ms-animation: rotating 30s linear infinite;
+  -o-animation: rotating 30s linear infinite;
+  animation: rotating 180s linear infinite, spin 30s linear alternate infinite;
+  animation-direction: normal;
+}
+
+@keyframes spin {
+  100% {
+    background-position: 100%;
+  }
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+.hidden {
+  display: none;
+}
+
+.ticker {
+  display: inline;
+}
+
+#landing-page-grid {
+  background-color: whitesmoke;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#landing-page-grid-demo {
+  background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/Vjkyj2hBg/bubbles-floating-up-animation-on-blue-background_eusn1gwsx__F0008.png');
+}
+
+#vendor-welcome-typography {
+  text-align: center;
+}
+#vendor-signup-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#vendor-signup-form-div {
+  display: flex;
+  justify-content: center;
+}
+#vendor-signup-submit-button {
+  margin: 0 10% 0 35%;
+}
+
+#donor-welcome-typography {
+  text-align: center;
+}
+#donor-signup-buttons-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+#donor-signup-email-pw-row {
+  display: flex;
+  justify-content: center;
+}
+
+#donor-signup-form-div {
+  display: flex;
+  justify-content: center;
+}
+#donor-signup-submit-button {
+  margin: 0 10% 0 35%;
+}
+.signup-column {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}

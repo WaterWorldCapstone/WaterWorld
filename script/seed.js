@@ -77,8 +77,8 @@ const transactions = [
 const pools = [
   {
     name: 'Alpha',
-    latitude: '42.75',
-    longitude: '70.32',
+    latitude: '23.66',
+    longitude: '79.47',
     mostRecentDonation: '200',
     mostRecentExpenditure: '100',
     targetQuantity: '500', //represents amount of water in each dispatch to the pool area
@@ -97,8 +97,8 @@ const pools = [
   },
   {
     name: 'Mori Volo',
-    latitude: '42.75',
-    longitude: '70.32',
+    latitude: '22.44',
+    longitude: '76.49',
     mostRecentDonation: '200',
     mostRecentExpenditure: '100',
     targetQuantity: '500', //represents amount of water in each dispatch to the pool area
@@ -624,6 +624,31 @@ const pools = [
     name: 'Ksi',
     latitude: '18.49226',
     longitude: '75.158638',
+    mostRecentDonation: '200',
+    mostRecentExpenditure: '100',
+    targetQuantity: '500', //represents amount of water in each dispatch to the pool area
+    town: 'New York',
+    country: 'Trump Land',
+    continent: 'North America',
+    status: 'open for bidding', //pool is in planning, collecting money, open for bidding, sent to vendor, complete
+    currentFunds: '100',
+    solutionType: 'water',
+    goalFunds: '4100',
+    needIntensity: '7',
+    population: 50,
+    mortalityRate: '10',
+    factoids: ['Gabe likes swords', 'Gabe was in stackapella'],
+    waterQuality: 'poor',
+    images: [
+      'http://www.rainharvest.co.za/wp-content/uploads/2010/05/water-scarcity.jpg',
+      'https://images.indianexpress.com/2015/06/water-crisis.jpg',
+      'https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/630x315/format/jpg/quality/85/http%3A%2F%2Fi.huffpost.com%2Fgen%2F4180804%2Fimages%2Fn-POVERTY-AFRICA-628x314.jpg'
+    ]
+  },
+  {
+    name: 'Omicron',
+    latitude: '24.06',
+    longitude: '75.87',
     mostRecentDonation: '200',
     mostRecentExpenditure: '100',
     targetQuantity: '500', //represents amount of water in each dispatch to the pool area

@@ -9,7 +9,7 @@ export const InfoWindowContent = ({pool}) => {
         <div> {pool.name} </div>
         <p />
         {pool.currentFunds ? <div>Current: ${pool.currentFunds}</div> : <div />}
-        {pool.goalFunds ? <div> Current: ${pool.goalFunds}</div> : <div />}
+        {pool.goalFunds ? <div> Goal: ${pool.goalFunds}</div> : <div />}
 
         <p>
           {/* <a href="/donate">
