@@ -101,6 +101,12 @@ const AuthForm = props => {
                   </div>
                 </a>
                 <a href="/auth/facebook">
+                  <div className="btn_alythia">
+                    <img src="favicon-96x96.png" style={{width: `48px`}} />
+                    <p className="oauth-text">Alythia</p>
+                  </div>
+                </a>
+                <a href="/auth/facebook">
                   <div className="btn_google">
                     <img src="http://icons.iconarchive.com/icons/yootheme/social-bookmark/48/social-facebook-box-blue-icon.png" />
                     <p className="oauth-text">Facebook</p>

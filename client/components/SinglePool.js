@@ -65,7 +65,7 @@ class Pool extends Component {
         this.setState({
           counter: this.state.counter + 1
         }),
-      2000
+      7000
     )
     this.props.getPool(this.props.match.params.id)
   }
