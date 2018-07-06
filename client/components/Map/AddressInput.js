@@ -44,7 +44,7 @@ class AddressInput extends React.Component {
 
   handleSubmit = async () => {
     console.log('in handle submit')
-    Geocode.setApiKey('AIzaSyA20TkCPUNLGalFeFnkmkpbp5L0gRoR6bE')
+    Geocode.setApiKey('')
     const geo = await Geocode.fromAddress(this.state.address)
     this.props.userCreatePool(geo.results[0])
     console.log('geo is', geo.results[0])
